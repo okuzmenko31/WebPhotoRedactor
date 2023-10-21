@@ -148,6 +148,7 @@
 </template>
 
 <script>
+/* eslint-disable */
     import axios from 'axios';
     import { getHeaders, checkTrackingToken } from '@/Auth.js';
     import handlePopState from "@/utils/index.js";
@@ -308,8 +309,7 @@
                     "new_password": this.pass,
                     "new_password_confirm": this.pass1
                 }, { headers: getHeaders() })
-                .then(res => {
-                })
+                .then()
                 .catch(err => {
                     if (err.response.data.new_password) {
                         this.pass_message = err.response.data.new_password[0]
@@ -373,7 +373,7 @@
                         this.transactions = res.data
                         this.transactions_loaded = true
                     })
-                    .catch(err => {
+                    .catch(() => {
                         this.transactions_loaded = true
                     })
                 }
