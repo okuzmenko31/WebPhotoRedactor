@@ -174,9 +174,6 @@ export default {
 
 .payment_methods_block {
     width: 50%;
-    max-width: 80%;
-    overflow-x: hidden;
-    overflow-y: auto;
 }
 
 .not-authed-user {
@@ -376,7 +373,6 @@ export default {
 @media (min-width: 768px) and (max-width: 991px) {
     #payment-block {
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         gap: 50px;
         padding: 20px
@@ -411,7 +407,6 @@ export default {
 @media (min-width: 651px) and (max-width: 767px) {
     #payment-block {
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         gap: 50px;
         padding: 20px
@@ -445,7 +440,6 @@ export default {
 @media (min-width: 481px) and (max-width: 650px) {
     #payment-block {
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         gap: 50px;
         padding: 20px
@@ -479,7 +473,6 @@ export default {
 @media (max-width: 480px) {
     #payment-block {
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         gap: 20px;
         padding: 20px

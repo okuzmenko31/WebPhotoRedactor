@@ -306,6 +306,15 @@
     align-items: center;
     justify-content: center;
   }
+
+  .why-item {
+    width: 60%;
+    align-items: center;
+  }
+
+  .why-us-block {
+    width: 100%;
+  }
 }
 
 @media (min-width: 651px) and (max-width: 767px) {
@@ -330,6 +339,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .why-item {
+    width: 60%;
+    align-items: center;
+  }
+
+  .why-us-block {
+    width: 100%;
   }
 }
 
@@ -359,6 +377,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .why-item {
+    width: 60%;
+    align-items: center;
+  }
+
+  .why-us-block {
+    width: 100%;
   }
 }
 
@@ -400,6 +427,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .why-item {
+    width: 60%;
+    align-items: center;
+  }
+
+  .why-us-block {
+    width: 100%;
   }
 }
 </style>

@@ -51,19 +51,19 @@
 
 @media (min-width: 651px) and (max-width: 767px) {
     .questions-block {
-        width: 75%;
+        width: 90%;
     }
 }
 
 @media (min-width: 481px) and (max-width: 650px) {
     .questions-block {
-        width: 75%;
+        width: 90%;
     }
 }
 
 @media (max-width: 480px) {
     .questions-block {
-        width: 60%;
+        width: 90%;
     }
 }
 </style>

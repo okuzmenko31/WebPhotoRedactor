@@ -6,7 +6,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: linear-gradient(to bottom, #000 0%, #020414 15%, #020414 85%, #000 100%);
+    background: linear-gradient(180deg, #000 0%, #020414 15%, #020414 85%, #000 100%);
     --first_color: #abadff;
     --secondary_color: #d091fa;
     --secondary_hover_color: #9069aa;
@@ -24,7 +24,7 @@ body {
     flex-direction: column;
     overflow-x: hidden;
     z-index: 1;
-    background: linear-gradient(to bottom, #000 0%, #020414 15%, #020414 85%, #000 100%);
+    background: linear-gradient(180deg #000 0%, #020414 15%, #020414 85%, #000 100%);
 }
 
 .no-margin {

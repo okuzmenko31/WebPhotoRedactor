@@ -739,6 +739,11 @@
     .image_upload_navbar {
         padding-left: 50px;
     }
+
+    #dd-menu {
+        right: unset;
+        transform: unset;
+    }
 }
 
 @media (min-width: 651px) and (max-width: 767px) {
@@ -748,6 +753,11 @@
 
     .image_upload_navbar {
         padding-left: 50px;
+    }
+
+    #dd-menu {
+        right: unset;
+        transform: unset;
     }
 }
 
@@ -759,6 +769,11 @@
     .image_upload_navbar {
         padding-left: 50px;
     }
+
+    #dd-menu {
+        right: unset;
+        transform: unset;
+    }
 }
 
 @media (max-width: 480px) {
@@ -768,6 +783,11 @@
 
     .image_upload_navbar {
         padding-left: 5px;
+    }
+
+    #dd-menu {
+        right: unset;
+        transform: unset;
     }
 }
 </style>

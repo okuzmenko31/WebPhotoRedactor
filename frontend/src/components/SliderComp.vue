@@ -43,22 +43,41 @@ class Slider {
     }
 
     #listen() {
-        this.mouseDownHandler = this.mouseDownHandler.bind(this);
-        this.mouseUpHandler = this.mouseUpHandler.bind(this);
-        this.moveHandler = this.moveHandler.bind(this);
-        this.$slider.addEventListener('mousedown', this.mouseDownHandler);
-        this.$slider.addEventListener('mouseup', this.mouseUpHandler);
+        let isTouchDevice = 'ontouchstart' in document.documentElement;
+        if (isTouchDevice) {
+            this.mouseDownHandler = this.mouseDownHandler.bind(this);
+            this.mouseUpHandler = this.mouseUpHandler.bind(this);
+            this.moveHandler = this.moveHandler.bind(this);
+            this.$slider.addEventListener('touchstart', this.mouseDownHandler);
+            this.$slider.addEventListener('touchend', this.mouseUpHandler);
+        } else {
+            this.mouseDownHandler = this.mouseDownHandler.bind(this);
+            this.mouseUpHandler = this.mouseUpHandler.bind(this);
+            this.moveHandler = this.moveHandler.bind(this);
+            this.$slider.addEventListener('mousedown', this.mouseDownHandler);
+            this.$slider.addEventListener('mouseup', this.mouseUpHandler);
+        }
     }
 
     mouseDownHandler(event) {
         if (event.target.dataset.type === 'resize') {
             this.currentX = event.clientX;
-            this.$slider.addEventListener('mousemove', this.moveHandler);
+            let isTouchDevice = 'ontouchstart' in document.documentElement;
+            if (isTouchDevice) {
+                this.$slider.addEventListener('touchmove', this.moveHandler);
+            } else {
+                this.$slider.addEventListener('mousemove', this.moveHandler);
+            }
         }
     }
 
     mouseUpHandler() {
-        this.$slider.removeEventListener('mousemove', this.moveHandler);
+        let isTouchDevice = 'ontouchstart' in document.documentElement;
+        if (isTouchDevice) {
+            this.$slider.removeEventListener('touchmove', this.moveHandler);
+        } else {
+            this.$slider.removeEventListener('mousemove', this.moveHandler);
+        }
     }
 
     moveHandler(event) {
