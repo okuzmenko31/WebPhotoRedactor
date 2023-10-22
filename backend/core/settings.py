@@ -388,5 +388,6 @@ JAZZMIN_SETTINGS = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'http://91.239.235.190:3000'
+    'http://91.239.235.190:3000',
+    'http://91.239.235.190'
 ]
