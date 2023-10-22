@@ -133,7 +133,7 @@
     grid-column-start: 2;
     grid-row-start: 3;
     grid-row-end: 8;
-    background: linear-gradient( rgb(102, 0, 255, 0.5), rgba(177, 27, 27, 0.5) ) ), url('https://d2ahk8dombjwkf.cloudfront.net/website_images/graphicdesignpng.webp');
+    background: linear-gradient( rgb(102, 0, 255, 0.5), rgba(177, 27, 27, 0.5) ), url('https://d2ahk8dombjwkf.cloudfront.net/website_images/graphicdesignpng.webp');
     background-repeat: no-repeat;
     background-size: cover;
 }
