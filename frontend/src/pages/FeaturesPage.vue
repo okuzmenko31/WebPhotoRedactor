@@ -353,6 +353,7 @@
 
 .swiper-button-next,
 .swiper-button-prev {
+    scale: 70%;
     top: 50%;
     color: var(--secondary_color) !important;
     fill: black !important;
