@@ -302,13 +302,17 @@
             },
             resetSettings() {
                 const input = document.querySelector('.bgImageUpload')
-                input.value = ''
+                input.value = ""
                 this.showBg = true
                 this.showColor = true
                 this.bgImgUrl = ""
-                if (this.bgColor !== "#ffffff" && document.querySelector('.pcr-button')) {
+                console.log(this.showBg);
+                console.log(this.showColor);
+                this.bgBlur = 0
+                const obj = document.querySelector('.pcr-button')
+                if (obj) {
                     this.bgColor = "#ffffff"
-                    document.querySelector('.pcr-button').style.setProperty('--pcr-color', this.bgColor);
+                    obj.style.setProperty('--pcr-color', this.bgColor);
                 }
             },
             handleFilesUpdated(value) {
@@ -645,6 +649,8 @@
     display: none;
     flex-direction: column;
     align-items: center;
+    right: 50%;
+    transform: translateX(50%);
     top: 50px;
     background: #3b3f4d;
     padding: 20px 40px;
@@ -693,6 +699,8 @@
     display: none;
     flex-direction: column;
     align-items: center;
+    right: 50%;
+    transform: translateX(50%);
     top: 50px;
     background: #3b3f4d;
     padding: 20px;

@@ -1,9 +1,9 @@
 <template>
   <navbar-comp />
   <div class="pricing-container">
-    <p class="brand_text">Our plans</p>
-    <p class="fs--50 fw--700 header_text align_center_text no-top">Pricing</p>
     <div class="pricing-block">
+      <p class="brand_text">Our plans</p>
+    <p class="fs--50 fw--700 header_text align_center_text no-top">Pricing</p>
         <div class="tarrifs-row">
           <card v-for="plan in plans"
               :key="plan.id"

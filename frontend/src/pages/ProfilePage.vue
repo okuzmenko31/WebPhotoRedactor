@@ -14,15 +14,22 @@
                 <p class="no-margin" style="overflow-wrap: anywhere;">{{ username }}!</p>
             </div>
             <div class="profile_buttons">
-                <router-link id="prbtn-1" class="profile_button" :class="{ 'active': isActive('#profile') }" to="#profile">
-                    Profile
-                </router-link>
-                <router-link id="prbtn-2" class="profile_button" :class="{ 'active': isActive('#credits') }" to="#credits">
-                    Credits
-                </router-link>
-                <router-link id="prbtn-3" class="profile_button" :class="{ 'active': isActive('#transactions') }" to="#transactions">
-                    Transactions
-                </router-link>
+                <div class="column flex-block gp--50 width--100 align-items-center">
+                    <router-link id="prbtn-1" class="profile_button" :class="{ 'active': isActive('#profile') }" to="#profile">
+                        Profile
+                    </router-link>
+                    <router-link id="prbtn-2" class="profile_button" :class="{ 'active': isActive('#credits') }" to="#credits">
+                        Credits
+                    </router-link>
+                    <router-link id="prbtn-3" class="profile_button" :class="{ 'active': isActive('#transactions') }" to="#transactions">
+                        Transactions
+                    </router-link>
+                </div>
+                <div class="column flex-block gp--50 width--100 align-items-center">
+                    <div class="profile_button" @click="logout">
+                        Log out
+                    </div>
+                </div>
             </div>
         </div>
         <div class="tab_info-block">
@@ -150,7 +157,7 @@
 <script>
 /* eslint-disable */
     import axios from 'axios';
-    import { getHeaders, checkTrackingToken } from '@/Auth.js';
+    import { getHeaders, checkTrackingToken, setLocalToken, setLocalRefreshToken } from '@/Auth.js';
     import handlePopState from "@/utils/index.js";
     import router from "@/router/router.js";
     import InputUi from "@/components/UI/InputUi.vue";
@@ -215,6 +222,11 @@
             }
         },
         methods: {
+            logout() {
+                setLocalToken("")
+                setLocalRefreshToken("")
+                router.push({ path: "/" })
+            },
             navbarToggle() {
                     const navbar = document.getElementById('profile_bar')
                     const button = document.getElementById('mobile__btn')
@@ -242,8 +254,8 @@
                     this.showUsernameButton = true;
                 }
             },
-            changeEmail() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/change_email/`, { 'email': this.email }, { headers: getHeaders() })
+            async changeEmail() {
+                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/change_email/`, { 'email': this.email }, { headers: await getHeaders() })
                 .then(res => {
                     this.email_message = res.data.success
                     const passObj = document.getElementById('email_message')
@@ -258,8 +270,8 @@
                     }
                 })
             },
-            changeUsername() {
-                axios.patch(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/`, { 'username': this.validateUsername() }, { headers: getHeaders() })
+            async changeUsername() {
+                axios.patch(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/`, { 'username': this.validateUsername() }, { headers: await getHeaders() })
                 .then(res => {
                     this.user_message = `Username was successfuly change to ${res.data.username}`
                     this.Stusername = res.data.username
@@ -354,7 +366,7 @@
             async getUserCredits() {
                 const ip = await this.userIp
                 if (this.isActive('#credits') && this.userIp !== "") {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { "ip_address_or_token": ip })
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { "ip_address_or_token": ip }, { headers: await getHeaders() })
                     .then(res => {
                         this.free_upscale = res.data.free_credits.up_scales_count
                         this.free_bg = res.data.free_credits.bg_deletions_count
@@ -366,9 +378,9 @@
                     })
                 }
             },
-            getUserPlan() {
+            async getUserPlan() {
                 if (this.isActive('#transactions') && !this.transactions_loaded) {
-                    axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/user_orders/`, { headers: getHeaders() })
+                    axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/user_orders/`, { headers: await getHeaders() })
                     .then(res => {
                         this.transactions = res.data
                         this.transactions_loaded = true
@@ -429,7 +441,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
     gap: 20px;
 }
 
@@ -717,6 +732,14 @@
 
     .order_block .flex-block p {
         font-size: 15px;
+    }
+
+    .profile_button {
+        font-size: 15px;
+    }
+
+    .profile_buttons {
+        width: 70%;
     }
 }
 </style>
