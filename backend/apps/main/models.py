@@ -10,16 +10,8 @@ class TitleTextAbstractModel(models.Model):
     class Meta:
         abstract = True
 
-
-class Preference(TitleTextAbstractModel):
-
-    class Meta:
-        db_table = 'preferences'
-        verbose_name = 'preference'
-        verbose_name_plural = 'Preferences'
-
-    def __str__(self):
-        return f'Preference: {self.title}'
+    def __str__(self) -> str:
+        return f'Faq: {self.title}'
 
 
 class MainFaq(TitleTextAbstractModel):
@@ -29,11 +21,8 @@ class MainFaq(TitleTextAbstractModel):
         verbose_name = 'faq'
         verbose_name_plural = 'Main FAQs'
 
-    def __str__(self):
-        return f'Faq: {self.title}'
 
-
-class PricingFaq(MainFaq):
+class PricingFaq(TitleTextAbstractModel):
 
     class Meta:
         db_table = 'pricing_faqs'

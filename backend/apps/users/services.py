@@ -45,7 +45,7 @@ def get_credits_for_ip_or_token(user_ip_or_token):
 
     for field in counter_fields:
         field_value = getattr(usage_counter, field)
-        if field_value != 0:
+        if field_value < free_limit:
             final_value = free_limit - field_value
         else:
             final_value = 0

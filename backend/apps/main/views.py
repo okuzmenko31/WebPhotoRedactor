@@ -1,12 +1,7 @@
 from rest_framework.generics import ListAPIView
 
 from .models import *
-from .serializers import PreferenceSerializer, MainFaqSerializer, PricingFaqSerializer
-
-
-class PreferenceListAPIView(ListAPIView):
-    serializer_class = PreferenceSerializer
-    queryset = Preference.objects.all()
+from .serializers import MainFaqSerializer, PricingFaqSerializer
 
 
 class MainFaqListAPIView(ListAPIView):
