@@ -60,8 +60,10 @@ class Slider {
     }
 
     mouseDownHandler(event) {
+        event.preventDefault();
         if (event.target.dataset.type === 'resize') {
-            this.currentX = event.clientX;
+            this.currentX = event.clientX || event.touches[0].clientX;
+            this.startWidth = parseInt(this.state.width);
             let isTouchDevice = 'ontouchstart' in document.documentElement;
             if (isTouchDevice) {
                 this.$slider.addEventListener('touchmove', this.moveHandler);
@@ -81,10 +83,10 @@ class Slider {
     }
 
     moveHandler(event) {
-        let newX = this.currentX - event.clientX;
-        let newWidth = `${parseInt(this.state.width) - newX}px`;
-        this.#update({ width: newWidth });
-        this.currentX = event.clientX;
+        let newX = event.clientX || event.touches[0].clientX;
+        let diffX = this.currentX - newX;
+        let newWidth = this.startWidth - diffX;
+        this.#update({ width: newWidth + 'px' });
     }
 }
 

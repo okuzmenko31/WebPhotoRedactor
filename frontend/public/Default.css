@@ -13,7 +13,15 @@ body {
     --first_darker_color: #7273a3;
     --opacity-button-color: rgba(255, 255, 255, 0.3);
     --brand-gradient: -webkit-linear-gradient(10deg,#902EF2 0%,#FF62B7 100%);
+}
 
+:root ::after ::before {
+    --first_color: #abadff;
+    --secondary_color: #d091fa;
+    --secondary_hover_color: #9069aa;
+    --first_darker_color: #7273a3;
+    --opacity-button-color: rgba(255, 255, 255, 0.3);
+    --brand-gradient: -webkit-linear-gradient(10deg,#902EF2 0%,#FF62B7 100%);
 }
 
 #app {
