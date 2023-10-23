@@ -47,7 +47,7 @@
 
                     name.style = desc.style = `
                         // position: absolute;
-                        bottom: ${shouldShow ? "50%" : "40%"};
+                        // bottom: ${shouldShow ? "50%" : "40%"};
                         transition: .3s;
                     `;
 
