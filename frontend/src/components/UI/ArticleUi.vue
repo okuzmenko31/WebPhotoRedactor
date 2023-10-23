@@ -1,7 +1,7 @@
 <template>
     <div v-if="article_id" :id="article_id" class="article" @mouseover="showDescription(true)" @mouseleave="showDescription(false)">
-        <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 width--100 art_name align_center_text">{{ name }}</p>
-        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20 width--100 align_center_text">{{ article }}</p>
+        <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 art_name align_center_text">{{ name }}</p>
+        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20 align_center_text">{{ article }}</p>
     </div>
 </template>
 
@@ -42,12 +42,16 @@
 
                 if (desc && name) {
                     const newOpacity = shouldShow ? 1 : 0;
+                    const display = shouldShow ? 'flex' : 'none';
 
                     name.style = desc.style = `
                         transition: .3s;
                     `;
 
                     desc.style.opacity = newOpacity;
+                    setTimeout(() => {
+                        desc.style.display = display
+                    }, 1000)
 
                     if (shouldShow) {
                         desc.style.display = 'flex';
