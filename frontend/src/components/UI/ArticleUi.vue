@@ -42,7 +42,7 @@
                 const name = document.getElementById(this.article_name_id);
 
                 if (desc && name) {
-                    const newPosition = shouldShow ? `${0.4 * body.clientHeight - desc.clientHeight}px` : "40%";
+                    // const newPosition = shouldShow ? `${0.4 * body.clientHeight - desc.clientHeight}px` : "40%";
                     const newOpacity = shouldShow ? 1 : 0;
 
                     name.style = desc.style = `
@@ -52,7 +52,7 @@
                     `;
 
                     desc.style.opacity = newOpacity;
-                    desc.style.bottom = newPosition;
+                    // desc.style.bottom = newPosition;
 
                     if (shouldShow) {
                         desc.style.display = 'flex';
