@@ -37,7 +37,7 @@
                 return id;
             },
             showDescription(shouldShow) {
-                const body = document.getElementById(this.article_id)
+                // const body = document.getElementById(this.article_id)
                 const desc = document.getElementById(this.article_desc_id);
                 const name = document.getElementById(this.article_name_id);
 
