@@ -77,7 +77,7 @@ class FreeEnhancesLimit(models.Model):
     class Meta:
         db_table = 'free_enhances_limit'
         verbose_name = 'limit'
-        verbose_name_plural = 'Free enhances limit'
+        verbose_name_plural = 'Free credits limit'
 
     def __str__(self):
         return f'Limit: {str(self.limit)}'
