@@ -1,7 +1,7 @@
 from django.conf import settings
 
 from rest_framework.views import APIView
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -20,7 +20,7 @@ from apps.users.services import get_jwt_tokens_for_user
 
 
 class CreateUserToMakePaymentAPIView(UserCreateForPaymentMixin,
-                                     APIView):
+                                     GenericAPIView):
     serializer_class = CreateUserForSubscriptionMixin
     mail_with_celery = False
 
@@ -192,7 +192,7 @@ class CreateStripeCheckoutSessionAPIView(StripePaymentMixin,
 
 class CreateStripeForeignCheckoutSessionAPIView(ForeignOrderMixin,
                                                 StripePaymentMixin,
-                                                APIView):
+                                                GenericAPIView):
     serializer_class = ForeignOrderSerializer
     foreign_order = True
 
@@ -323,7 +323,7 @@ class PlanDetailAPIView(RetrieveAPIView):
 
 
 class CreatePayPalForeignOrderAPIView(PayPalOrdersMixin,
-                                      APIView):
+                                      GenericAPIView):
     serializer_class = ForeignOrderSerializer
     foreign_order = True
 
@@ -409,7 +409,7 @@ class CancelForeignOrderByPayPalOrderID(ForeignOrderMixin,
 
 
 class UserOrders(OrderMixin,
-                 APIView):
+                 GenericAPIView):
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
 

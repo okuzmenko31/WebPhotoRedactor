@@ -1,7 +1,9 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 
 from .models import *
-from .serializers import MainFaqSerializer, PricingFaqSerializer
+from .serializers import (MainFaqSerializer,
+                          PricingFaqSerializer,
+                          HelpRequestSerializer)
 
 
 class MainFaqListAPIView(ListAPIView):
@@ -12,3 +14,8 @@ class MainFaqListAPIView(ListAPIView):
 class PricingFaqListAPIView(ListAPIView):
     serializer_class = PricingFaqSerializer
     queryset = PricingFaq.objects.all()
+
+
+class CreateRequestAPIView(CreateAPIView):
+    serializer_class = HelpRequestSerializer
+    queryset = HelpRequest.objects.all()

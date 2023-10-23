@@ -42,7 +42,7 @@ class UserRegistrationAPIView(AuthTokenMixin,
 
 
 class ConfirmEmailAPIView(AuthTokenMixin,
-                          APIView):
+                          generics.GenericAPIView):
     permission_classes = [IsNotAuthenticated]
     token_type = TokenTypes.SIGNUP
 
@@ -66,7 +66,7 @@ class ConfirmEmailAPIView(AuthTokenMixin,
 
 
 class ChangeEmailAPIView(AuthTokenMixin,
-                         APIView):
+                         generics.GenericAPIView):
     serializer_class = ChangeEmailSerializer
     permission_classes = [IsAuthenticated]
     token_type = TokenTypes.CHANGE_EMAIL
@@ -108,7 +108,7 @@ class ChangeEmailConfirmAPIView(AuthTokenMixin,
 
 
 class SendPasswordResetAPIView(AuthTokenMixin,
-                               APIView):
+                               generics.GenericAPIView):
     serializer_class = SendPasswordResetMailSerializer
     token_type = TokenTypes.PASSWORD_RESET
     html_message_template = 'users/password_reset_msg.html'
@@ -125,7 +125,7 @@ class SendPasswordResetAPIView(AuthTokenMixin,
 
 
 class PasswordResetAPIView(AuthTokenMixin,
-                           APIView):
+                           generics.GenericAPIView):
     serializer_class = PasswordResetSerializer
     token_type = TokenTypes.PASSWORD_RESET
 
@@ -147,7 +147,7 @@ class PasswordResetAPIView(AuthTokenMixin,
             }, status=status.HTTP_400_BAD_REQUEST)
 
 
-class ChangePasswordAPIView(APIView):
+class ChangePasswordAPIView(generics.GenericAPIView):
     serializer_class = ChangePasswordSerializer
     permission_classes = [IsAuthenticated]
 
@@ -184,7 +184,7 @@ class UserAPIView(generics.RetrieveUpdateDestroyAPIView):
         return User.objects.get(id=self.request.user.id)
 
 
-class UserCredits(APIView):
+class UserCredits(generics.GenericAPIView):
     serializer_class = UserCreditsSerializer
 
     def post(self, *args, **kwargs):

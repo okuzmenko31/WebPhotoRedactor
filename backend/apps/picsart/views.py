@@ -1,6 +1,7 @@
 from typing import Optional
 
 from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
@@ -20,7 +21,7 @@ from apps.users.models import User
 
 
 class BaseImageAPIView(IPAddressesUsageCountMixin,
-                       APIView):
+                       GenericAPIView):
     serializer_class = ImageSerializer
     parser_classes = (MultiPartParser, FormParser)
     psc = PCsService()

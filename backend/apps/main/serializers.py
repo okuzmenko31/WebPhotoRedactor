@@ -13,3 +13,10 @@ class PricingFaqSerializer(serializers.ModelSerializer):
     class Meta:
         model = PricingFaq
         fields = '__all__'
+
+
+class HelpRequestSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = HelpRequest
+        fields = ['request_type', 'email', 'text']

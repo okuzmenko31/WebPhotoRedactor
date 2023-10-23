@@ -28,3 +28,34 @@ class PricingFaq(TitleTextAbstractModel):
         db_table = 'pricing_faqs'
         verbose_name = 'faq'
         verbose_name_plural = 'Pricing FAQs'
+
+
+HELP_REQUEST_TYPES = ['Functionality', 'Account', 'Pricing', 'Other']
+
+
+class HelpRequest(models.Model):
+    REQUEST_STATUSES = (
+        ('ACTIVE', 'ACTIVE'),
+        ('IN PROCESSING', 'IN PROCESSING'),
+        ('COMPLETED', 'COMPLETED')
+    )
+    REQUEST_TYPES = (
+        (req_type, req_type) for req_type in HELP_REQUEST_TYPES
+    )
+
+    status = models.CharField(choices=REQUEST_STATUSES,
+                              verbose_name='Request status',
+                              default='ACTIVE')
+    request_type = models.CharField(choices=REQUEST_TYPES,
+                                    verbose_name='Request type',
+                                    default='Functionality')
+    email = models.EmailField(verbose_name='Email')
+    text = models.TextField(verbose_name='Request text')
+
+    class Meta:
+        db_table = 'help_requests'
+        verbose_name = 'help request'
+        verbose_name_plural = 'Help requests'
+
+    def __str__(self):
+        return f'Request #{self.id}. Email: {self.email}'
