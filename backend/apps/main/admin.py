@@ -19,7 +19,8 @@ class PricingFaqAdmin(admin.ModelAdmin):
 
 @admin.register(HelpRequest)
 class HelpRequestAdmin(admin.ModelAdmin):
-    list_display = ['id', 'status', 'email']
+    list_display = ['id', 'status', 'request_type', 'email']
+    list_editable = ['status', 'request_type']
     list_display_links = ['id', 'email']
-    search_fields = ['id', 'status', 'email']
-    list_filter = ['status', 'email']
+    search_fields = ['id', 'status', 'email', 'request_type']
+    list_filter = ['status', 'email', 'request_type']
