@@ -1,6 +1,6 @@
 <template>
     <div v-if="article_id" :id="article_id" class="article" @mouseover="showDescription(true)" @mouseleave="showDescription(false)">
-        <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 art_name">{{ name }}</p>
+        <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 width--100 art_name align_center_text">{{ name }}</p>
         <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20 width--100 align_center_text">{{ article }}</p>
     </div>
 </template>
@@ -66,6 +66,7 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
     box-sizing: border-box;
     border-radius: 20px;
