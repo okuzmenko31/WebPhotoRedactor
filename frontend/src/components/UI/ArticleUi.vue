@@ -70,7 +70,6 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 40px;
     box-sizing: border-box;
     border-radius: 20px;
