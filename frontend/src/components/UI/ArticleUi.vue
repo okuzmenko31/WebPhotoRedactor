@@ -1,7 +1,7 @@
 <template>
     <div v-if="article_id" :id="article_id" class="article" @mouseover="showDescription(true)" @mouseleave="showDescription(false)">
         <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 art_name">{{ name }}</p>
-        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20">{{ article }}</p>
+        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20 width--100 align_center_text">{{ article }}</p>
     </div>
 </template>
 
@@ -67,8 +67,6 @@
     display: flex;
     flex-direction: column;
     gap: 40px;
-    text-align: center;
-    align-items: center;
     box-sizing: border-box;
     border-radius: 20px;
     overflow-wrap: anywhere;
