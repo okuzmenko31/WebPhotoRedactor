@@ -37,22 +37,17 @@
                 return id;
             },
             showDescription(shouldShow) {
-                // const body = document.getElementById(this.article_id)
                 const desc = document.getElementById(this.article_desc_id);
                 const name = document.getElementById(this.article_name_id);
 
                 if (desc && name) {
-                    // const newPosition = shouldShow ? `${0.4 * body.clientHeight - desc.clientHeight}px` : "40%";
                     const newOpacity = shouldShow ? 1 : 0;
 
                     name.style = desc.style = `
-                        // position: absolute;
-                        // bottom: ${shouldShow ? "50%" : "40%"};
                         transition: .3s;
                     `;
 
                     desc.style.opacity = newOpacity;
-                    // desc.style.bottom = newPosition;
 
                     if (shouldShow) {
                         desc.style.display = 'flex';
@@ -74,7 +69,6 @@
     gap: 40px;
     text-align: center;
     align-items: center;
-    justify-content: center;
     box-sizing: border-box;
     border-radius: 20px;
     overflow-wrap: anywhere;
