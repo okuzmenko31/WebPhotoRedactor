@@ -38,15 +38,24 @@ export const getTrackingToken = () => {
     }
 };
 
-export const checkTrackingToken = () => {
-    if (getTrackingToken() === null) {
-        axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/client_token_create/`, {})
-        .then(res => {
-            setTrackingToken(res.data.token)
-            return getTrackingToken()
-        })
-    } else {
-        return getTrackingToken()
+export const checkTrackingToken = async () => {
+    try {
+        const response = await axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/client_ip/`);
+        console.log(response);
+        return response.data.ip;
+    } catch (error) {
+        if (getTrackingToken() === null) {
+            try {
+                const response = await axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/client_token_create/`, {});
+                setTrackingToken(response.data.token);
+                return getTrackingToken();
+            } catch (error) {
+                setTrackingToken(error);
+                return getTrackingToken();
+            }
+        } else {
+            return getTrackingToken();
+        }
     }
 }
 

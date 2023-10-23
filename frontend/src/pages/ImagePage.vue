@@ -2,11 +2,11 @@
     <div @click="navbarToggle" id="mobile__btn"></div>
     <div @click="navbarToggle" id="mobile__btn_close">✖</div>
     <div @click="redirectToMain" id="close_modal" class="image_close_page" style="z-index: 4;">
-            <svg height="15px" style="transform: rotate(180deg);" viewBox="0 0 5 9">
-                <path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path>
-            </svg>
-            To Main
-        </div>
+        <svg height="15px" style="transform: rotate(180deg);" viewBox="0 0 5 9">
+            <path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path>
+        </svg>
+        To Main
+    </div>
     <div class="image_upload_head_container">
         <div class="image_upload_navbar">
             <div id="dd-dropdown">
@@ -154,7 +154,7 @@
                     </div>
                 </div>
 
-                <div v-if="isActive('#removejpegartifacts') && !isLoading" class="profile_buttons image_buttons">
+                <div v-else-if="isActive('#removejpegartifacts') && !isLoading" class="profile_buttons image_buttons">
                     <div class="button_image_block" style="z-index: 2;">
                         <p>Strenght:</p>
                         <div id="factor-dropdown">
@@ -170,9 +170,13 @@
                             </div>
                         </div>
                     </div>
+                    <div class="therms-and-privacy2 flex-block column">
+                        <router-link class="link" to="/therms_of_use">Therms of use</router-link>
+                        <router-link class="link" to="/privacy_policy">Privacy Policy</router-link>
+                    </div>
                 </div>
 
-                <div v-if="isActive('#removebg') && !isLoading" class="profile_buttons image_buttons">
+                <div v-else-if="isActive('#removebg') && !isLoading" class="profile_buttons image_buttons">
                     <div v-if="showColor === true" class="button_image_block">
                         <p>Background color:</p>
                         <div id="color-picker"></div>
@@ -212,6 +216,41 @@
                         </div>
                     </div>
                     <button v-if="showBg === false || showColor === false" @click="resetSettings" id="upload_button">Reset settings</button>
+                    <div class="therms-and-privacy2 flex-block column">
+                        <router-link class="link" to="/therms_of_use">Therms of use</router-link>
+                        <router-link class="link" to="/privacy_policy">Privacy Policy</router-link>
+                    </div>
+                </div>
+
+                <div v-else class="profile_buttons image_buttons">
+                    <div class="button_image_block" style="z-index: 2;">
+                        <p>Upscale factor:</p>
+                        <div id="factor-dropdown">
+                            <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
+                            </div>
+                            <span id="factor-selected" @click="openFactorChoose">
+                                {{upscaleFactor}}
+                            </span>
+                            <div id="factor-menu">
+                                <li v-for="(factor, index) in factors" :key="index" @click="factorClick">
+                                    {{ factor }}
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button_image_block">
+                        <input @change="toggleChecked('ultra_enhance')" :checked="isUltraEnhanceChecked" type="checkbox" name="enhancerType">
+                        <p>ULTRA ENHANCER</p>
+                    </div>
+                    <div class="button_image_block">
+                        <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
+                        <p>ULTRA</p>
+                    </div>
+                    <div class="therms-and-privacy2 flex-block column">
+                        <router-link class="link" to="/therms_of_use">Therms of use</router-link>
+                        <router-link class="link" to="/privacy_policy">Privacy Policy</router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -527,6 +566,7 @@
     padding-bottom: 20px;
     align-items: center;
     z-index: 2;
+    gap: 20px;
     box-sizing: border-box;
 }
 
@@ -582,7 +622,7 @@
     align-items: center;
     justify-content: flex-start !important;
     gap: 10px;
-    padding: 70px 0 0 0;
+    padding: 70px 0 70px 0;
 }
 
 .button_image_block {

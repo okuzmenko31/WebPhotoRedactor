@@ -28,7 +28,7 @@
                 return this.name.toLowerCase().replaceAll(" ", "")
             },
             generateId(length) {
-                const characters = 'abcdefghijklmnopqrstuvwxyz0123456789'; // Pool of characters
+                const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
                 let id = '';
                 for (let i = 0; i < length; i++) {
                     const randomIndex = Math.floor(Math.random() * characters.length);
@@ -46,7 +46,7 @@
                     const newOpacity = shouldShow ? 1 : 0;
 
                     name.style = desc.style = `
-                        position: absolute;
+                        // position: absolute;
                         bottom: ${shouldShow ? "50%" : "40%"};
                         transition: .3s;
                     `;
@@ -88,13 +88,10 @@
 
 .descr_art {
     opacity: 0;
-    bottom: 40%;
-    position: absolute
 }
 
 .art_name {
     bottom: 40%;
-    position: absolute
 }
 
 .article p {

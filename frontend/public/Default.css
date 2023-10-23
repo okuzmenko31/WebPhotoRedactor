@@ -192,6 +192,10 @@ body {
 .blur-circle {
     position: absolute;
     border-radius: 50%;
+    -webkit-filter: var(--blur);
+    -moz-filter: var(--blur);
+    -o-filter: var(--blur);
+    -ms-filter: var(--blur);
     filter: var(--blur);
     --blur: blur(225px);
     width: 1000px;

@@ -5,7 +5,10 @@
             <p class="fs--15 fw--100">Upgrade your images with
                 with our powerful tools in just a few clicks.
                 Join a mass of Users Using FlexFi Upscale to Save
-                time and get great results!</p>
+                time and get great results!
+            </p>
+            <router-link class="link" style="text-decoration: underline" to="/therms_of_use">Therms of use</router-link>
+            <router-link class="link" style="text-decoration: underline" to="/privacy_policy">Privacy Policy</router-link>
             <p class="fs--12 fw--100">Copyright | ©2023 FlexFi Upscale</p>
         </div>
     </footer>
