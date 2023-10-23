@@ -109,7 +109,6 @@
 
 @media (max-width: 480px) {
     .tool-card {
-        width: 95%;
         height: 400px;       
     }
 }

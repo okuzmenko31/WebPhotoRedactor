@@ -62,11 +62,11 @@
                         </div>
 
                         <div class="about-feature-info white">
-                            <div @click="setNewImg($event, 1)" class="article_choose__btn UPSC">
+                            <div @click="setNewImg($event, 1)" class="article_choose__btn UPSC" :class="upscaleBlock === 1 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">Upscale</p>
                                 <p class="small_text no-margin">  </p>
                             </div>
-                            <div @click="setNewImg($event, 2)" class="article_choose__btn UPSC">
+                            <div @click="setNewImg($event, 2)" class="article_choose__btn UPSC" :class="upscaleBlock === 2 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">Ultra upscale</p>
                                 <p class="small_text no-margin">ultra enhance</p>
                             </div>
@@ -133,10 +133,10 @@
                             <slider-comp v-else :before_img="BgImg3" :after_img="BgImg3_2" :div_class="sliderClass" />
                         </div>
                         <div class="about-feature-info white">
-                            <div @click="setNewImgBg($event, 1)" class="article_choose__btn BGR">
+                            <div @click="setNewImgBg($event, 1)" class="article_choose__btn BGR" :class="bgBlock === 1 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
                                 <p class="small_text no-margin">AAHAHHA</p></div>
-                            <div @click="setNewImgBg($event, 2)" class="article_choose__btn BGR">
+                            <div @click="setNewImgBg($event, 2)" class="article_choose__btn BGR" :class="bgBlock === 2 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
                                 <p class="small_text no-margin">AAHAHHA</p></div>
                             <div @click="setNewImgBg($event, 3)" :class="bgBlock > 3 || bgBlock < 1 ? 'active' : '' " class="article_choose__btn BGR">
@@ -189,10 +189,10 @@
                             </swiper>
                         </div>
                         <div class="about-feature-info white">
-                            <div @click="setNewImgJpeg($event, 1)" class="article_choose__btn RJPEGA">
+                            <div @click="setNewImgJpeg($event, 1)" class="article_choose__btn RJPEGA" :class="jpegBlock === 1 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
                                 <p class="small_text no-margin">AAHAHHA</p></div>
-                            <div @click="setNewImgJpeg($event, 2)" class="article_choose__btn RJPEGA">
+                            <div @click="setNewImgJpeg($event, 2)" class="article_choose__btn RJPEGA" :class="jpegBlock === 2 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
                                 <p class="small_text no-margin">AAHAHHA</p></div>
                             <div @click="setNewImgJpeg($event, 3)" :class="jpegBlock > 3 || jpegBlock < 1 ? 'active' : '' " class="article_choose__btn  RJPEGA">
@@ -240,9 +240,9 @@
         },
         data() {
             return {
-                upscaleBlock: 0,
-                bgBlock: 0,
-                jpegBlock: 0,
+                upscaleBlock: 1,
+                bgBlock: 1,
+                jpegBlock: 1,
 
                 UpImg1: require("@/assets/car2.png"),
                 UpImg1_2: require("@/assets/car.jpg"),

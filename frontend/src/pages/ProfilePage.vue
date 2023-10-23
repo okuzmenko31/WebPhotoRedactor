@@ -702,7 +702,7 @@
     }
 
     .basic_user_info {
-        padding: 100px 10px 100px 10px;
+        padding: 100px 60px 100px 60px;
     }
 
     #mobile__btn {

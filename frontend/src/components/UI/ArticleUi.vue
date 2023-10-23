@@ -66,9 +66,9 @@
 <style>
 .article {
     width: 450px;
-    height: 300px;
+    height: 200px;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     gap: 40px;
