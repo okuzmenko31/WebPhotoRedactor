@@ -1,6 +1,6 @@
 <template>
     <div id="payment-container">
-        <div v-if="isLoaded" id="payment-block">
+        <div v-if="isLoaded" id="payment-block-not">
             <div class="payment_methods_block">
                     <p class="header_text fs--33 fw--700">Payment methods</p>
                     <template v-if="paypalRedirectLink === ''">
@@ -138,21 +138,16 @@ export default {
 
 <style>
 #payment-container {
-    position: fixed;
     width: 100%;
     height: 100%;
     display: flex;
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 1;
 }
 
-#payment-block {
+#payment-block-not {
     width: 100%;
     height: 100%;
     background-color: #171921;
@@ -216,7 +211,7 @@ export default {
 
 #save_email__btn {
     color: #fff;
-    background-color: var(--secondary_color);
+    background-color: #d091fa;
     border-radius: 4px;
     border: none;
     height: 35px;
@@ -225,10 +220,10 @@ export default {
 }
 
 #save_email__btn:hover {
-    background-color: var(--secondary_hover_color);
+    background-color: #9069aa;
 }
 
-#payment-block p {
+#payment-block-not p {
     text-wrap: wrap;
     text-align: start;
     overflow-wrap: break-word;
@@ -247,8 +242,6 @@ export default {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
     gap: 20px
 }
 
@@ -305,9 +298,9 @@ export default {
 }
 
 #close_modal:hover {
-    color: var(--secondary_color) !important;
-    stroke: var(--secondary_color) !important;
-    fill: var(--secondary_color) !important;;
+    color: #d091fa !important;
+    stroke: #d091fa !important;
+    fill: #d091fa !important;;
 }
 
 .stripe__btn {
@@ -371,9 +364,10 @@ export default {
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    #payment-block {
+    #payment-block-not {
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 50px;
         padding: 20px
     }
@@ -405,9 +399,10 @@ export default {
 }
 
 @media (min-width: 651px) and (max-width: 767px) {
-    #payment-block {
+    #payment-block-not {
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 50px;
         padding: 20px
     }
@@ -438,9 +433,10 @@ export default {
 }
 
 @media (min-width: 481px) and (max-width: 650px) {
-    #payment-block {
+    #payment-block-not {
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 50px;
         padding: 20px
     }
@@ -471,9 +467,10 @@ export default {
 }
 
 @media (max-width: 480px) {
-    #payment-block {
+    #payment-block-not {
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         gap: 20px;
         padding: 20px
     }

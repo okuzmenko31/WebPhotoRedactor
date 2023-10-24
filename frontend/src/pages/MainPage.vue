@@ -178,7 +178,7 @@
 .whatis-img {
   width: 90%;
   background: linear-gradient(white, white) padding-box,
-  linear-gradient(to right, var(--first_color), var(--secondary_color)) border-box;
+  linear-gradient(to right, #abadff, #d091fa) border-box;
   border-radius: 20px;
   border: 4px solid transparent;
 }
@@ -206,13 +206,13 @@
   background: transparent;
   border-radius: 10px;
   cursor: pointer;
-  background: var(--secondary_color);
+  background: #d091fa;
   border: 0;
   transition: .3s;
 }
 
 .check-pricing:hover {
-    background: var(--secondary_hover_color);
+    background: #9069aa;
 }
 
 .whatis__btn {
@@ -271,13 +271,13 @@
     height: 35px;
     border-radius: 10px;
     cursor: pointer;
-    background: var(--secondary_color);
+    background: #d091fa;
     border: 0;
     transition: .3s;
 }
 
 .main_signup_btn:hover {
-    background: var(--secondary_hover_color);
+    background: #9069aa;
 }
 
 .get-started-main-block {

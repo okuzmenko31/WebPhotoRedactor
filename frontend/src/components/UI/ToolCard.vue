@@ -40,7 +40,7 @@
     height: 350px;
     border-radius: 20px;
     background: linear-gradient(#171921, #171921) padding-box,
-    linear-gradient(to right, var(--first_color), var(--secondary_color)) border-box;
+    linear-gradient(to right, #abadff, #d091fa) border-box;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -94,7 +94,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background: linear-gradient(to right, var(--first_color), var(--secondary_color), var(--first_color));
+    background: linear-gradient(to right, #abadff, #d091fa, #abadff);
     background-position: 0 50%;
     text-transform: uppercase;
     background-size: 200px;

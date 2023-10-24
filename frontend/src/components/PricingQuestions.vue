@@ -45,7 +45,7 @@
 }
 
 .contact_email {
-    color: var(--secondary_color)
+    color: #d091fa;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {

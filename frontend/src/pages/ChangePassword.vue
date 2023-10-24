@@ -35,7 +35,7 @@
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/password_reset/${this.tokenQuery}/${this.emailQuery}/`, {
                     "password": this.pass,
                     "password1": this.pass1
-                }, { headers: getHeaders() })
+                })
                 .then(res => {
                     this.message = res.data.success + " You will be redirected in 2 seconds."
                     const messageBlock = document.getElementById('message_conf')
@@ -101,7 +101,7 @@
 }
 
 .reset_password_button {
-    background: var(--secondary_color);
+    background: #d091fa;
     border: none;
     border-radius: 4px;
     padding: 5px 10px;
@@ -110,6 +110,6 @@
 }
 
 .reset_password_button:hover {
-    background-color: var(--secondary_hover_color);
+    background-color: #9069aa
 }
 </style>

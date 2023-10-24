@@ -1,7 +1,7 @@
 <template>
     <div v-if="article_id" :id="article_id" class="article" @mouseover="showDescription(true)" @mouseleave="showDescription(false)">
-        <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 art_name">{{ name }}</p>
-        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20">{{ article }}</p>
+        <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 art_name align_center_text">{{ name }}</p>
+        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20 align_center_text">{{ article }}</p>
     </div>
 </template>
 
@@ -28,7 +28,7 @@
                 return this.name.toLowerCase().replaceAll(" ", "")
             },
             generateId(length) {
-                const characters = 'abcdefghijklmnopqrstuvwxyz0123456789'; // Pool of characters
+                const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
                 let id = '';
                 for (let i = 0; i < length; i++) {
                     const randomIndex = Math.floor(Math.random() * characters.length);
@@ -37,25 +37,26 @@
                 return id;
             },
             showDescription(shouldShow) {
-                const body = document.getElementById(this.article_id)
                 const desc = document.getElementById(this.article_desc_id);
                 const name = document.getElementById(this.article_name_id);
 
                 if (desc && name) {
-                    const newPosition = shouldShow ? `${0.4 * body.clientHeight - desc.clientHeight}px` : "40%";
                     const newOpacity = shouldShow ? 1 : 0;
+                    const transform = shouldShow ? "bottom: -20%;" : "bottom: -40%;"
 
                     name.style = desc.style = `
-                        position: absolute;
-                        bottom: ${shouldShow ? "50%" : "40%"};
+                        ${transform}
                         transition: .3s;
                     `;
 
                     desc.style.opacity = newOpacity;
-                    desc.style.bottom = newPosition;
 
                     if (shouldShow) {
                         desc.style.display = 'flex';
+                    } else {
+                        setTimeout(() => {
+                        desc.style.display = 'none'
+                    }, 1000)
                     }
                 }
             },
@@ -71,15 +72,16 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    text-align: center;
     align-items: center;
-    justify-content: center;
+    gap: 40px;
     box-sizing: border-box;
     border-radius: 20px;
     overflow-wrap: anywhere;
     background-color: #ffffff0a;
-    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    -moz-backdrop-filter: blur(25px);
+    -o-backdrop-filter: blur(25px);
+    -ms-backdrop-filter: blur(25px);
     border: 1px solid rgb(144, 145, 154);
     border-radius: 20px;
     overflow-y: auto;
@@ -88,13 +90,11 @@
 
 .descr_art {
     opacity: 0;
-    bottom: 40%;
-    position: absolute
 }
 
 .art_name {
-    bottom: 40%;
-    position: absolute
+    position: relative;
+    bottom: -40%;
 }
 
 .article p {

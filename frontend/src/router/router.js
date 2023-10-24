@@ -18,6 +18,8 @@ import paypalCancel from "@/pages/CancelPaypalPage";
 import stripeCancel from "@/pages/CancelStripePage";
 import IPP from "@/pages/InterimPaymentPaypal";
 import IPS from "@/pages/InterimPaymentStripe";
+import ThermsOfUsePage from "@/pages/ThermsOfUsePage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 
 import NotifiedPaymentPage from "@/pages/NotifiedPaymentPage";
 import NIPP from "@/pages/NotifiedInterimPaymentPaypal";
@@ -153,6 +155,16 @@ const routes = [
         path: '/payment/stripe/notified_cancel',
         name: 'Notified Stripe cancel',
         component: notifiedStripeCancel
+    },
+    {
+        path: '/privacy_policy',
+        name: 'Privacy policy',
+        component: PrivacyPolicyPage
+    },
+    {
+        path: '/therms_of_use',
+        name: 'Therms of Use',
+        component: ThermsOfUsePage
     },
 ]
 

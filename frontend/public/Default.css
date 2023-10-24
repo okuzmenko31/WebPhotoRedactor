@@ -7,21 +7,6 @@ body {
     padding: 0;
     box-sizing: border-box;
     background: linear-gradient(180deg, #000 0%, #020414 15%, #020414 85%, #000 100%);
-    --first_color: #abadff;
-    --secondary_color: #d091fa;
-    --secondary_hover_color: #9069aa;
-    --first_darker_color: #7273a3;
-    --opacity-button-color: rgba(255, 255, 255, 0.3);
-    --brand-gradient: -webkit-linear-gradient(10deg,#902EF2 0%,#FF62B7 100%);
-}
-
-:root ::after ::before {
-    --first_color: #abadff;
-    --secondary_color: #d091fa;
-    --secondary_hover_color: #9069aa;
-    --first_darker_color: #7273a3;
-    --opacity-button-color: rgba(255, 255, 255, 0.3);
-    --brand-gradient: -webkit-linear-gradient(10deg,#902EF2 0%,#FF62B7 100%);
 }
 
 #app {
@@ -132,7 +117,7 @@ body {
     font-size: 20px;
     margin: 0;
     -webkit-text-fill-color: transparent;
-    background: var(--brand-gradient);
+    background: -webkit-linear-gradient(10deg,#902EF2 0%,#FF62B7 100%);
     -webkit-background-clip: text;
 }
 
@@ -192,19 +177,21 @@ body {
 .blur-circle {
     position: absolute;
     border-radius: 50%;
-    filter: var(--blur);
-    --blur: blur(225px);
+    -webkit-filter: blur(225px);
+    -moz-filter: blur(225px);
+    -o-filter: blur(225px);
+    -ms-filter: blur(225px);
     width: 1000px;
     height: 300px;
 }
 
 
 .blue-circle {
-    background-color: var(--first_color);
+    background-color: #abadff;
 }
 
 .green-circle {
-    background-color: var(--secondary_color);
+    background-color: #d091fa;
 }
 
 ::-webkit-scrollbar {
@@ -246,11 +233,25 @@ body {
     .blur-circle {
         width: 50%;
     }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
+    }
 }
 
 @media (min-width: 651px) and (max-width: 767px) {
     .blur-circle {
         width: 50%;
+    }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
     }
 }
 
@@ -258,10 +259,24 @@ body {
     .blur-circle {
         width: 50%;
     }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
+    }
 }
 
 @media (max-width: 480px) {
     .blur-circle {
         width: 90%;
+    }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
     }
 }
