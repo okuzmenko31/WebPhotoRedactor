@@ -233,11 +233,25 @@ body {
     .blur-circle {
         width: 50%;
     }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
+    }
 }
 
 @media (min-width: 651px) and (max-width: 767px) {
     .blur-circle {
         width: 50%;
+    }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
     }
 }
 
@@ -245,10 +259,24 @@ body {
     .blur-circle {
         width: 50%;
     }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
+    }
 }
 
 @media (max-width: 480px) {
     .blur-circle {
         width: 90%;
+    }
+
+    .blur-circle {
+        -webkit-filter: blur(150px);
+        -moz-filter: blur(150px);
+        -o-filter: blur(150px);
+        -ms-filter: blur(150px);
     }
 }
