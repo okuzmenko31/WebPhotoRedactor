@@ -44,9 +44,11 @@ class HelpRequest(models.Model):
     )
 
     status = models.CharField(choices=REQUEST_STATUSES,
+                              max_length=150,
                               verbose_name='Request status',
                               default='ACTIVE')
     request_type = models.CharField(choices=REQUEST_TYPES,
+                                    max_length=150,
                                     verbose_name='Request type',
                                     default='Functionality')
     email = models.EmailField(verbose_name='Email')
