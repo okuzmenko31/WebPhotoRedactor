@@ -332,7 +332,7 @@
     import Pickr from '@simonwep/pickr';
     import InputUi from "@/components/UI/InputUi.vue";
     import handlePopState from "@/utils/index.js";
-    import { fetchToken, checkTrackingToken } from '@/Auth.js';
+    import { fetchToken, checkTrackingToken, getHeaders } from '@/Auth.js';
 
     export default {
         components: {
@@ -544,22 +544,42 @@
             },
             async setCredits() {
                 const ip = await checkTrackingToken()
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip })
-                .then(res => {
-                    if (this.isActive('#upscale')) {
-                        this.freeCredits = res.data.free_credits.up_scales_count
-                        this.paidCredits = res.data.paid_credits.up_scales_count
-                    } else if (this.isActive('#removebg')) {
-                        this.freeCredits = res.data.free_credits.bg_deletions_count
-                        this.paidCredits = res.data.paid_credits.bg_deletions_count
-                    } else if (this.isActive('#removejpegartifacts')) {
-                        this.freeCredits = res.data.free_credits.jpg_artifacts_deletions_count
-                        this.paidCredits = res.data.paid_credits.jpg_artifacts_deletions_count
-                    } else {
-                        this.freeCredits = res.data.free_credits.up_scales_count
-                        this.paidCredits = res.data.paid_credits.up_scales_count
-                    }
-                })
+                const headers = await getHeaders()
+                if (fetchToken() === false) {
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip })
+                    .then(res => {
+                        if (this.isActive('#upscale')) {
+                            this.freeCredits = res.data.free_credits.up_scales_count
+                            this.paidCredits = res.data.paid_credits.up_scales_count
+                        } else if (this.isActive('#removebg')) {
+                            this.freeCredits = res.data.free_credits.bg_deletions_count
+                            this.paidCredits = res.data.paid_credits.bg_deletions_count
+                        } else if (this.isActive('#removejpegartifacts')) {
+                            this.freeCredits = res.data.free_credits.jpg_artifacts_deletions_count
+                            this.paidCredits = res.data.paid_credits.jpg_artifacts_deletions_count
+                        } else {
+                            this.freeCredits = res.data.free_credits.up_scales_count
+                            this.paidCredits = res.data.paid_credits.up_scales_count
+                        }
+                    })
+                } else {
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip }, { headers: headers })
+                    .then(res => {
+                        if (this.isActive('#upscale')) {
+                            this.freeCredits = res.data.free_credits.up_scales_count
+                            this.paidCredits = res.data.paid_credits.up_scales_count
+                        } else if (this.isActive('#removebg')) {
+                            this.freeCredits = res.data.free_credits.bg_deletions_count
+                            this.paidCredits = res.data.paid_credits.bg_deletions_count
+                        } else if (this.isActive('#removejpegartifacts')) {
+                            this.freeCredits = res.data.free_credits.jpg_artifacts_deletions_count
+                            this.paidCredits = res.data.paid_credits.jpg_artifacts_deletions_count
+                        } else {
+                            this.freeCredits = res.data.free_credits.up_scales_count
+                            this.paidCredits = res.data.paid_credits.up_scales_count
+                        }
+                    })
+                }
             },
             loadChooseBgColor() {
                 if (this.isActive('#removebg')) {
