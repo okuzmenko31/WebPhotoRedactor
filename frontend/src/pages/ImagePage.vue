@@ -545,7 +545,7 @@
             async setCredits() {
                 const ip = await checkTrackingToken()
                 const headers = await getHeaders()
-                if (fetchToken() === false) {
+                if (await fetchToken() === false) {
                     axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip })
                     .then(res => {
                         if (this.isActive('#upscale')) {
