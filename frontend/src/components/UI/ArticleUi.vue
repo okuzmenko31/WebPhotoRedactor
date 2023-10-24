@@ -43,8 +43,10 @@
                 if (desc && name) {
                     const newOpacity = shouldShow ? 1 : 0;
                     const display = shouldShow ? 'flex' : 'none';
+                    const transform = shouldShow ? "bottom: -20%;" : "bottom: -40%;"
 
                     name.style = desc.style = `
+                        ${transform}
                         transition: .3s;
                     `;
 
@@ -91,7 +93,8 @@
 }
 
 .art_name {
-    bottom: 40%;
+    position: relative;
+    bottom: -40%;
 }
 
 .article p {
