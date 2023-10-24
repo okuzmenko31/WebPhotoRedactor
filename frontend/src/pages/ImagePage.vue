@@ -607,8 +607,8 @@
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     transform: scale(0);
     transition: .3s;
-    box-shadow: inset 1em 1em var(--secondary_color);
-    background-color: var(--secondary_color);
+    box-shadow: inset 1em 1em #d091fa;
+    background-color: #d091fa;
 }
 
 .button_image_block input[type="checkbox"]:checked::before {

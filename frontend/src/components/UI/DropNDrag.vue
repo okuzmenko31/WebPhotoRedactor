@@ -298,7 +298,7 @@
     border: none;
     color: #fff;
     border-radius: 10px;
-    background: linear-gradient(to right, var(--first_color), var(--secondary_color), var(--first_color));
+    background: linear-gradient(to right, #abadff, #d091fa, #abadff);
     background-position: 0 50%;
     text-transform: uppercase;
     background-size: 200px;
@@ -320,7 +320,7 @@
     border: none;
     color: #fff;
     border-radius: 10px;
-    background: linear-gradient(to right, var(--first_color), var(--secondary_color), var(--first_color));
+    background: linear-gradient(to right, #abadff, #d091fa, #abadff);
     background-position: 0 50%;
     text-transform: uppercase;
     background-size: 200px;
@@ -340,7 +340,7 @@
 }
 
 #download_on_click:hover {
-    background-color: var(--secondary_color)
+    background-color: #d091fa
 }
 
 @media (max-height: 420px) {

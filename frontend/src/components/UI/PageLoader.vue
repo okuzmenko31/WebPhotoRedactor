@@ -26,7 +26,7 @@
     display: block;
     height: 15px;
     width: 15px;
-    background-color: var(--first_color);
+    background-color: #abadff;
     margin: 0 7px;
     border-radius: 10px;
     animation: 1.2s upDown infinite;
@@ -55,15 +55,15 @@
 @keyframes upDown {
     0% {
         height: 15px;
-        background-color: var(--first_color)
+        background-color: #abadff
     }
     50% {
         height: 60px;
-        background-color: var(--secondary_color)
+        background-color: #d091fa
     }
     100% {
         height: 15px;
-        background-color: var(--first_color)
+        background-color: #abadff
     }
 }
 </style>

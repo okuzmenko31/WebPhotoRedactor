@@ -88,7 +88,7 @@
 }
 
 .reset_password_button {
-    background: var(--secondary_color);
+    background: #d091fa;
     border: none;
     border-radius: 4px;
     padding: 5px 10px;
@@ -97,6 +97,6 @@
 }
 
 .reset_password_button:hover {
-    background-color: var(--secondary_hover_color);
+    background-color: #9069aa
 }
 </style>

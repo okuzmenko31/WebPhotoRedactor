@@ -211,7 +211,7 @@ export default {
 
 #save_email__btn {
     color: #fff;
-    background-color: var(--secondary_color);
+    background-color: #d091fa;
     border-radius: 4px;
     border: none;
     height: 35px;
@@ -220,7 +220,7 @@ export default {
 }
 
 #save_email__btn:hover {
-    background-color: var(--secondary_hover_color);
+    background-color: #9069aa;
 }
 
 #payment-block-not p {
@@ -298,9 +298,9 @@ export default {
 }
 
 #close_modal:hover {
-    color: var(--secondary_color) !important;
-    stroke: var(--secondary_color) !important;
-    fill: var(--secondary_color) !important;;
+    color: #d091fa !important;
+    stroke: #d091fa !important;
+    fill: #d091fa !important;;
 }
 
 .stripe__btn {

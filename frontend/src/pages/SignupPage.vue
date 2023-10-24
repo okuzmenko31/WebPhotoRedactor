@@ -117,13 +117,13 @@
     height: 35px;
     border-radius: 10px;
     cursor: pointer;
-    background: var(--secondary_color);
+    background: #d091fa;
     border: 0;
     transition: .3s;
 }
 
 .ask__btn:hover {
-    background: var(--secondary_hover_color);
+    background: #9069aa;
 }
 
 #message__auth {
@@ -151,13 +151,13 @@
     height: 35px;
     border-radius: 10px;
     cursor: pointer;
-    background: var(--secondary_color);
+    background: #d091fa;
     border: 0;
     transition: .3s;
 }
 
 .auth__authpage__btn:hover {
-    background: var(--secondary_hover_color);
+    background: #9069aa;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {

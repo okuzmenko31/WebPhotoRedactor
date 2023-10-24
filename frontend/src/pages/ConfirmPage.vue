@@ -73,7 +73,7 @@
 }
 
 .verify_email_button {
-    background: var(--secondary_color);
+    background: #d091fa;
     border: none;
     border-radius: 4px;
     padding: 5px 10px;
@@ -82,6 +82,6 @@
 }
 
 .verify_email_button:hover {
-    background: var(--secondary_hover_color);
+    background: #9069aa;
 }
 </style>

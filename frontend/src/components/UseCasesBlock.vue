@@ -192,13 +192,13 @@
 .swiper-pagination-bullet-active {
     opacity: 1;
     background: var(--swiper-pagination-color, var(--swiper-theme-color));
-    background-color: var(--secondary_color);
+    background-color: #d091fa;
 }
 
 .swiper-button-next,
 .swiper-button-prev {
     top: 50%;
-    color: var(--secondary_color) !important;
+    color: #d091fa !important;
     fill: black !important;
     stroke: black !important;
 }

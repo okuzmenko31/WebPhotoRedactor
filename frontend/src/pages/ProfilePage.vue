@@ -515,13 +515,13 @@
 }
 
 .edit_button {
-    color: var(--secondary_color);
+    color: #d091fa;
     cursor: pointer;
     transition: .3s;
 }
 
 .edit_button:hover {
-    color: var(--secondary_hover_color)
+    color: #9069aa
 }
 
 .change-pass-btn {
