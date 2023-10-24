@@ -181,7 +181,6 @@ body {
     -moz-filter: blur(225px);
     -o-filter: blur(225px);
     -ms-filter: blur(225px);
-    filter: blur(225px);
     width: 1000px;
     height: 300px;
 }
