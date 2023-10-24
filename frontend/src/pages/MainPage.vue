@@ -116,6 +116,14 @@
         mounted() {
           handlePopState()
           document.title = `FlexFi Upscale - Main`
+          const scrollElement = document.documentElement
+          if (scrollElement) {
+            scrollElement.style.overflow = 'hidden';
+            scrollElement.scrollTop = 0;
+            setTimeout(function() {
+              scrollElement.style.overflow = '';
+            }, 10);
+          }
         }
     }
 </script>
