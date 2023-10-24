@@ -50,14 +50,13 @@
                     `;
 
                     desc.style.opacity = newOpacity;
-                    setTimeout(() => {
-                        desc.style.display = display
-                    }, 1000)
 
                     if (shouldShow) {
                         desc.style.display = 'flex';
                     } else {
-                        desc.style.display = 'none';
+                        setTimeout(() => {
+                        desc.style.display = 'none'
+                    }, 1000)
                     }
                 }
             },
