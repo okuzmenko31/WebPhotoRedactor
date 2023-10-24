@@ -1,4 +1,6 @@
 from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from .models import *
 from .serializers import (MainFaqSerializer,
@@ -19,3 +21,9 @@ class PricingFaqListAPIView(ListAPIView):
 class CreateRequestAPIView(CreateAPIView):
     serializer_class = HelpRequestSerializer
     queryset = HelpRequest.objects.all()
+
+
+class HelpRequestCategoriesAPIView(APIView):
+
+    def get(self, *args, **kwargs):
+        return Response(data=HELP_REQUEST_TYPES)
