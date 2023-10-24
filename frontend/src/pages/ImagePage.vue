@@ -113,6 +113,20 @@
                         </router-link>
                 </div>
             </div>
+            <div class="flex-block gp--15 align-items-center auth-cintainer-img">
+                <div class="flex-block gp--15 credits">
+                    <img :src="imageSrc"/>
+                    <div class="flex-block column">
+                        <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
+                        <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                    </div>
+                </div>
+                <div v-if="!isAuthenticated" class="nav__auth-btn white">
+                    <router-link to="/login" class="auth link">Log in</router-link>
+                    <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
+                </div>
+                <router-link  v-if="isAuthenticated" class="link" to="/profile#profile">Profile</router-link>
+            </div>
         </div>
         <div class="image_upload_cont_container">
             <template v-if="isActive('#upscale')">
@@ -129,117 +143,180 @@
             </template>
             <div id="profile_bar" class="profile_bar">
                 <div v-if="isActive('#upscale') && !isLoading" class="profile_buttons image_buttons">
-                    <div class="button_image_block" style="z-index: 2;">
-                        <p>Upscale factor:</p>
-                        <div id="factor-dropdown">
-                            <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
-                            </div>
-                            <span id="factor-selected" @click="openFactorChoose">
-                                {{upscaleFactor}}
-                            </span>
-                            <div id="factor-menu">
-                                <li v-for="(factor, index) in factors" :key="index" @click="factorClick">
-                                    {{ factor }}
-                                </li>
+                    <div class="flex-block column gp--15 align_center_text">
+                        <div class="button_image_block" style="z-index: 2;">
+                            <p>Upscale factor:</p>
+                            <div id="factor-dropdown">
+                                <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
+                                </div>
+                                <span id="factor-selected" @click="openFactorChoose">
+                                    {{upscaleFactor}}
+                                </span>
+                                <div id="factor-menu">
+                                    <li v-for="(factor, index) in factors" :key="index" @click="factorClick">
+                                        {{ factor }}
+                                    </li>
+                                </div>
                             </div>
                         </div>
+                        <div class="button_image_block">
+                            <input @change="toggleChecked('ultra_enhance')" :checked="isUltraEnhanceChecked" type="checkbox" name="enhancerType">
+                            <p>ULTRA ENHANCER</p>
+                        </div>
+                        <div class="button_image_block">
+                            <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
+                            <p>ULTRA</p>
+                        </div>
                     </div>
-                    <div class="button_image_block">
-                        <input @change="toggleChecked('ultra_enhance')" :checked="isUltraEnhanceChecked" type="checkbox" name="enhancerType">
-                        <p>ULTRA ENHANCER</p>
-                    </div>
-                    <div class="button_image_block">
-                        <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
-                        <p>ULTRA</p>
+                    <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
+                        <div class="flex-block gp--15 credits">
+                            <img :src="imageSrc"/>
+                            <div class="flex-block column credits-text">
+                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                            </div>
+                        </div>
+                        <div v-if="!isAuthenticated" class="nav__auth-btn white">
+                            <router-link to="/login" class="auth link">Log in</router-link>
+                            <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
+                        </div>
+                        <router-link  v-if="isAuthenticated" class="link" to="/profile#profile">Profile</router-link>
                     </div>
                 </div>
 
                 <div v-else-if="isActive('#removejpegartifacts') && !isLoading" class="profile_buttons image_buttons">
-                    <div class="button_image_block" style="z-index: 2;">
-                        <p>Strenght:</p>
-                        <div id="factor-dropdown">
-                            <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
-                            </div>
-                            <span id="factor-selected" @click="openFactorChoose">
-                                {{strenght}}
-                            </span>
-                            <div id="factor-menu">
-                                <li v-for="(strt, index) in jpegStrt" :key="index" @click="jpegstrtClick">
-                                    {{ strt }}
-                                </li>
+                    <div class="flex-block column gp--15 align_center_text">
+                        <div class="button_image_block" style="z-index: 2;">
+                            <p>Strenght:</p>
+                            <div id="factor-dropdown">
+                                <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
+                                </div>
+                                <span id="factor-selected" @click="openFactorChoose">
+                                    {{strenght}}
+                                </span>
+                                <div id="factor-menu">
+                                    <li v-for="(strt, index) in jpegStrt" :key="index" @click="jpegstrtClick">
+                                        {{ strt }}
+                                    </li>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
+                        <div class="flex-block gp--15 credits">
+                            <img :src="imageSrc"/>
+                            <div class="flex-block column credits-text">
+                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                            </div>
+                        </div>
+                        <div v-if="!isAuthenticated" class="nav__auth-btn white">
+                            <router-link to="/login" class="auth link">Log in</router-link>
+                            <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
+                        </div>
+                        <router-link  v-if="isAuthenticated" class="link" to="/profile#profile">Profile</router-link>
                     </div>
                 </div>
 
                 <div v-else-if="isActive('#removebg') && !isLoading" class="profile_buttons image_buttons">
-                    <div v-if="showColor === true" class="button_image_block">
-                        <p>Background color:</p>
-                        <div id="color-picker"></div>
-                    </div>
-                    <div v-if="showBg === true" class="button_image_block">
-                        <p>Background image:</p>
-                        <template v-if="bgFileOrText">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" @click="openInputGUI" style="cursor: pointer" stroke-width='10px' viewBox="0 0 135 135" fill="none">
-                                <path class="fill_obj" d="M11.5 99.5V10.5H124.5V93M11.5 99.5V109.5H124.5V93M11.5 99.5L42.5 61.5C52.2302 55.0949 57.4907 55.1456 67 61.5L90 91L101 81C106.771 77.0229 109.695 76.5457 114 81L124.5 93M1 1V134H134V1H1ZM96 49.5C102.874 48.5904 105.582 46.8445 106.5 39.5C105.9 31.7287 103.969 28.9576 96 28.5C87.8186 29.4879 86.0562 32.3313 85.5 39.5C86.9237 46.4436 89.351 48.5071 96 49.5Z" stroke="white"/>
-                            </svg>
-                        </template>
+                    <div class="flex-block column gp--15 align_center_text">
+                        <div v-if="showColor === true" class="button_image_block">
+                            <p>Background color:</p>
+                            <div id="color-picker"></div>
+                        </div>
+                        <div v-if="showBg === true" class="button_image_block">
+                            <p>Background image:</p>
+                            <template v-if="bgFileOrText">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" @click="openInputGUI" style="cursor: pointer" stroke-width='10px' viewBox="0 0 135 135" fill="none">
+                                    <path class="fill_obj" d="M11.5 99.5V10.5H124.5V93M11.5 99.5V109.5H124.5V93M11.5 99.5L42.5 61.5C52.2302 55.0949 57.4907 55.1456 67 61.5L90 91L101 81C106.771 77.0229 109.695 76.5457 114 81L124.5 93M1 1V134H134V1H1ZM96 49.5C102.874 48.5904 105.582 46.8445 106.5 39.5C105.9 31.7287 103.969 28.9576 96 28.5C87.8186 29.4879 86.0562 32.3313 85.5 39.5C86.9237 46.4436 89.351 48.5071 96 49.5Z" stroke="white"/>
+                                </svg>
+                            </template>
 
-                        <template v-else>
-                            <input-ui v-model="bgImgUrl"/>
-                        </template>
-                    </div>
-                    <p v-if="bgFileOrText === true && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(false) ">Paste url</p>
-                    <p v-else-if="bgFileOrText === false && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(true)">Choose image</p>
-                    <div class="button_image_block">
-                        <p>BLUR</p>
-                        %   
-                        <input-ui :numberType="true" v-model="bgBlur" type="number" min="0" max="100" inputId="blur_bg_input" />
-                    </div>
-                    <div v-if="showBg === true && showColor === true" class="button_image_block" style="z-index: 2;">
-                        <p>Ouput:</p>
-                        <div id="factor-dropdown">
-                            <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
-                            </div>
-                            <span id="factor-selected" @click="openFactorChoose">
-                                {{outputType}}
-                            </span>
-                            <div id="factor-menu">
-                                <li v-for="(output, index) in outPuts" :key="index" @click="outputClick">
-                                    {{ output }}
-                                </li>
+                            <template v-else>
+                                <input-ui v-model="bgImgUrl"/>
+                            </template>
+                        </div>
+                        <p v-if="bgFileOrText === true && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(false) ">Paste url</p>
+                        <p v-else-if="bgFileOrText === false && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(true)">Choose image</p>
+                        <div class="button_image_block">
+                            <p>BLUR</p>
+                            %   
+                            <input-ui :numberType="true" v-model="bgBlur" type="number" min="0" max="100" inputId="blur_bg_input" />
+                        </div>
+                        <div v-if="showBg === true && showColor === true" class="button_image_block" style="z-index: 2;">
+                            <p>Ouput:</p>
+                            <div id="factor-dropdown">
+                                <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
+                                </div>
+                                <span id="factor-selected" @click="openFactorChoose">
+                                    {{outputType}}
+                                </span>
+                                <div id="factor-menu">
+                                    <li v-for="(output, index) in outPuts" :key="index" @click="outputClick">
+                                        {{ output }}
+                                    </li>
+                                </div>
                             </div>
                         </div>
+                        <button v-if="showBg === false || showColor === false" @click="resetSettings" id="upload_button">Reset settings</button>
                     </div>
-                    <button v-if="showBg === false || showColor === false" @click="resetSettings" id="upload_button">Reset settings</button>
-                    <div class="therms-and-privacy2 flex-block column">
+                    <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
+                        <div class="flex-block gp--15 credits">
+                            <img :src="imageSrc"/>
+                            <div class="flex-block column credits-text">
+                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                            </div>
+                        </div>
+                        <div v-if="!isAuthenticated" class="nav__auth-btn white">
+                            <router-link to="/login" class="auth link">Log in</router-link>
+                            <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
+                        </div>
+                        <router-link  v-if="isAuthenticated" class="link" to="/profile#profile">Profile</router-link>
                     </div>
                 </div>
 
                 <div v-else class="profile_buttons image_buttons">
-                    <div class="button_image_block" style="z-index: 2;">
-                        <p>Upscale factor:</p>
-                        <div id="factor-dropdown">
-                            <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
+                    <div class="flex-block column gp--15 align_center_text">
+                        <div class="button_image_block" style="z-index: 2;">
+                            <p>Upscale factor:</p>
+                            <div id="factor-dropdown">
+                                <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
+                                </div>
+                                <span id="factor-selected" @click="openFactorChoose">
+                                    {{upscaleFactor}}
+                                </span>
+                                <div id="factor-menu">
+                                    <li v-for="(factor, index) in factors" :key="index" @click="factorClick">
+                                        {{ factor }}
+                                    </li>
+                                </div>
                             </div>
-                            <span id="factor-selected" @click="openFactorChoose">
-                                {{upscaleFactor}}
-                            </span>
-                            <div id="factor-menu">
-                                <li v-for="(factor, index) in factors" :key="index" @click="factorClick">
-                                    {{ factor }}
-                                </li>
-                            </div>
+                        </div>
+
+                        <div class="button_image_block">
+                            <input @change="toggleChecked('ultra_enhance')" :checked="isUltraEnhanceChecked" type="checkbox" name="enhancerType">
+                            <p>ULTRA ENHANCER</p>
+                        </div>
+                        <div class="button_image_block">
+                            <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
+                            <p>ULTRA</p>
                         </div>
                     </div>
 
-                    <div class="button_image_block">
-                        <input @change="toggleChecked('ultra_enhance')" :checked="isUltraEnhanceChecked" type="checkbox" name="enhancerType">
-                        <p>ULTRA ENHANCER</p>
-                    </div>
-                    <div class="button_image_block">
-                        <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
-                        <p>ULTRA</p>
+                    <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
+                        <div class="flex-block gp--15 credits">
+                            <img :src="imageSrc"/>
+                            <div class="flex-block column credits-text">
+                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                            </div>
+                        </div>
+                        <div v-if="!isAuthenticated" class="nav__auth-btn white">
+                            <router-link to="/login" class="auth link">Log in</router-link>
+                            <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
+                        </div>
+                        <router-link  v-if="isAuthenticated" class="link" to="/profile#profile">Profile</router-link>
                     </div>
                 </div>
             </div>
@@ -248,19 +325,21 @@
 </template>
 
 <script>
+    import axios from 'axios'
     import DropNDrag from "@/components/UI/DropNDrag.vue";
     import router from "@/router/router.js";
     import '@simonwep/pickr/dist/themes/nano.min.css';
     import Pickr from '@simonwep/pickr';
     import InputUi from "@/components/UI/InputUi.vue";
     import handlePopState from "@/utils/index.js";
+    import { fetchToken, checkTrackingToken } from '@/Auth.js';
 
     export default {
         components: {
             DropNDrag,
             InputUi
         },
-        mounted() {
+        async mounted() {
             handlePopState()
             if (document.getElementById('color-picker')) {
                 this.$nextTick(() => {
@@ -268,6 +347,13 @@
                 });
             }
             this.factors = this.allUpscaleFactors
+
+            if (await fetchToken() === true) {
+                this.isAuthenticated = true
+            } else {
+                this.isAuthenticated = false
+            }
+            this.setCredits()
         },
         updated() {
             const dd = document.getElementById('dd-arrow');
@@ -277,6 +363,7 @@
                     this.loadChooseBgColor();
                 });
             }
+            this.setCredits()
         },
         data() {
             return {
@@ -305,7 +392,11 @@
                 strenght: "normal",
                 bgImgUrl: "",
                 showBg: true,
-                fileSrc: ""
+                freeCredits: 0,
+                paidCredits: 0,
+                fileSrc: "",
+                isAuthenticated: false,
+                imageSrc: require("@/assets/credits.png")
             }
         },
         watch: {
@@ -335,8 +426,6 @@
                 this.showBg = true
                 this.showColor = true
                 this.bgImgUrl = ""
-                console.log(this.showBg);
-                console.log(this.showColor);
                 this.bgBlur = 0
                 const obj = document.querySelector('.pcr-button')
                 if (obj) {
@@ -453,6 +542,25 @@
                     this.upscaleFactor = 2
                 }
             },
+            async setCredits() {
+                const ip = await checkTrackingToken()
+                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip })
+                .then(res => {
+                    if (this.isActive('#upscale')) {
+                        this.freeCredits = res.data.free_credits.up_scales_count
+                        this.paidCredits = res.data.paid_credits.up_scales_count
+                    } else if (this.isActive('#removebg')) {
+                        this.freeCredits = res.data.free_credits.bg_deletions_count
+                        this.paidCredits = res.data.paid_credits.bg_deletions_count
+                    } else if (this.isActive('#removejpegartifacts')) {
+                        this.freeCredits = res.data.free_credits.jpg_artifacts_deletions_count
+                        this.paidCredits = res.data.paid_credits.jpg_artifacts_deletions_count
+                    } else {
+                        this.freeCredits = res.data.free_credits.up_scales_count
+                        this.paidCredits = res.data.paid_credits.up_scales_count
+                    }
+                })
+            },
             loadChooseBgColor() {
                 if (this.isActive('#removebg')) {
                     const pickr = Pickr.create({
@@ -551,10 +659,9 @@
     display: flex;
     background: #1b1e29;
     border-bottom: 1px solid #000;
-    padding-left: 150px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 50px 20px 150px;
     align-items: center;
+    justify-content: space-between;
     z-index: 2;
     gap: 20px;
     box-sizing: border-box;
@@ -590,6 +697,19 @@
 	color: #fff
 }
 
+.credits {
+    background-color: #171921;
+    border-radius: 16px;
+    padding: 10px;
+    align-items: center;
+}
+
+.credits-text {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
 .button_image_block input[type="checkbox"]::before {
     content: "";
     width: 0.65em;
@@ -605,12 +725,17 @@
     transform: scale(1);
 }
 
+.auth-cintainer-img2 {
+    display: none;
+    flex-direction: column;
+}
+
 .image_buttons {
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start !important;
+    justify-content: space-between !important;
     gap: 10px;
     padding: 70px 0 70px 0;
 }
@@ -774,6 +899,14 @@
         right: unset;
         transform: unset;
     }
+
+    .auth-cintainer-img {
+        display: none;
+    }
+
+    .auth-cintainer-img2 {
+        display: flex;
+    }
 }
 
 @media (min-width: 651px) and (max-width: 767px) {
@@ -788,6 +921,14 @@
     #dd-menu {
         right: unset;
         transform: unset;
+    }
+
+    .auth-cintainer-img {
+        display: none;
+    }
+
+    .auth-cintainer-img2 {
+        display: flex;
     }
 }
 
@@ -804,6 +945,14 @@
         right: unset;
         transform: unset;
     }
+
+    .auth-cintainer-img {
+        display: none;
+    }
+
+    .auth-cintainer-img2 {
+        display: flex;
+    }
 }
 
 @media (max-width: 480px) {
@@ -818,6 +967,14 @@
     #dd-menu {
         right: unset;
         transform: unset;
+    }
+
+    .auth-cintainer-img {
+        display: none;
+    }
+
+    .auth-cintainer-img2 {
+        display: flex;
     }
 }
 </style>

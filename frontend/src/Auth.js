@@ -41,7 +41,6 @@ export const getTrackingToken = () => {
 export const checkTrackingToken = async () => {
     try {
         const response = await axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/client_ip/`);
-        console.log(response);
         return response.data.ip;
     } catch (error) {
         if (getTrackingToken() === null) {
