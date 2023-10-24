@@ -116,10 +116,14 @@
         mounted() {
           handlePopState()
           document.title = `FlexFi Upscale - Main`
-          this.$nextTick(() => {
-            window.scrollTo(0, 1);
-            window.scrollTo(0, 0);
-          });
+          const scrollElement = document.documentElement
+          if (scrollElement) {
+            scrollElement.style.overflow = 'hidden';
+            scrollElement.scrollTop = 0;
+            setTimeout(function() {
+              scrollElement.style.overflow = '';
+            }, 10);
+          }
         }
     }
 </script>

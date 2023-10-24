@@ -117,8 +117,8 @@
                 <div class="flex-block gp--15 credits">
                     <img :src="imageSrc"/>
                     <div class="flex-block column">
-                        <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
-                        <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                        <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
+                        <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                     </div>
                 </div>
                 <div v-if="!isAuthenticated" class="nav__auth-btn white">
@@ -172,8 +172,8 @@
                         <div class="flex-block gp--15 credits">
                             <img :src="imageSrc"/>
                             <div class="flex-block column credits-text">
-                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
-                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
@@ -206,8 +206,8 @@
                         <div class="flex-block gp--15 credits">
                             <img :src="imageSrc"/>
                             <div class="flex-block column credits-text">
-                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
-                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
@@ -264,8 +264,8 @@
                         <div class="flex-block gp--15 credits">
                             <img :src="imageSrc"/>
                             <div class="flex-block column credits-text">
-                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
-                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
@@ -308,8 +308,8 @@
                         <div class="flex-block gp--15 credits">
                             <img :src="imageSrc"/>
                             <div class="flex-block column credits-text">
-                                <p class="fs--12 no-margin white">Upscale paid credits: {{ paidCredits }}</p>
-                                <p class="fs--12 no-margin white">Upscale free credits: {{ freeCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
+                                <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
@@ -393,6 +393,7 @@
                 bgImgUrl: "",
                 showBg: true,
                 freeCredits: 0,
+                CreditsName: "Upscale",
                 paidCredits: 0,
                 fileSrc: "",
                 isAuthenticated: false,
@@ -549,15 +550,19 @@
                     axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip })
                     .then(res => {
                         if (this.isActive('#upscale')) {
+                            this.CreditsName = "Upscale"
                             this.freeCredits = res.data.free_credits.up_scales_count
                             this.paidCredits = res.data.paid_credits.up_scales_count
                         } else if (this.isActive('#removebg')) {
+                            this.CreditsName = "Background remove"
                             this.freeCredits = res.data.free_credits.bg_deletions_count
                             this.paidCredits = res.data.paid_credits.bg_deletions_count
                         } else if (this.isActive('#removejpegartifacts')) {
+                            this.CreditsName = "JPEG remove"
                             this.freeCredits = res.data.free_credits.jpg_artifacts_deletions_count
                             this.paidCredits = res.data.paid_credits.jpg_artifacts_deletions_count
                         } else {
+                            this.CreditsName = "Upscale"
                             this.freeCredits = res.data.free_credits.up_scales_count
                             this.paidCredits = res.data.paid_credits.up_scales_count
                         }
@@ -566,15 +571,19 @@
                     axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip }, { headers: headers })
                     .then(res => {
                         if (this.isActive('#upscale')) {
+                            this.CreditsName = "Upscale"
                             this.freeCredits = res.data.free_credits.up_scales_count
                             this.paidCredits = res.data.paid_credits.up_scales_count
                         } else if (this.isActive('#removebg')) {
+                            this.CreditsName = "Background remove"
                             this.freeCredits = res.data.free_credits.bg_deletions_count
                             this.paidCredits = res.data.paid_credits.bg_deletions_count
                         } else if (this.isActive('#removejpegartifacts')) {
+                            this.CreditsName = "JPEG remove"
                             this.freeCredits = res.data.free_credits.jpg_artifacts_deletions_count
                             this.paidCredits = res.data.paid_credits.jpg_artifacts_deletions_count
                         } else {
+                            this.CreditsName = "Upscale"
                             this.freeCredits = res.data.free_credits.up_scales_count
                             this.paidCredits = res.data.paid_credits.up_scales_count
                         }
