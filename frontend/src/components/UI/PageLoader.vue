@@ -59,7 +59,7 @@
     }
     50% {
         height: 60px;
-        background-color: #d091fa
+        background-color: #d091fa;
     }
     100% {
         height: 15px;

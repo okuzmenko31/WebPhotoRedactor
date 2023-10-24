@@ -410,7 +410,7 @@ export default {
 #close_modal:hover {
     color: #d091fa !important;
     stroke: #d091fa !important;
-    fill: #d091fa !important;;
+    fill: #d091fa !important;
 }
 
 .stripe__btn {

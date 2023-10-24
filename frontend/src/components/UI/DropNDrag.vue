@@ -340,7 +340,7 @@
 }
 
 #download_on_click:hover {
-    background-color: #d091fa
+    background-color: #d091fa;
 }
 
 @media (max-height: 420px) {

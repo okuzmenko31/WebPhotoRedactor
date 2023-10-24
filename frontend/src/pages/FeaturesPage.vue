@@ -355,7 +355,7 @@
 .swiper-button-prev {
     scale: 70%;
     top: 50%;
-    color: #d091fa
+    color: #d091fa;
     fill: black !important;
     stroke: black !important;
 }
