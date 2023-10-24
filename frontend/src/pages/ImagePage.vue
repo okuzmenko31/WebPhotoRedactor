@@ -276,7 +276,7 @@
                     </div>
                 </div>
 
-                <div v-else class="profile_buttons image_buttons">
+                <div v-else-if="!isActive('#removebg') && !isActive('#removejpegartifacts') && !isActive('#upscale') && !isLoading" class="profile_buttons image_buttons">
                     <div class="flex-block column gp--15 align_center_text">
                         <div class="button_image_block" style="z-index: 2;">
                             <p>Upscale factor:</p>
