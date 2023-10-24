@@ -70,12 +70,16 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
     box-sizing: border-box;
     border-radius: 20px;
     overflow-wrap: anywhere;
     background-color: #ffffff0a;
-    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    -moz-backdrop-filter: blur(25px);
+    -o-backdrop-filter: blur(25px);
+    -ms-backdrop-filter: blur(25px);
     border: 1px solid rgb(144, 145, 154);
     border-radius: 20px;
     overflow-y: auto;
