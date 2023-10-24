@@ -42,7 +42,6 @@
 
                 if (desc && name) {
                     const newOpacity = shouldShow ? 1 : 0;
-                    const display = shouldShow ? 'flex' : 'none';
                     const transform = shouldShow ? "bottom: -20%;" : "bottom: -40%;"
 
                     name.style = desc.style = `
@@ -57,6 +56,8 @@
 
                     if (shouldShow) {
                         desc.style.display = 'flex';
+                    } else {
+                        desc.style.display = 'none';
                     }
                 }
             },

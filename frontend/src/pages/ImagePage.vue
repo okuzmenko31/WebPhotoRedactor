@@ -170,10 +170,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="therms-and-privacy2 flex-block column">
-                        <router-link class="link" to="/therms_of_use">Therms of use</router-link>
-                        <router-link class="link" to="/privacy_policy">Privacy Policy</router-link>
-                    </div>
                 </div>
 
                 <div v-else-if="isActive('#removebg') && !isLoading" class="profile_buttons image_buttons">
@@ -217,8 +213,6 @@
                     </div>
                     <button v-if="showBg === false || showColor === false" @click="resetSettings" id="upload_button">Reset settings</button>
                     <div class="therms-and-privacy2 flex-block column">
-                        <router-link class="link" to="/therms_of_use">Therms of use</router-link>
-                        <router-link class="link" to="/privacy_policy">Privacy Policy</router-link>
                     </div>
                 </div>
 
@@ -246,10 +240,6 @@
                     <div class="button_image_block">
                         <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
                         <p>ULTRA</p>
-                    </div>
-                    <div class="therms-and-privacy2 flex-block column">
-                        <router-link class="link" to="/therms_of_use">Therms of use</router-link>
-                        <router-link class="link" to="/privacy_policy">Privacy Policy</router-link>
                     </div>
                 </div>
             </div>
