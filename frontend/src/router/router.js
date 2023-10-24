@@ -20,6 +20,7 @@ import IPP from "@/pages/InterimPaymentPaypal";
 import IPS from "@/pages/InterimPaymentStripe";
 import ThermsOfUsePage from "@/pages/ThermsOfUsePage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import ContactUs from "@/pages/ContactUsPage";
 
 import NotifiedPaymentPage from "@/pages/NotifiedPaymentPage";
 import NIPP from "@/pages/NotifiedInterimPaymentPaypal";
@@ -165,6 +166,11 @@ const routes = [
         path: '/therms_of_use',
         name: 'Therms of Use',
         component: ThermsOfUsePage
+    },
+    {
+        path: '/contact_us',
+        name: 'Contact Us',
+        component: ContactUs
     },
 ]
 
