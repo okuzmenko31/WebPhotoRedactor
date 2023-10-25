@@ -149,7 +149,9 @@ class CancelPayPalOrderByIDAPIView(PayPalOrdersMixin,
             }, status=status.HTTP_400_BAD_REQUEST)
 
         self.cancel_order_in_db(order)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({
+            'success': 'Order was successfully canceled'
+        }, status=status.HTTP_200_OK)
 
 
 class StripeConfigAPIView(APIView):

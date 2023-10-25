@@ -247,7 +247,8 @@ class PayPalOrdersMixin(PayPalContextMixin):
         return PaymentData(data={
             'order_id': data.get('id'),
             'status': status,
-            'create_time': data.get('create_time')
+            'create_time': data.get('create_time'),
+            'success': 'You have bought plan successfully!'
         })
 
     def get_data_from_response(
@@ -552,10 +553,10 @@ class ForeignOrderMixin(PayPalOrdersMixin,
     def cancel_foreign_order(self, order: ForeignOrder):
         data = {
             'success': False,
-            'message': 'Order was canceled.'
+            'message': 'Payment was canceled.'
         }
         self.notify(order, data=data)
         return PaymentData(data={
-            'success': 'Order was successfully canceled!',
+            'success': 'Payment was successfully canceled!',
             'cancel_url': order.cancel_url
         })
