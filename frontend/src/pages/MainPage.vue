@@ -320,7 +320,6 @@
     width: 100%;
     max-width: 100%;
   }
-  }
 
   .why-item {
     width: auto;
