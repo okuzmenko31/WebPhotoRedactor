@@ -44,13 +44,18 @@
         },
         mounted() {
             handlePopState()
+            axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/main/help_request_categories/`)
+            .then(res => {
+                this.categories = res.data
+                this.category = this.categories[0]
+            })
         },
         data() {
             return {
                 email: "",
                 text: "",
                 category: "",
-                categories: ['dasdasdad'],
+                categories: [],
                 message: ""
             }
         },
