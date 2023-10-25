@@ -66,7 +66,8 @@ class BaseImageAPIView(IPAddressesUsageCountMixin,
 
             enhances_mapping = self.psc.get_enhances_mapping()
             enhance = enhances_mapping[self.enhance_type]
-            url_data: dict = enhance(image, additional_data=self.additional_data)
+            url_data: dict = enhance(
+                image, additional_data=self.additional_data)
 
             if url_data is None:
                 return Response({
@@ -88,7 +89,8 @@ class BaseImageAPIView(IPAddressesUsageCountMixin,
                     self.counter_enhance_field
                 )
             elif data_dict['function'] == 'paid_decrease':
-                decrease_count_of_enhances_for_field(user, self.counter_enhance_field, 1)
+                decrease_count_of_enhances_for_field(
+                    user, self.counter_enhance_field, 1)
 
             return Response(url_data, status=status.HTTP_200_OK)
 
@@ -127,13 +129,16 @@ class RemoveBGAPIView(BaseImageAPIView):
 
     @property
     def additional_data(self):
-        add_fields = ['bg_image', 'bg_image_url', 'bg_color', 'bg_blur', 'output_type']
+        add_fields = ['bg_image', 'bg_image_url',
+                      'bg_color', 'bg_blur', 'output_type']
         additional_dict = {}
 
         for field in add_fields:
             additional_dict[field] = None
             if field in self.request.data and self.request.data.get(field) != '':
                 additional_dict[field] = self.request.data.get(field)
+        if additional_dict.get('bg_image') is not None and additional_dict.get('bg_color') is not None:
+            additional_dict['bg_color'] = None
         return additional_dict
 
 
