@@ -38,7 +38,7 @@ export default {
 
 .Label {
   position: relative;
-  padding: 10px;
+  padding: 10px 35px 10px 10px;
   background: #ffffff0a;
   backdrop-filter: blur(25px);
   border-radius: 10px;
@@ -84,5 +84,11 @@ export default {
   padding: 10px;
   height: 150px;
   border-radius: 0 0 10px 10px;
+}
+
+@media (max-width: 480px) {
+  .Label {
+    font-size: 10px;
+  }
 }
 </style>
