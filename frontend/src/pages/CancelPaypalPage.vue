@@ -29,7 +29,7 @@
                 .then(() => {
                     this.success = true
                     const modal = document.getElementById('success_modal')
-                    this.message = "You have successfuly bought the plan."
+                    this.message = res.data.success
                     modal.style.backgroundColor = '#66ff63'
                     setTimeout(() => {
                         router.push({ path: "/" })
