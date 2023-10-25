@@ -69,14 +69,14 @@
                 .then(() => {
                     this.message = ""
                     this.message = "Mail was sent to support!"
-                    const message = documen.querySelector('.error_text_contact')
+                    const message = document.querySelector('.error_text_contact')
                     if (message) {
                         message.style.color = "#00FF00"
                     }
                 })
                 .catch(err => {
                     this.message = ""
-                    const message = documen.querySelector('.error_text_contact')
+                    const message = document.querySelector('.error_text_contact')
                     if (message) {
                         message.style.color = "#ff0000"
                     }
