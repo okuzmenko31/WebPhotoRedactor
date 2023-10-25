@@ -43,8 +43,8 @@
           <div class="why-us-block">
             <div class="why-us-table-features">
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Minimalistic and simple</p>
-                <p class="fs--15 fw--400 small_text width--100">sfdsffffffffffffffffffffffffffffffffffffffffffffffff</p>
+                <p class="fs--33 fw--700 white width--100">Transforming Cities: Unique FlexFi Upscale</p>
+                <p class="fs--15 fw--400 small_text width--100">FlexFi Upscale - your gateway to transforming urban landscapes! We remove building backgrounds from your pictures, allowing you to enhance and enlarge them effortlessly. Rediscover the beauty of your cityscapes with FlexFi Upscale.</p>
               </div>
               <div class="line-vertical-1"></div>
               <div class="why-item">
@@ -238,7 +238,8 @@
 .why-us-table-features {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 80%;
+  max-width: 80%;
 }
 
 .line-vertical-1 {
@@ -316,6 +317,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .why-item {
@@ -351,6 +354,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .why-item {
@@ -390,6 +395,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .why-item {
@@ -445,6 +452,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .why-item {

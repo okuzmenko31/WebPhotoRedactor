@@ -21,8 +21,8 @@
         },
         mounted() {
             handlePopState()
-            if (this.$route.query.token !== undefined) {
-                this.queryToken = this.$route.query.token
+            if (this.$route.query.cancel_id !== undefined) {
+                this.queryToken = this.$route.query.cancel_id
                 this.validURL = true
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/stripe/foreign/cancel_order/${this.queryToken}/`, {})
                 .then(res => {
