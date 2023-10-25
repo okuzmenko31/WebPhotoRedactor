@@ -96,6 +96,7 @@
 
 .contain-container {
   display: flex;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   text-align: center;
