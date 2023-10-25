@@ -21,9 +21,7 @@
 
     <div class="plans-contain-block">
       <div class="flex-block gp--15" :key="index" v-for="(contain, index) in plansContain">
-        <svg viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-          <path d="M 18 32.34 l -8.34 -8.34 -2.83 2.83 11.17 11.17 24 -24 -2.83 -2.83 z" stroke="#3da35a" fill="#3da35a"/>
-        </svg>
+        <img :src="checkmark" style="width: 15px; height: 15px;" alt="checkmark"/>
         <p>{{ contain }}</p>
       </div>
     </div>
@@ -58,7 +56,8 @@
     data() {
       return {
           plans: [],
-          plansContain: ['Custom backgrounds', 'Images without watermark', 'Credits for usage']
+          plansContain: ['Custom backgrounds', 'Images without watermark', 'Credits for usage'],
+          checkmark: require("@/assets/checkmark.png")
       };
     }
   }
