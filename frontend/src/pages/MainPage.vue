@@ -399,6 +399,10 @@
   .why-us-block {
     width: 100%;
   }
+
+  .get-started-main-block .width--30 {
+    width: 70%
+  }
 }
 
 @media (max-width: 480px) {
@@ -449,6 +453,10 @@
 
   .why-us-block {
     width: 100%;
+  }
+
+  .get-started-main-block .width--30 {
+    width: 70%
   }
 }
 </style>

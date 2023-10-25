@@ -9,6 +9,7 @@
             </p>
             <router-link class="link" style="text-decoration: underline" to="/therms_of_use">Therms of use</router-link>
             <router-link class="link" style="text-decoration: underline" to="/privacy_policy">Privacy Policy</router-link>
+            <router-link class="link" style="text-decoration: underline" to="/contact_us">Contact Us</router-link>
             <p class="fs--12 fw--100">Copyright | ©2023 FlexFi Upscale</p>
         </div>
     </footer>
