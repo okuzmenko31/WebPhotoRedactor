@@ -162,11 +162,11 @@
                         </div>
                         <div class="button_image_block">
                             <input @change="toggleChecked('ultra_enhance')" :checked="isUltraEnhanceChecked" type="checkbox" name="enhancerType">
-                            <p>ULTRA ENHANCER</p>
+                            <p>Ultra enhance</p>
                         </div>
                         <div class="button_image_block">
                             <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
-                            <p>ULTRA</p>
+                            <p>Ultra</p>
                         </div>
                     </div>
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
@@ -242,7 +242,7 @@
                         <p v-if="bgFileOrText === true && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(false) ">Paste url</p>
                         <p v-else-if="bgFileOrText === false && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(true)">Choose image</p>
                         <div class="button_image_block">
-                            <p>BLUR</p>
+                            <p>Blur</p>
                             %   
                             <input-ui :numberType="true" v-model="bgBlur" type="number" min="0" max="100" inputId="blur_bg_input" />
                         </div>
@@ -300,11 +300,11 @@
 
                         <div class="button_image_block">
                             <input @change="toggleChecked('ultra_enhance')" :checked="isUltraEnhanceChecked" type="checkbox" name="enhancerType">
-                            <p>ULTRA ENHANCER</p>
+                            <p>Ultra enhance</p>
                         </div>
                         <div class="button_image_block">
                             <input @change="toggleChecked('ultra')" :checked="isUltraChecked" type="checkbox" name="enhancerType">
-                            <p>ULTRA</p>
+                            <p>Ultra</p>
                         </div>
                     </div>
 
