@@ -4,7 +4,7 @@
             <h1 class="white">Invalid URL</h1>
         </template>
         <template v-else>
-            <h1 class="header_text">Email confirmation</h1>
+            <h1 class="header_text align_center_text width--100">Email confirmation</h1>
             <button @click="confirmEmailRequest" class="verify_email_button white">Verify email</button>
             <p id="message_conf" class="white align_center_text">{{ message }}</p>
         </template>
@@ -30,7 +30,7 @@
                 .then(res => {
                     setLocalToken(res.data.access)
                     setLocalRefreshToken(res.data.refresh)
-                    this.message = res.data.success + " You will be redirected in 2 seconds."
+                    this.message = "You have verified your email. You will be redirected in 2 seconds."
                     const messageBlock = document.getElementById('message_conf')
                     messageBlock.style.color = "#00FF00"
                     setTimeout(() => {

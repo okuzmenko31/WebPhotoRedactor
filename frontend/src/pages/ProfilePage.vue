@@ -257,14 +257,24 @@
             async changeEmail() {
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/change_email/`, { 'email': this.email }, { headers: await getHeaders() })
                 .then(res => {
+                    this.email_message = ""
                     this.email_message = res.data.success
                     const passObj = document.getElementById('email_message')
                     passObj.style.color = "#00FF00"
                 })
-                .catch(() => {
+                .catch(err => {
+                    this.email_message = ""
                     if (this.Stemail == this.email) {
                         this.showEmailButton = false;
                         this.email_message = 'Please write a new one!'
+                        const passObj = document.getElementById('email_message')
+                        passObj.style.color = "#FF0000"
+                    } else if (err.response.data.email) {
+                        this.email_message = err.response.data.email[0]
+                        const passObj = document.getElementById('email_message')
+                        passObj.style.color = "#FF0000"
+                    } else {
+                        this.email_message = 'Something went wrong!'
                         const passObj = document.getElementById('email_message')
                         passObj.style.color = "#FF0000"
                     }
@@ -321,7 +331,12 @@
                     "new_password": this.pass,
                     "new_password_confirm": this.pass1
                 }, { headers: getHeaders() })
-                .then()
+                .then(res => {
+                    this.user_message = `Username was successfuly change to ${res.data.username}`
+                    this.Stusername = res.data.username
+                    const passObj = document.getElementById('user_message')
+                    passObj.style.color = "#00FF00"
+                })
                 .catch(err => {
                     if (err.response.data.new_password) {
                         this.pass_message = err.response.data.new_password[0]

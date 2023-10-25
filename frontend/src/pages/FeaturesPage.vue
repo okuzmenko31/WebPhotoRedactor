@@ -27,6 +27,7 @@
                                 :slides-per-view="1"
                                 :space-between="50"
                                 navigation
+                                :allowTouchMove="false"
                                 :pagination="{ clickable: true }"
                                 @swiper="onSwiper"
                                 @slideChange="onSlideChange"
@@ -93,6 +94,7 @@
                                 :slides-per-view="1"
                                 :space-between="50"
                                 navigation
+                                :allowTouchMove="false"
                                 :pagination="{ clickable: true }"
                                 @swiper="onSwiper"
                                 @slideChange="onSlideChange"
@@ -155,6 +157,7 @@
                                 :slides-per-view="1"
                                 :space-between="50"
                                 navigation
+                                :allowTouchMove="false"
                                 :pagination="{ clickable: true }"
                                 @swiper="onSwiper"
                                 @slideChange="onSlideChange"

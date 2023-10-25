@@ -54,9 +54,7 @@
                     if (shouldShow) {
                         desc.style.display = 'flex';
                     } else {
-                        setTimeout(() => {
                         desc.style.display = 'none'
-                    }, 1000)
                     }
                 }
             },

@@ -115,12 +115,13 @@
             </div>
             <div class="flex-block gp--15 align-items-center auth-cintainer-img">
                 <div class="flex-block gp--15 credits">
-                    <img :src="imageSrc"/>
-                    <div class="flex-block column">
+                    <img style="width: 35px; height: 35px;" :src="imageSrc"/>
+                    <div class="flex-block column start">
                         <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                         <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                     </div>
                 </div>
+                <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                 <div v-if="!isAuthenticated" class="nav__auth-btn white">
                     <router-link to="/login" class="auth link">Log in</router-link>
                     <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -153,7 +154,7 @@
                                     {{upscaleFactor}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(factor, index) in factors" :key="index" @click="factorClick">
+                                    <li v-for="(factor, index) in factors" v-bind:data-dd-value="factor" :key="index" @click="factorClick">
                                         {{ factor }}
                                     </li>
                                 </div>
@@ -170,12 +171,13 @@
                     </div>
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -195,7 +197,7 @@
                                     {{strenght}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(strt, index) in jpegStrt" :key="index" @click="jpegstrtClick">
+                                    <li v-for="(strt, index) in jpegStrt" v-bind:data-dd-value="strt" :key="index" @click="jpegstrtClick">
                                         {{ strt }}
                                     </li>
                                 </div>
@@ -204,12 +206,13 @@
                     </div>
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -252,7 +255,7 @@
                                     {{outputType}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(output, index) in outPuts" :key="index" @click="outputClick">
+                                    <li v-for="(output, index) in outPuts" v-bind:data-dd-value="output" :key="index" @click="outputClick">
                                         {{ output }}
                                     </li>
                                 </div>
@@ -262,12 +265,13 @@
                     </div>
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -287,7 +291,7 @@
                                     {{upscaleFactor}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(factor, index) in factors" :key="index" @click="factorClick">
+                                    <li v-for="(factor, index) in factors" v-bind:data-dd-value="factor" :key="index" @click="factorClick">
                                         {{ factor }}
                                     </li>
                                 </div>
@@ -306,12 +310,13 @@
 
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -381,7 +386,7 @@
                 isLoading: false,
                 loadedFile: false,
                 fileName: "",
-                bgColor: "#ffffff",
+                bgColor: null,
                 upscaleFactor: 2,
                 bgBlur: 0,
                 bgFileOrText: true,
@@ -428,10 +433,9 @@
                 this.showColor = true
                 this.bgImgUrl = ""
                 this.bgBlur = 0
-                const obj = document.querySelector('.pcr-button')
-                if (obj) {
-                    this.bgColor = "#ffffff"
-                    obj.style.setProperty('--pcr-color', this.bgColor);
+                this.bgColor = null
+                if (document.querySelector('.pcr-button')) {
+                    document.querySelector('.pcr-button').style.setProperty('--pcr-color', this.bgColor)
                 }
             },
             handleFilesUpdated(value) {
@@ -475,7 +479,7 @@
                 const dd = document.getElementById('factor-arrow');
                 const menu = document.getElementById('factor-menu');
                 if (event) {
-                    const selectedFactor = event.target.textContent;
+                    const selectedFactor = event.target.getAttribute("data-dd-value");
                     this.upscaleFactor = selectedFactor;
                     const factorItems = document.querySelectorAll('#factor-menu li');
                     factorItems.forEach(item => {
@@ -490,7 +494,7 @@
                 const dd = document.getElementById('factor-arrow');
                 const menu = document.getElementById('factor-menu');
                 if (event) {
-                    const selectedOutput = event.target.textContent;
+                    const selectedOutput = event.target.getAttribute("data-dd-value");
                     this.outputType = selectedOutput;
                     const factorItems = document.querySelectorAll('#factor-menu li');
                     factorItems.forEach(item => {
@@ -505,7 +509,7 @@
                 const dd = document.getElementById('factor-arrow');
                 const menu = document.getElementById('factor-menu');
                 if (event) {
-                    const selectedStrt = event.target.textContent;
+                    const selectedStrt = event.target.getAttribute("data-dd-value");
                     this.strenght = selectedStrt;
                     const factorItems = document.querySelectorAll('#factor-menu li');
                     factorItems.forEach(item => {
@@ -595,7 +599,7 @@
                     const pickr = Pickr.create({
                         el: '#color-picker',
                         theme: 'nano',
-                        default: '#ffffff',
+                        default: null,
 
                         swatches: [
                             '#FF0000',
@@ -637,8 +641,8 @@
                     pickr.on('hide', (...args) => {
                         let color
                         if (args[0]._lastColor === null) {
-                            color = '#ffffff'
-                            this.bgColor = '#ffffff'
+                            color = null
+                            this.bgColor = null
                         } else {
                             color = args[0]._lastColor.toHEXA();
                         }
@@ -646,7 +650,7 @@
                         this.bgColor = `#${color[0]+ color[1] + color[2]}`
                     });
                     pickr.on('clear', () => {
-                        this.bgColor = '#ffffff'
+                        this.bgColor = null
                         document.querySelector('.pcr-button').style.setProperty('--pcr-color', this.bgColor)
                     });
                     pickr.on('save', (...args) => {

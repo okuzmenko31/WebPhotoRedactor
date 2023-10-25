@@ -1,6 +1,7 @@
 <template>
   <navbar-comp />
   <div class="pricing-container">
+
     <div class="pricing-block">
       <p class="brand_text">Our plans</p>
     <p class="fs--50 fw--700 header_text align_center_text no-top">Pricing</p>
@@ -17,12 +18,24 @@
           />
         </div>
     </div>
+
+    <div class="flex-block column center width--100">
+      <p class="header_text fs--50 fw--900 align_center_text">Our plans contain</p>
+        <div class="plans-contain-block">
+          <div class="contain-container small_text" :key="index" v-for="(contain, index) in plansContain">
+            <img :src="checkmark" style="width: 20px; height: 20px;" alt="checkmark"/>
+            <p>{{ contain }}</p>
+          </div>
+      </div>
+    </div>
+
     <pricing-questions />
   </div>
   <footer-comp />
 </template>
 
 <script>
+/* eslint-disable */
   import PricingQuestions from "@/components/PricingQuestions.vue";
   import Card from "@/components/UI/TarrifCard.vue";
   import NavbarComp from "@/components/NavbarComp.vue";
@@ -46,7 +59,9 @@
     },
     data() {
       return {
-          plans: []
+          plans: [],
+          plansContain: [ 'Custom backgrounds', 'Images without watermark', 'Paid credits', 'Devided credits for each feature', 'Support priority' ],
+          checkmark: require("@/assets/checkmark.png")
       };
     }
   }
@@ -72,6 +87,23 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.plans-contain-block {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contain-container {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .tarrifs-row {
