@@ -88,6 +88,7 @@
                 }
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLink}`, data)
                 .then(res => {
+                    console.log(res.data);
                     return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
                 })
                 .catch(err => {
