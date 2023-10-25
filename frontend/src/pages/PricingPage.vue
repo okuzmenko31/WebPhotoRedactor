@@ -19,10 +19,13 @@
         </div>
     </div>
 
-    <div class="plans-contain-block">
-      <div class="contain-container small_text" :key="index" v-for="(contain, index) in plansContain">
-        <img :src="checkmark" style="width: 20px; height: 20px;" alt="checkmark"/>
-        <p>{{ contain }}</p>
+    <div class="flex-block column center width--100">
+      <p class="header_text">Our plans contain</p>
+        <div class="plans-contain-block">
+          <div class="contain-container small_text" :key="index" v-for="(contain, index) in plansContain">
+            <img :src="checkmark" style="width: 20px; height: 20px;" alt="checkmark"/>
+            <p>{{ contain }}</p>
+          </div>
       </div>
     </div>
 
