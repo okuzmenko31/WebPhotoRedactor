@@ -66,9 +66,7 @@
                     "email": this.email,
                     "text": this.text
                 })
-                .then(res => {
-
-                })
+                .then()
                 .catch(err => {
                     console.log(err);
                     if (err.response.data.email || err.response.data.text || err.response.data.request_type) {
