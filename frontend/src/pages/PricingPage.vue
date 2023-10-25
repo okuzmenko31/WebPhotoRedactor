@@ -20,7 +20,7 @@
     </div>
 
     <div class="plans-contain-block">
-      <div class="flex-block gp--15" v-for="contain in plansContain">
+      <div class="flex-block gp--15" :key="index" v-for="(contain, index) in plansContain">
         <svg viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
           <path d="M 18 32.34 l -8.34 -8.34 -2.83 2.83 11.17 11.17 24 -24 -2.83 -2.83 z" stroke="#3da35a" fill="#3da35a"/>
         </svg>
