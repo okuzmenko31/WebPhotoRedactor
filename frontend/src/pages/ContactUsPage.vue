@@ -66,7 +66,9 @@
                     "email": this.email,
                     "text": this.text
                 })
-                .then()
+                .then(res => {
+                    console.log(res);
+                })
                 .catch(err => {
                     console.log(err);
                     if (err.response.data.email || err.response.data.text || err.response.data.request_type) {
@@ -154,7 +156,7 @@
     color: #ffffff;
     border-radius: 20px;
     gap: 20px;
-    width: auto !important;
+    width: 100% !important;
 }
 
 #message-input-id {
@@ -188,7 +190,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 116px;
 }
 
 #category-arrow {
