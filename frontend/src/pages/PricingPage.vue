@@ -1,6 +1,7 @@
 <template>
   <navbar-comp />
   <div class="pricing-container">
+
     <div class="pricing-block">
       <p class="brand_text">Our plans</p>
     <p class="fs--50 fw--700 header_text align_center_text no-top">Pricing</p>
@@ -17,6 +18,16 @@
           />
         </div>
     </div>
+
+    <div class="plans-contain-block">
+      <div class="flex-block gp--15" v-for="contain in plansContain">
+        <svg viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 18 32.34 l -8.34 -8.34 -2.83 2.83 11.17 11.17 24 -24 -2.83 -2.83 z" stroke="#3da35a" fill="#3da35a"/>
+        </svg>
+        <p>{{ contain }}</p>
+      </div>
+    </div>
+
     <pricing-questions />
   </div>
   <footer-comp />
@@ -46,7 +57,8 @@
     },
     data() {
       return {
-          plans: []
+          plans: [],
+          plansContain: ['Custom backgrounds', 'Images without watermark', 'Credits for usage']
       };
     }
   }
@@ -72,6 +84,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.plans-contain-block {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap
 }
 
 .tarrifs-row {
