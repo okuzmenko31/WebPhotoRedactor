@@ -30,7 +30,7 @@
                 .then(res => {
                     setLocalToken(res.data.access)
                     setLocalRefreshToken(res.data.refresh)
-                    this.message = res.data.success + " You will be redirected in 2 seconds."
+                    this.message = "You have verified your email. You will be redirected in 2 seconds."
                     const messageBlock = document.getElementById('message_conf')
                     messageBlock.style.color = "#00FF00"
                     setTimeout(() => {
