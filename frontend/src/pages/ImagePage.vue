@@ -153,7 +153,7 @@
                                     {{upscaleFactor}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(factor, index) in factors" :data-type="factor" :key="index" @click="factorClick">
+                                    <li v-for="(factor, index) in factors" :data-value="factor" :key="index" @click="factorClick">
                                         {{ factor }}
                                     </li>
                                 </div>
@@ -195,7 +195,7 @@
                                     {{strenght}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(strt, index) in jpegStrt" :data-type="strt" :key="index" @click="jpegstrtClick">
+                                    <li v-for="(strt, index) in jpegStrt" :data-value="strt" :key="index" @click="jpegstrtClick">
                                         {{ strt }}
                                     </li>
                                 </div>
@@ -252,7 +252,7 @@
                                     {{outputType}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(output, index) in outPuts" :data-type="output" :key="index" @click="outputClick">
+                                    <li v-for="(output, index) in outPuts" :data-value="output" :key="index" @click="outputClick">
                                         {{ output }}
                                     </li>
                                 </div>
@@ -287,7 +287,7 @@
                                     {{upscaleFactor}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(factor, index) in factors" :data-type="factor" :key="index" @click="factorClick">
+                                    <li v-for="(factor, index) in factors" :data-value="factor" :key="index" @click="factorClick">
                                         {{ factor }}
                                     </li>
                                 </div>

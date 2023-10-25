@@ -11,7 +11,7 @@
                             {{category}}
                         </span>
                         <div id="category-menu">
-                            <li v-for="(category_, index) in categories" :key="index" :data-type="category_" @click="categoryClick">
+                            <li v-for="(category_, index) in categories" :key="index" :data-value="category_" @click="categoryClick">
                                 {{ category_ }}
                             </li>
                         </div>
