@@ -20,7 +20,7 @@
     </div>
 
     <div class="flex-block column center width--100">
-      <p class="header_text fs--50 fw--900">Our plans contain</p>
+      <p class="header_text fs--50 fw--900 align_center_text">Our plans contain</p>
         <div class="plans-contain-block">
           <div class="contain-container small_text" :key="index" v-for="(contain, index) in plansContain">
             <img :src="checkmark" style="width: 20px; height: 20px;" alt="checkmark"/>
