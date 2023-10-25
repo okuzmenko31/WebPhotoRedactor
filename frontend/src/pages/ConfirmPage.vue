@@ -4,7 +4,7 @@
             <h1 class="white">Invalid URL</h1>
         </template>
         <template v-else>
-            <h1 class="header_text">Email confirmation</h1>
+            <h1 class="header_text align_center_text width--100">Email confirmation</h1>
             <button @click="confirmEmailRequest" class="verify_email_button white">Verify email</button>
             <p id="message_conf" class="white align_center_text">{{ message }}</p>
         </template>

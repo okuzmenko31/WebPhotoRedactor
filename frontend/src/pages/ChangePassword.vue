@@ -4,7 +4,7 @@
             <h1 class="white">Invalid URL</h1>
         </template>
         <template v-else>
-            <h1 class="header_text align_text_center width--100">Password reset confirmation</h1>
+            <h1 class="header_text align_center_text width--100">Password reset confirmation</h1>
             <input-ui max="50" v-model="pass" :passwordType="true" pr="Password"/>
             <input-ui max="50" v-model="pass1" :passwordType="true" pr="Confirm Password"/>
             <button @click="confirmChangingPassword" class="reset_password_button white">Change password</button>

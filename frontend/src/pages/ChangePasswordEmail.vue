@@ -1,6 +1,6 @@
 <template>
     <div class="confirm-password-container">
-        <h1 class="header_text align_center_text">Password reset confirmation</h1>
+        <h1 class="header_text align_center_text width--100">Password reset confirmation</h1>
         <input-ui max="50" v-model="email" pr="Email "/>
         <button @click="sendChangePasswordRequest" class="reset_password_button white">Send mail</button>
         <p id="message_conf" class="white align_center_text">{{ message }}</p>
