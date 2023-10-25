@@ -115,12 +115,13 @@
             </div>
             <div class="flex-block gp--15 align-items-center auth-cintainer-img">
                 <div class="flex-block gp--15 credits">
-                    <img :src="imageSrc"/>
+                    <img style="width: 35px; height: 35px;" :src="imageSrc"/>
                     <div class="flex-block column">
                         <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                         <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                     </div>
                 </div>
+                <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                 <div v-if="!isAuthenticated" class="nav__auth-btn white">
                     <router-link to="/login" class="auth link">Log in</router-link>
                     <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -170,12 +171,13 @@
                     </div>
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
                             <div class="flex-block column credits-text">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -204,12 +206,13 @@
                     </div>
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
                             <div class="flex-block column credits-text">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -262,12 +265,13 @@
                     </div>
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
                             <div class="flex-block column credits-text">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
@@ -306,12 +310,13 @@
 
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
-                            <img :src="imageSrc"/>
+                            <img style="width: 35px; height: 35px;" :src="imageSrc"/>
                             <div class="flex-block column credits-text">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
                         </div>
+                        <router-link to="/pricing" class="log-in__btn auth link">Buy credits</router-link>
                         <div v-if="!isAuthenticated" class="nav__auth-btn white">
                             <router-link to="/login" class="auth link">Log in</router-link>
                             <router-link to="/signup" class="log-in__btn auth link">Sign up</router-link>
