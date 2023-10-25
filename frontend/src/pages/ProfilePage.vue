@@ -261,8 +261,9 @@
                     const passObj = document.getElementById('email_message')
                     passObj.style.color = "#00FF00"
                 })
-                .catch(() => {
+                .catch(err => {
                     if (this.Stemail == this.email) {
+                        console.log(err)
                         this.showEmailButton = false;
                         this.email_message = 'Please write a new one!'
                         const passObj = document.getElementById('email_message')

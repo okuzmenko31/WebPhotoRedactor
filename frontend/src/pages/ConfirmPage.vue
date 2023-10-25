@@ -38,7 +38,6 @@
                     }, 2000)
                 })
                 .catch(err => {
-                    console.log(err);
                     this.message = err.response.data.error
                     const messageBlock = document.getElementById('message_conf')
                     messageBlock.style.color = "#FF0000"
