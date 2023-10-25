@@ -72,7 +72,7 @@
                     document.body.appendChild(script);
                 });
             },
-            createStripeOrder() {
+            async createStripeOrder() {
                 const data_post = {};
                 data_post.ext_id = this.ext_id;
                 data_post.amount = this.amount;
@@ -89,7 +89,7 @@
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLink}`, data_post)
                 .then(res => {
                     console.log(res.data);
-                    return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
+                    return this.stripe.redirectToCheckout({sessionId: await res.data.checkout_session_id})
                 })
                 .catch(err => {
                     this.error = true
