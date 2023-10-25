@@ -11,7 +11,7 @@
                             {{category}}
                         </span>
                         <div id="category-menu">
-                            <li v-for="(category_, index) in categories" :key="index" :data-value="category_" @click="categoryClick">
+                            <li v-for="(category_, index) in categories" :key="index" v-bind:data-dd-value="category_" @click="categoryClick">
                                 {{ category_ }}
                             </li>
                         </div>
@@ -117,7 +117,7 @@
                 const dd = document.getElementById('category-arrow');
                 const menu = document.getElementById('category-menu');
                 if (event) {
-                    const selectedСategory = event.target.dataset.value;
+                    const selectedСategory = event.target.getAttribute("data-dd-value");
                     this.category = selectedСategory;
                     const categoryItems = document.querySelectorAll('#category-menu li');
                     categoryItems.forEach(item => {

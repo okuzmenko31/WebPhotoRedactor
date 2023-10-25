@@ -153,7 +153,7 @@
                                     {{upscaleFactor}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(factor, index) in factors" :data-value="factor" :key="index" @click="factorClick">
+                                    <li v-for="(factor, index) in factors" v-bind:data-dd-value="factor" :key="index" @click="factorClick">
                                         {{ factor }}
                                     </li>
                                 </div>
@@ -195,7 +195,7 @@
                                     {{strenght}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(strt, index) in jpegStrt" :data-value="strt" :key="index" @click="jpegstrtClick">
+                                    <li v-for="(strt, index) in jpegStrt" v-bind:data-dd-value="strt" :key="index" @click="jpegstrtClick">
                                         {{ strt }}
                                     </li>
                                 </div>
@@ -252,7 +252,7 @@
                                     {{outputType}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(output, index) in outPuts" :data-value="output" :key="index" @click="outputClick">
+                                    <li v-for="(output, index) in outPuts" v-bind:data-dd-value="output" :key="index" @click="outputClick">
                                         {{ output }}
                                     </li>
                                 </div>
@@ -287,7 +287,7 @@
                                     {{upscaleFactor}}
                                 </span>
                                 <div id="factor-menu">
-                                    <li v-for="(factor, index) in factors" :data-value="factor" :key="index" @click="factorClick">
+                                    <li v-for="(factor, index) in factors" v-bind:data-dd-value="factor" :key="index" @click="factorClick">
                                         {{ factor }}
                                     </li>
                                 </div>
@@ -475,7 +475,7 @@
                 const dd = document.getElementById('factor-arrow');
                 const menu = document.getElementById('factor-menu');
                 if (event) {
-                    const selectedFactor = event.target.dataset.value;
+                    const selectedFactor = event.target.getAttribute("data-dd-value");
                     this.upscaleFactor = selectedFactor;
                     const factorItems = document.querySelectorAll('#factor-menu li');
                     factorItems.forEach(item => {
@@ -490,7 +490,7 @@
                 const dd = document.getElementById('factor-arrow');
                 const menu = document.getElementById('factor-menu');
                 if (event) {
-                    const selectedOutput = event.target.dataset.value;
+                    const selectedOutput = event.target.getAttribute("data-dd-value");
                     this.outputType = selectedOutput;
                     const factorItems = document.querySelectorAll('#factor-menu li');
                     factorItems.forEach(item => {
@@ -505,7 +505,7 @@
                 const dd = document.getElementById('factor-arrow');
                 const menu = document.getElementById('factor-menu');
                 if (event) {
-                    const selectedStrt = event.target.dataset.value;
+                    const selectedStrt = event.target.getAttribute("data-dd-value");
                     this.strenght = selectedStrt;
                     const factorItems = document.querySelectorAll('#factor-menu li');
                     factorItems.forEach(item => {
