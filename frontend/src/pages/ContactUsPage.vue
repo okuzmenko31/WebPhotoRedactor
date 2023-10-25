@@ -21,7 +21,7 @@
                 <textarea id="message-input-id" placeholder="Your message" required :maxlength="4000" v-model="text"></textarea>
                 <div class="flex-block center width--100 column">
                     <button class="contact_us_btn" @click="sendMail">Send mail</button>
-                    <p class='error_text'>{{ message }}</p>
+                    <p class='error_text_contact'>{{ message }}</p>
                 </div>
             </div>
         </div>
@@ -66,11 +66,20 @@
                     "email": this.email,
                     "text": this.text
                 })
-                .then(res => {
-                    console.log(res);
+                .then(() => {
+                    this.message = ""
+                    this.message = "Mail was sent to support!"
+                    const message = documen.querySelector('.error_text_contact')
+                    if (message) {
+                        message.style.color = "#00FF00"
+                    }
                 })
                 .catch(err => {
-                    console.log(err);
+                    this.message = ""
+                    const message = documen.querySelector('.error_text_contact')
+                    if (message) {
+                        message.style.color = "#ff0000"
+                    }
                     if (err.response.data.email || err.response.data.text || err.response.data.request_type) {
                         if (err.response.data.request_type) {
                             this.message = err.response.data.request_type[0]
