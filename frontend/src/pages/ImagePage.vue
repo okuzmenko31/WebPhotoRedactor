@@ -433,10 +433,9 @@
                 this.showColor = true
                 this.bgImgUrl = ""
                 this.bgBlur = 0
-                const obj = document.querySelector('.pcr-button')
-                if (obj) {
-                    this.bgColor = null
-                    obj.style.setProperty('--pcr-color', this.bgColor);
+                this.bgColor = null
+                if (document.querySelector('.pcr-button')) {
+                    document.querySelector('.pcr-button').style.setProperty('--pcr-color', this.bgColor)
                 }
             },
             handleFilesUpdated(value) {
