@@ -331,7 +331,12 @@
                     "new_password": this.pass,
                     "new_password_confirm": this.pass1
                 }, { headers: getHeaders() })
-                .then()
+                .then(res => {
+                    this.user_message = `Username was successfuly change to ${res.data.username}`
+                    this.Stusername = res.data.username
+                    const passObj = document.getElementById('user_message')
+                    passObj.style.color = "#00FF00"
+                })
                 .catch(err => {
                     if (err.response.data.new_password) {
                         this.pass_message = err.response.data.new_password[0]

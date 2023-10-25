@@ -119,13 +119,19 @@
                     let blur = parseInt(this.blur);
 
                     if (blur > 100 || isNaN(blur) || blur < 0) {
+                        console.log('Blur is not valid - ', blur);
                         this.image_upload = "Please enter a valid blur %, between 0 and 100.";
                         bgBlurValid = false;
                     } else {
+                        console.log('Blur is normal - ', blur);
                         this.FDFunctions.push({'bg_blur': blur});
                         bgBlurValid = true;
                     }
+                } else {
+                    console.log('Blur is undefined - ', this.blur);
                 }
+
+                console.log('Blur output value - ', this.blur);
 
                 if (this.output_type !== undefined) {
                     this.FDFunctions.push({'output_type': this.output_type});
