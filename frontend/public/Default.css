@@ -39,6 +39,11 @@ body {
     text-align: center !important;
 }
 
+.start {
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+}
+
 .flex-block {
     display: flex;
 }
@@ -274,12 +279,13 @@ body {
 @media (max-width: 480px) {
     .blur-circle {
         width: 90%;
-    }
-
-    .blur-circle {
         -webkit-filter: blur(150px);
         -moz-filter: blur(150px);
         -o-filter: blur(150px);
         -ms-filter: blur(150px);
+    }
+
+    .blue-circle {
+        background-color: #e100ff;
     }
 }

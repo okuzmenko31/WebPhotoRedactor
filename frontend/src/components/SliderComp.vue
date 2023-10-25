@@ -43,20 +43,11 @@ class Slider {
     }
 
     #listen() {
-        let isTouchDevice = 'ontouchstart' in document.documentElement;
-        if (isTouchDevice) {
-            this.mouseDownHandler = this.mouseDownHandler.bind(this);
-            this.mouseUpHandler = this.mouseUpHandler.bind(this);
-            this.moveHandler = this.moveHandler.bind(this);
-            this.$slider.addEventListener('touchstart', this.mouseDownHandler);
-            this.$slider.addEventListener('touchend', this.mouseUpHandler);
-        } else {
             this.mouseDownHandler = this.mouseDownHandler.bind(this);
             this.mouseUpHandler = this.mouseUpHandler.bind(this);
             this.moveHandler = this.moveHandler.bind(this);
             this.$slider.addEventListener('mousedown', this.mouseDownHandler);
-            this.$slider.addEventListener('mouseup', this.mouseUpHandler);
-        }
+            document.addEventListener('mouseup', this.mouseUpHandler);
     }
 
     mouseDownHandler(event) {
@@ -64,22 +55,12 @@ class Slider {
         if (event.target.dataset.type === 'resize') {
             this.currentX = event.clientX || event.touches[0].clientX;
             this.startWidth = parseInt(this.state.width);
-            let isTouchDevice = 'ontouchstart' in document.documentElement;
-            if (isTouchDevice) {
-                this.$slider.addEventListener('touchmove', this.moveHandler);
-            } else {
-                this.$slider.addEventListener('mousemove', this.moveHandler);
-            }
+            this.$slider.addEventListener('mousemove', this.moveHandler);
         }
     }
 
     mouseUpHandler() {
-        let isTouchDevice = 'ontouchstart' in document.documentElement;
-        if (isTouchDevice) {
-            this.$slider.removeEventListener('touchmove', this.moveHandler);
-        } else {
-            this.$slider.removeEventListener('mousemove', this.moveHandler);
-        }
+        this.$slider.removeEventListener('mousemove', this.moveHandler);
     }
 
     moveHandler(event) {
@@ -130,10 +111,29 @@ export default {
     background-color: transparent;
 }
 
+@keyframes change {
+    0% {
+        width: 50%
+    }
+
+    25% {
+        width: 10%
+    }
+
+    75% {
+        width: 90%
+    }
+
+    100% {
+        width: 50%
+    }
+}
+
 .before-slider {
     position: absolute;
     width: 50%;
     height: 100%;
+    transition: 0.3s ease;
     z-index: 2;
     background-size: cover;
     max-width: 90%;
@@ -143,6 +143,7 @@ export default {
 
 .after-slider {
     position: absolute;
+    transition: 0.3s ease;
     width: 100%;
     height: 100%;
     z-index: 1;
@@ -176,5 +177,29 @@ export default {
     top: 50%;
     left: 5px;
     color: #000;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .before-slider {
+        animation: 5s change infinite;
+    }
+}
+
+@media (min-width: 651px) and (max-width: 767px) {
+    .before-slider {
+        animation: 5s change infinite;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 650px) {
+    .before-slider {
+        animation: 5s change infinite;
+    }
+}
+
+@media (max-width: 480px) {
+    .before-slider {
+        animation: 5s change infinite;
+    }
 }
 </style>

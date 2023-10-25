@@ -35,6 +35,7 @@
 </template>
 
 <script>
+/* eslint-disable */
   import PricingQuestions from "@/components/PricingQuestions.vue";
   import Card from "@/components/UI/TarrifCard.vue";
   import NavbarComp from "@/components/NavbarComp.vue";
@@ -59,7 +60,7 @@
     data() {
       return {
           plans: [],
-          plansContain: [ 'Custom backgrounds', 'Images without watermark', 'Credits for usage' ],
+          plansContain: [ 'Custom backgrounds', 'Images without watermark', 'Paid credits', 'Devided credits for each feature', 'Support priority' ],
           checkmark: require("@/assets/checkmark.png")
       };
     }
@@ -89,7 +90,7 @@
 }
 
 .plans-contain-block {
-  width: 90%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

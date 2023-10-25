@@ -2,6 +2,8 @@
     <navbar-comp />
     <div class="contact-us-container">
         <div class="contact-us">
+            <p class="brand_text align_center_text no-margin">Support</p>
+            <p class="header_text fw--900 fs--50 align_center_text no-top">Contact Us</p>
             <div class="contact-us-form">
                 <div class="contact-us-category-choose" style="z-index: 2;">
                     <p>Category:</p>
@@ -23,6 +25,17 @@
                     <button class="contact_us_btn" @click="sendMail">Send mail</button>
                     <p class='error_text_contact'>{{ message }}</p>
                 </div>
+            </div>
+        </div>
+
+        <p class="brand_text" style="margin-top: 120px;">Our contacts</p>
+        <p class="header_text fw--900 fs--50 align_center_text no-top">If you need help contact us by email</p>
+        <div class="support-alt-block">
+            <img :src="supportImg" class="support-image" alt="support"/>
+            <div class="support-sub-block">
+                <p class="fs--50 fw--900 no-margin">Email us</p>
+                <p class="fs--15 no-margin">For any inqueries, data breaches, concerns, security practices, or any other information, kindly contact us on:</p>
+                <a class="contact_email fs--15" target="_blank" rel="noreferrer" href="mailto:koooilrekt@gmail.com?subject=Contact%20Us">koooilrekt@gmail.com</a>
             </div>
         </div>
     </div>
@@ -56,7 +69,8 @@
                 text: "",
                 category: "",
                 categories: [],
-                message: ""
+                message: "",
+                supportImg: require("@/assets/Support.png")
             }
         },
         methods: {
@@ -286,9 +300,110 @@
     background: #9069aa;
 }
 
+.support-alt-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    padding: 60px;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(45, 47, 70, 0.08) 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+}
+
+.support-sub-block {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    width: 40%;
+    gap: 20px;
+}
+
+.support-image {
+    width: 40%
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .support-alt-block {
+        flex-direction: column
+    }
+
+    .support-sub-block {
+        width: 80%;
+    }
+
+    .support-image {
+        width: 60%
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .support-alt-block {
+        flex-direction: column
+    }
+
+    .support-sub-block {
+        width: 80%;
+    }
+
+    .support-image {
+        width: 60%
+    }
+}
+
+@media (min-width: 651px) and (max-width: 767px) {
+    .support-alt-block {
+        flex-direction: column
+    }
+
+    .support-sub-block {
+        width: 80%;
+    }
+
+    .support-image {
+        width: 60%
+    }
+}
+
+@media (min-width: 481px) and (max-width: 650px) {
+    .support-alt-block {
+        flex-direction: column
+    }
+
+    .support-sub-block {
+        width: 80%;
+    }
+
+    .support-image {
+        width: 60%
+    }
+}
+
 @media (max-width: 480px) {
     .contact-us-category-choose {
         flex-direction: column
+    }
+
+    .support-alt-block {
+        flex-direction: column;
+        padding: 30px 0;
+    }
+
+    .support-sub-block {
+        width: 90%;
+    }
+
+    .support-sub-block .fs--50 {
+        font-size: 25px;
+    }
+
+    .support-sub-block .fs--15 {
+        font-size: 12px;
+    }
+
+    .support-image {
+        width: 90%
     }
 }
 </style>

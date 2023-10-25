@@ -116,7 +116,7 @@
             <div class="flex-block gp--15 align-items-center auth-cintainer-img">
                 <div class="flex-block gp--15 credits">
                     <img style="width: 35px; height: 35px;" :src="imageSrc"/>
-                    <div class="flex-block column">
+                    <div class="flex-block column start">
                         <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                         <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                     </div>
@@ -172,7 +172,7 @@
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
                             <img style="width: 35px; height: 35px;" :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
@@ -207,7 +207,7 @@
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
                             <img style="width: 35px; height: 35px;" :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
@@ -266,7 +266,7 @@
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
                             <img style="width: 35px; height: 35px;" :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
@@ -311,7 +311,7 @@
                     <div class="flex-block gp--15 align-items-center auth-cintainer-img2">
                         <div class="flex-block gp--15 credits">
                             <img style="width: 35px; height: 35px;" :src="imageSrc"/>
-                            <div class="flex-block column credits-text">
+                            <div class="flex-block column credits-text start">
                                 <p class="fs--12 no-margin white">{{ CreditsName }} paid credits: {{ paidCredits }}</p>
                                 <p class="fs--12 no-margin white">{{ CreditsName }} free credits: {{ freeCredits }}</p>
                             </div>
