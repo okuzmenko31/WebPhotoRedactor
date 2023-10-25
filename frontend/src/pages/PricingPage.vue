@@ -20,8 +20,8 @@
     </div>
 
     <div class="plans-contain-block">
-      <div class="flex-block gp--15" :key="index" v-for="(contain, index) in plansContain">
-        <img :src="checkmark" style="width: 15px; height: 15px;" alt="checkmark"/>
+      <div class="contain-container small_text" :key="index" v-for="(contain, index) in plansContain">
+        <img :src="checkmark" style="width: 20px; height: 20px;" alt="checkmark"/>
         <p>{{ contain }}</p>
       </div>
     </div>
@@ -56,7 +56,7 @@
     data() {
       return {
           plans: [],
-          plansContain: ['Custom backgrounds', 'Images without watermark', 'Credits for usage'],
+          plansContain: [ 'Custom backgrounds', 'Images without watermark', 'Credits for usage' ],
           checkmark: require("@/assets/checkmark.png")
       };
     }
@@ -90,7 +90,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contain-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .tarrifs-row {
