@@ -38,12 +38,18 @@ footer {
     z-index: 1;
 }
 .footer-content {
-    width: 50%;
+    width: 40%;
     height: auto;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+@media (max-width: 767px) {
+    .footer-content {
+        width: 60%;
+    }
 }
 </style>

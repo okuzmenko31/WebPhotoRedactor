@@ -5,9 +5,9 @@
             <p class="brand_text">Features</p>
             <h1 class="fs--50 fw--700 header_text align_center_text no-top">FlexFI Upscale features:</h1>
             <div class="articles_container">
-                <article-ui name="Upscaling" article="article text" />
-                <article-ui name="Background remove" article="article text" />
-                <article-ui name="Remove JPEG Artifacts" article="article text" />
+                <article-ui name="Upscaling" article="Upscaling increases the size or resolution of an image or video, enhancing its visual quality for larger displays." />
+                <article-ui name="Background remove" article="Background Removal is the process of isolating the main subject in an image by eliminating the background." />
+                <article-ui name="Remove JPEG Artifacts" article='"Remove Jpeg Artifacts" is the process of eliminating distortions from JPEG compression.' />
             </div>
         </div>
 
@@ -34,8 +34,8 @@
                             >
                                 <swiper-slide>
                                     <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
+                                            <p class="fs--25 fw--900 white no-margin">Upscale</p>
+                                            <p class="small_text no-margin">Enable users to upload images of any size without compromising photo quality.</p>
                                     </div>
                                     <div class="about-feature-image-block2">
                                         <slider-comp :before_img="UpImg1" :after_img="UpImg1_2" :div_class="sliderClass" />
@@ -43,8 +43,8 @@
                                 </swiper-slide>
                                 <swiper-slide>
                                     <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
+                                            <p class="fs--25 fw--900 white no-margin">Ultra upscale</p>
+                                            <p class="small_text no-margin">More than default upscale. Automatically identifies low-quality images and enhances their overall quality.</p>
                                     </div>
                                     <div class="about-feature-image-block2">
                                         <slider-comp :before_img="UpImg2" :after_img="UpImg2_2" :div_class="sliderClass" />
@@ -52,8 +52,8 @@
                                 </swiper-slide>
                                 <swiper-slide>
                                     <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
+                                            <p class="fs--25 fw--900 white no-margin">Ultra enhance</p>
+                                            <p class="small_text no-margin">Ultra Enhance employs advanced predictive and generative AI technology to upscale photos, filling in missing pixels for a superior smoothing and enhancement effect.</p>
                                     </div>
                                     <div class="about-feature-image-block2">
                                         <slider-comp :before_img="UpImg3" :after_img="UpImg3_2" :div_class="sliderClass" />
@@ -65,15 +65,15 @@
                         <div class="about-feature-info white">
                             <div @click="setNewImg($event, 1)" class="article_choose__btn UPSC" :class="upscaleBlock === 1 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">Upscale</p>
-                                <p class="small_text no-margin">  </p>
+                                <p class="small_text no-margin">Enable users to upload images of any size without compromising photo quality.</p>
                             </div>
                             <div @click="setNewImg($event, 2)" class="article_choose__btn UPSC" :class="upscaleBlock === 2 ? 'active' : '' ">
                                 <p class="fs--25 fw--900 white no-margin">Ultra upscale</p>
-                                <p class="small_text no-margin">ultra enhance</p>
+                                <p class="small_text no-margin">More than default upscale. Automatically identifies low-quality images and enhances their overall quality.</p>
                             </div>
-                            <div @click="setNewImg($event, 3)" :class="upscaleBlock > 3 || upscaleBlock < 1 ? 'active' : '' " class="article_choose__btn UPSC">
+                            <div @click="setNewImg($event, 3)" :class="upscaleBlock >= 3 || upscaleBlock < 1 ? 'active' : '' " class="article_choose__btn UPSC">
                                 <p class="fs--25 fw--900 white no-margin">Ultra enhance</p>
-                                <p class="small_text no-margin">AAHAHHA</p>
+                                <p class="small_text no-margin">Ultra Enhance employs advanced predictive and generative AI technology to upscale photos, filling in missing pixels for a superior smoothing and enhancement effect.</p>
                             </div>
                         </div>
                         <div class="about-feature-image-block">
@@ -101,8 +101,8 @@
                             >
                                 <swiper-slide>
                                     <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
+                                            <p class="fs--25 fw--900 white no-margin">Background remove</p>
+                                            <p class="small_text no-margin">Effortlessly eliminate the background from your image using our Background Remove tool.</p>
                                     </div>
                                     <div class="about-feature-image-block2">
                                         <slider-comp :before_img="BgImg1" :after_img="BgImg1_2" :div_class="sliderClass" />
@@ -110,8 +110,8 @@
                                 </swiper-slide>
                                 <swiper-slide>
                                     <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
+                                            <p class="fs--25 fw--900 white no-margin">Change background</p>
+                                            <p class="small_text no-margin">You can add custom image or color on background. Also you can make it blurry.</p>
                                     </div>
                                     <div class="about-feature-image-block2">
                                         <slider-comp :before_img="BgImg2" :after_img="BgImg2_2" :div_class="sliderClass" />
@@ -119,8 +119,8 @@
                                 </swiper-slide>
                                 <swiper-slide>
                                     <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
+                                            <p class="fs--25 fw--900 white no-margin">Output type</p>
+                                            <p class="small_text no-margin">You can cleanly isolate image subject from background with "cutout". "Mask" output type produces a high-contrast black and white image.</p>
                                     </div>
                                     <div class="about-feature-image-block2">
                                         <slider-comp :before_img="BgImg3" :after_img="BgImg3_2" :div_class="sliderClass" />
@@ -136,14 +136,14 @@
                         </div>
                         <div class="about-feature-info white">
                             <div @click="setNewImgBg($event, 1)" class="article_choose__btn BGR" :class="bgBlock === 1 ? 'active' : '' ">
-                                <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                <p class="small_text no-margin">AAHAHHA</p></div>
+                                <p class="fs--25 fw--900 white no-margin">Background remove</p>
+                                <p class="small_text no-margin">Effortlessly eliminate the background from your image using our Background Remove tool.</p></div>
                             <div @click="setNewImgBg($event, 2)" class="article_choose__btn BGR" :class="bgBlock === 2 ? 'active' : '' ">
-                                <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                <p class="small_text no-margin">AAHAHHA</p></div>
-                            <div @click="setNewImgBg($event, 3)" :class="bgBlock > 3 || bgBlock < 1 ? 'active' : '' " class="article_choose__btn BGR">
-                                <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                <p class="small_text no-margin">AAHAHHA</p></div>
+                                <p class="fs--25 fw--900 white no-margin">Change background</p>
+                                <p class="small_text no-margin">You can add custom image or color on background. Also you can make it blurry.</p></div>
+                            <div @click="setNewImgBg($event, 3)" :class="bgBlock >= 3 || bgBlock < 1 ? 'active' : '' " class="article_choose__btn BGR">
+                                <p class="fs--25 fw--900 white no-margin">Output type</p>
+                                <p class="small_text no-margin">You can cleanly isolate image subject from background with "cutout". "Mask" output type produces a high-contrast black and white image.</p></div>
                         </div>
                     </div>
                 </div>
@@ -164,48 +164,27 @@
                             >
                                 <swiper-slide>
                                     <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
+                                            <p class="fs--25 fw--900 white no-margin">Strenght</p>
+                                            <p class="small_text no-margin">"Normal" level provides a balanced approach to removing JPEG compression artifacts, offering a standard level of enhancement.</p>
+                                            <p class="small_text no-margin">The "High" level applies a stronger and more aggressive removal of JPEG artifacts, resulting in a more pronounced enhancement.</p>
+                                            <p class="small_text no-margin">The "Maximal" level applies the highest level of strength in removing JPEG compression artifacts, offering the most intensive enhancement possible. This setting is recommended for images with severe compression artifacts.</p>
                                     </div>
                                     <div class="about-feature-image-block2">
                                         <slider-comp :before_img="JpegImg1" :after_img="JpegImg1_2" :div_class="sliderClass" />
-                                    </div>
-                                </swiper-slide>
-                                <swiper-slide>
-                                    <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
-                                    </div>
-                                    <div class="about-feature-image-block2">
-                                        <slider-comp :before_img="JpegImg2" :after_img="JpegImg2_2" :div_class="sliderClass" />
-                                    </div>
-                                </swiper-slide>
-                                <swiper-slide>
-                                    <div class="article_choose__btn active">
-                                            <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                            <p class="small_text no-margin">AAHAHHA</p>
-                                    </div>
-                                    <div class="about-feature-image-block2">
-                                        <slider-comp :before_img="JpegImg3" :after_img="JpegImg3_2" :div_class="sliderClass" />
                                     </div>
                                 </swiper-slide>
                             </swiper>
                         </div>
                         <div class="about-feature-info white">
                             <div @click="setNewImgJpeg($event, 1)" class="article_choose__btn RJPEGA" :class="jpegBlock === 1 ? 'active' : '' ">
-                                <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                <p class="small_text no-margin">AAHAHHA</p></div>
-                            <div @click="setNewImgJpeg($event, 2)" class="article_choose__btn RJPEGA" :class="jpegBlock === 2 ? 'active' : '' ">
-                                <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                <p class="small_text no-margin">AAHAHHA</p></div>
-                            <div @click="setNewImgJpeg($event, 3)" :class="jpegBlock > 3 || jpegBlock < 1 ? 'active' : '' " class="article_choose__btn  RJPEGA">
-                                <p class="fs--25 fw--900 white no-margin">AAHAHHA</p>
-                                <p class="small_text no-margin">AAHAHHA</p></div>
+                                <p class="fs--25 fw--900 white no-margin">Strenght</p>
+                                <p class="small_text no-margin">"Normal" level provides a balanced approach to removing JPEG compression artifacts, offering a standard level of enhancement.</p>
+                                <p class="small_text no-margin">The "High" level applies a stronger and more aggressive removal of JPEG artifacts, resulting in a more pronounced enhancement.</p>
+                                <p class="small_text no-margin">The "Maximal" level applies the highest level of strength in removing JPEG compression artifacts, offering the most intensive enhancement possible. This setting is recommended for images with severe compression artifacts.</p>
                             </div>
+                        </div>
                         <div class="about-feature-image-block">
                             <slider-comp v-if="jpegBlock === 1" :before_img="JpegImg1" :after_img="JpegImg1_2" :div_class="sliderClass" />
-                            <slider-comp v-else-if="jpegBlock === 2" :before_img="JpegImg2" :after_img="JpegImg2_2" :div_class="sliderClass" />
-                            <slider-comp v-else :before_img="JpegImg3" :after_img="JpegImg3_2" :div_class="sliderClass" />
                         </div>
                     </div>
                 </div>
@@ -258,15 +237,11 @@
                 BgImg1_2: require("@/assets/woman_bg.png"),
                 BgImg2: require("@/assets/dog.jpg"),
                 BgImg2_2: require("@/assets/dog2.png"),
-                BgImg3: require("@/assets/audi_car.jpg"),
-                BgImg3_2: require("@/assets/audi_car2.png"),
+                BgImg3: require("@/assets/people.jpg"),
+                BgImg3_2: require("@/assets/people2.png"),
 
                 JpegImg1: require("@/assets/jpeg_sun.jpg"),
                 JpegImg1_2: require("@/assets/jpeg_sun2.png"),
-                JpegImg2: require("@/assets/flower2.png"),
-                JpegImg2_2: require("@/assets/flower.png"),
-                JpegImg3: require("@/assets/flower2.png"),
-                JpegImg3_2: require("@/assets/flower.png"),
 
                 sliderClass: "slider-features"
             }
@@ -443,7 +418,7 @@
     width: 100%;
     height: 150px;
     display: flex;
-    justify-content: center;
+    overflow-y: auto;
     align-items: flex-start;
     flex-direction: column;
     color: #fff;

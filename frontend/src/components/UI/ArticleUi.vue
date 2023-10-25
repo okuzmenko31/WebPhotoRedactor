@@ -1,7 +1,7 @@
 <template>
     <div v-if="article_id" :id="article_id" class="article" @mouseover="showDescription(true)" @mouseleave="showDescription(false)">
         <p v-if="article_name_id" :id="article_name_id" class="white fs--33 fw--700 art_name align_center_text">{{ name }}</p>
-        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--20 align_center_text">{{ article }}</p>
+        <p v-if="article_desc_id" :id="article_desc_id" class="descr_art small_text fs--15 align_center_text">{{ article }}</p>
     </div>
 </template>
 
@@ -97,7 +97,6 @@
 
 .article p {
     margin: 0;
-    text-transform: capitalize;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {

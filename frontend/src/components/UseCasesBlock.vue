@@ -5,23 +5,23 @@
         <div class="wrapper">
             <div class="box1 box">
                 <p class="fs--20">Print</p>
-                <p class="fs--15">Enhance images for web design, print, product discovery and recommendations.</p>
+                <p class="fs--15">Improve Images for Web Design, Print, Product Discovery, and Recommendations.</p>
             </div>
             <div class="box2 box">
                 <p class="fs--20">E-commerce</p>
-                <p class="fs--15">Image Noise Reduction in minutes to properly rank and optimize images for website sales.</p>
+                <p class="fs--15">Effortlessly Enhance Website Sales with Image Noise Reduction in Minutes.</p>
             </div>
             <div class="box3 box">
                 <p class="fs--20">Graphic Design</p>
-                <p class="fs--15">Enlarge pictures, assets, textures, photos, and all the graphics in seconds.</p>
+                <p class="fs--15">Increase Images, Assets, Textures, Photos, and Graphics Instantly.</p>
             </div>
             <div class="box4 box">
                 <p class="fs--20">Real Estate</p>
-                <p class="fs--15">Enhance colors and photo resolution creating the perfect real estate marketing images.</p>
+                <p class="fs--15">Perfect Real Estate Marketing Images: Enhance Colors and Photo Resolution.</p>
             </div>
             <div class="box5 box">
                 <p class="fs--20">Digital painting</p>
-                <p class="fs--15">Increasing image resolution and adding details to Luxurious art digital paintings for wallpaper automatically using AI.</p>
+                <p class="fs--15">Automatically Enhance Luxurious Art Digital Paintings: Increase Resolution and Add Details for Wallpaper with AI.</p>
             </div>
         </div>
         <div class="swiper-container">
@@ -38,31 +38,31 @@
                 <swiper-slide>
                     <div class="box1 box">
                         <p class="fs--20">Print</p>
-                        <p class="fs--15">Enhance images for web design, print, product discovery and recommendations.</p>
+                        <p class="fs--15">Improve Images for Web Design, Print, Product Discovery, and Recommendations.</p>
                     </div>
                 </swiper-slide>
                 <swiper-slide>
                     <div class="box2 box">
                         <p class="fs--20">E-commerce</p>
-                        <p class="fs--15">Image Noise Reduction in minutes to properly rank and optimize images for website sales.</p>
+                        <p class="fs--15">Effortlessly Enhance Website Sales with Image Noise Reduction in Minutes.</p>
                     </div>
                 </swiper-slide>
                 <swiper-slide>
                     <div class="box3 box">
                         <p class="fs--20">Graphic Design</p>
-                        <p class="fs--15">Enlarge pictures, assets, textures, photos, and all the graphics in seconds.</p>
+                        <p class="fs--15">Increase Images, Assets, Textures, Photos, and Graphics Instantly.</p>
                     </div>
                 </swiper-slide>
                 <swiper-slide>
                     <div class="box4 box">
                         <p class="fs--20">Real Estate</p>
-                        <p class="fs--15">Enhance colors and photo resolution creating the perfect real estate marketing images.</p>
+                        <p class="fs--15">Perfect Real Estate Marketing Images: Enhance Colors and Photo Resolution.</p>
                     </div>
                 </swiper-slide>
                 <swiper-slide>
                     <div class="box5 box">
                         <p class="fs--20">Digital painting</p>
-                        <p class="fs--15">Increasing image resolution and adding details to Luxurious art digital paintings for wallpaper automatically using AI.</p>
+                        <p class="fs--15">Automatically Enhance Luxurious Art Digital Paintings: Increase Resolution and Add Details for Wallpaper with AI.</p>
                     </div>
                 </swiper-slide>
             </swiper>

@@ -43,25 +43,25 @@
           <div class="why-us-block">
             <div class="why-us-table-features">
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Transforming Cities: Unique FlexFi Upscale</p>
+                <p class="fs--33 fw--700 white width--100">Transforming Cities</p>
                 <p class="fs--15 fw--400 small_text width--100">FlexFi Upscale - your gateway to transforming urban landscapes! We remove building backgrounds from your pictures, allowing you to enhance and enlarge them effortlessly. Rediscover the beauty of your cityscapes with FlexFi Upscale.</p>
               </div>
               <div class="line-vertical-1"></div>
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Minimalistic and simple</p>
-                <p class="fs--15 fw--400 small_text width--100">s</p>
+                <p class="fs--33 fw--700 white width--100">Elevate Your Urban Vision</p>
+                <p class="fs--15 fw--400 small_text width--100">With FlexFi Upscale, witness the magic of urban renewal. Our expertise lies in removing building backgrounds and resizing your images to perfection. Experience the city like never before with FlexFi Upscale.</p>
               </div>
             </div>
             <div class="horizontal-line"></div>
             <div class="why-us-table-features">
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Minimalistic and simple</p>
-                <p class="fs--15 fw--400 small_text width--100">s</p>
+                <p class="fs--33 fw--700 white width--100">Cityscape Revolution</p>
+                <p class="fs--15 fw--400 small_text width--100">FlexFi Upscale brings a revolution to cityscapes! We specialize in removing building backgrounds and increasing image size, allowing your photos to tell a larger-than-life story. Explore the potential of your urban imagery with FlexFi Upscale.</p>
               </div>
               <div class="line-vertical-2"></div>
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Minimalistic and simple</p>
-                <p class="fs--15 fw--400 small_text width--100">s</p>
+                <p class="fs--33 fw--700 white width--100">Beyond Boundaries</p>
+                <p class="fs--15 fw--400 small_text width--100">FlexFi Upscale transcends limits in urban photography. Our innovative approach removes building backgrounds and magnifies your images, opening new horizons for your creativity. Step into a world of endless possibilities with FlexFi Upscale.</p>
               </div>
             </div>
           </div>
@@ -100,12 +100,12 @@
         },
         data() {
           return {
-            Img: require('@/assets/car.jpg'),
-            Img2: require('@/assets/car2.png'),
-            Bg: require('@/assets/car.jpg'),
-            Bg2: require('@/assets/car.jpg'),
-            JPEG: require('@/assets/car.jpg'),
-            JPEG2: require('@/assets/car.jpg'),
+            Img: require('@/assets/car2.png'),
+            Img2: require('@/assets/car.jpg'),
+            Bg: require('@/assets/woman.jpg'),
+            Bg2: require('@/assets/woman_bg.png'),
+            JPEG: require('@/assets/jpeg_sun.jpg'),
+            JPEG2: require('@/assets/jpeg_sun2.png'),
             Logo: require('@/assets/Logo.jpg'),
             isAuthenticated: false
           }
@@ -317,8 +317,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 100%;
+    width: 80%;
+    max-width: 80%;
   }
 
   .why-item {
@@ -354,8 +354,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: 100%;
+    width: 80%;
+    max-width: 80%;
   }
 
   .why-item {
