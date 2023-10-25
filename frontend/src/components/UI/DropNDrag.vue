@@ -104,13 +104,13 @@
                 if (this.bgFile === true) {
                     if (input2.files.length > 0) {
                         formData.append('bg_image', input2.files[0]);
-                    } else if (this.bg_color !== undefined && this.bg_color !== '#ffffff') {
+                    } else if (this.bg_color !== undefined && this.bg_color !== null) {
                         this.FDFunctions.push({'bg_color': this.bg_color});
                     }
                 } else {
                     if (this.bgUrl !== "") {
                         formData.append('bg_image_url', this.bgUrl);
-                    } else if (this.bg_color !== undefined && this.bg_color !== '#ffffff') {
+                    } else if (this.bg_color !== undefined && this.bg_color !== null) {
                         this.FDFunctions.push({'bg_color': this.bg_color});
                     }
                 }

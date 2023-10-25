@@ -386,7 +386,7 @@
                 isLoading: false,
                 loadedFile: false,
                 fileName: "",
-                bgColor: "#ffffff",
+                bgColor: null,
                 upscaleFactor: 2,
                 bgBlur: 0,
                 bgFileOrText: true,
@@ -435,7 +435,7 @@
                 this.bgBlur = 0
                 const obj = document.querySelector('.pcr-button')
                 if (obj) {
-                    this.bgColor = "#ffffff"
+                    this.bgColor = null
                     obj.style.setProperty('--pcr-color', this.bgColor);
                 }
             },
@@ -600,7 +600,7 @@
                     const pickr = Pickr.create({
                         el: '#color-picker',
                         theme: 'nano',
-                        default: '#ffffff',
+                        default: null,
 
                         swatches: [
                             '#FF0000',
@@ -642,8 +642,8 @@
                     pickr.on('hide', (...args) => {
                         let color
                         if (args[0]._lastColor === null) {
-                            color = '#ffffff'
-                            this.bgColor = '#ffffff'
+                            color = null
+                            this.bgColor = null
                         } else {
                             color = args[0]._lastColor.toHEXA();
                         }
@@ -651,7 +651,7 @@
                         this.bgColor = `#${color[0]+ color[1] + color[2]}`
                     });
                     pickr.on('clear', () => {
-                        this.bgColor = '#ffffff'
+                        this.bgColor = null
                         document.querySelector('.pcr-button').style.setProperty('--pcr-color', this.bgColor)
                     });
                     pickr.on('save', (...args) => {
