@@ -29,8 +29,8 @@
                         <page-loader />
                     </template>
                     <template v-else>
-                        <PaymentModel :auth="authEd" name="PayPal" :func="paypalRedirect" description="ahhaahhahaahaha" method='paypal'/>
-                        <PaymentModel :auth="authEd" name="Credit card" description="hohohohohoohoho" :func="stripeRedirect" url="https://google.com/dsadasdasdasdSdasda" method='stripe'/>
+                        <PaymentModel :auth="authEd" name="PayPal" :func="paypalRedirect" description="PayPal is a convenient and secure way to make online payments. By using your PayPal account, you can make payments with minimal risk to your finances. Thanks to its high level of security and straightforward authorization process, PayPal is one of the most reliable methods of online payment." method='paypal'/>
+                        <PaymentModel :auth="authEd" name="Credit card" description="Paying with your own card allows for seamless transactions directly from your preferred credit or debit card. This method ensures a straightforward and hassle-free payment process, providing you with the flexibility and convenience you need." :func="stripeRedirect" url="https://google.com/dsadasdasdasdSdasda" method='stripe'/>
                     </template>
                 </template>
             </div>
