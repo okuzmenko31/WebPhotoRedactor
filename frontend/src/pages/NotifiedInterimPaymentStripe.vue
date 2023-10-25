@@ -73,20 +73,20 @@
                 });
             },
             createStripeOrder() {
-                const data = {};
-                data.ext_id = this.ext_id;
-                data.amount = this.amount;
-                data.currency = this.currency;
-                data.success_url = this.success_url;
-                data.cancel_url = this.cancel_url;
-                data.notify_url = this.notify_url;
+                const data_post = {};
+                data_post.ext_id = this.ext_id;
+                data_post.amount = this.amount;
+                data_post.currency = this.currency;
+                data_post.success_url = this.success_url;
+                data_post.cancel_url = this.cancel_url;
+                data_post.notify_url = this.notify_url;
                 if (this.email !== undefined) {
-                    data.email = this.email;
+                    data_post.email = this.email;
                 }
                 if (this.description !== undefined) {
-                    data.description = this.description;
+                    data_post.description = this.description;
                 }
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLink}`, data)
+                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLink}`, data_post)
                 .then(res => {
                     console.log(res.data);
                     return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
