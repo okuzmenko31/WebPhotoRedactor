@@ -139,6 +139,8 @@ class RemoveBGAPIView(BaseImageAPIView):
                 additional_dict[field] = self.request.data.get(field)
         if additional_dict.get('bg_image') is not None and additional_dict.get('bg_color') is not None:
             additional_dict['bg_color'] = None
+        if additional_dict.get('output_type') is not None and additional_dict.get('bg_color') is not None:
+            additional_dict['bg_color'] = None
         return additional_dict
 
 
