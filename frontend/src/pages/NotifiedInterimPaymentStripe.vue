@@ -20,7 +20,7 @@
             PageLoader
         },
         async mounted() {
-            this.loadStripeSDK()
+            await this.loadStripeSDK()
             this.ext_id = this.$route.query.ext_id;
             this.amount = this.$route.query.amount;
             this.currency = this.$route.query.currency;
@@ -56,7 +56,7 @@
             }
         },
         methods: {
-            loadStripeSDK() {
+            async loadStripeSDK() {
                 return new Promise((resolve, reject) => {
                     const script = document.createElement('script');
                     script.src = "https://js.stripe.com/v3/";
@@ -88,11 +88,9 @@
                 }
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLink}`, data_post)
                 .then(res => {
-                    console.log(res.data);
                     return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
                 })
                 .catch(err => {
-                    console.log(err);
                     this.error = true
                     if (err.response.data.cancel_url) {
                         this.message = 'Transaction failure. ' + err.response.data.cancel_url[0]
