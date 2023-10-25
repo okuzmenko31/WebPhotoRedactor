@@ -100,6 +100,12 @@
                         this.message = 'Transaction failure. ' + err.response.data.notify_url[0]
                     } else if (err.response.data.success_url) {
                         this.message = 'Transaction failure. ' + err.response.data.success_url[0]
+                    } else if (err.response.data.exit_id) {
+                        this.message = 'Transaction failure. ' + err.response.data.exit_id[0]
+                    } else if (err.response.data.curency) {
+                        this.message = 'Transaction failure. ' + err.response.data.curency[0]
+                    } else if (err.response.data.amount) {
+                        this.message = 'Transaction failure. ' + err.response.data.amount[0]
                     }
 
                     const success_window = document.getElementById('success');
