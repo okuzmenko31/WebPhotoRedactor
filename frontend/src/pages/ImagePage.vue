@@ -239,6 +239,7 @@
                                 <input-ui v-model="bgImgUrl"/>
                             </template>
                         </div>
+                        <p v-if="bgFileExist !== undefined" class="fs--12 white no-margin">{{ bgFileExist.name }}</p>
                         <p v-if="bgFileOrText === true && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(false) ">Paste url</p>
                         <p v-else-if="bgFileOrText === false && showBg === true" class='link fs--12 no-top' style="cursor: pointer" @click="changeBgFile(true)">Choose image</p>
                         <div class="button_image_block">
@@ -370,6 +371,9 @@
             }
             this.setCredits()
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         data() {
             return {
                 allowedFormats: [ '.jpg', '.jpeg', '.png', '.tiff', '.tga' ],
@@ -428,12 +432,15 @@
             },
             resetSettings() {
                 const input = document.querySelector('.bgImageUpload')
-                input.value = ""
                 this.showBg = true
                 this.showColor = true
                 this.bgImgUrl = ""
                 this.bgBlur = 0
                 this.bgColor = null
+                this.bgFileExist = ""
+                if (input) {
+                    input.value = ""
+                }
                 if (document.querySelector('.pcr-button')) {
                     document.querySelector('.pcr-button').style.setProperty('--pcr-color', this.bgColor)
                 }
@@ -448,7 +455,13 @@
                 this.showColor = false
             },
             changeBgFile(value) {
+                const input = document.querySelector('.bgImageUpload')
+                this.bgImgUrl = ""
+                this.bgFileExist = ""
                 this.bgFileOrText = value
+                if (input) {
+                    input.value = ""
+                }
             },
             navbarToggle() { 
                     const navbar = document.getElementById('profile_bar')

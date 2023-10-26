@@ -42,6 +42,9 @@ export default {
         InputUi,
         PageLoader
     },
+    created() {
+        window.scrollTo(0, 0);
+    },
     mounted() {
         this.ext_id = this.$route.query.ext_id;
         this.amount = this.$route.query.amount;

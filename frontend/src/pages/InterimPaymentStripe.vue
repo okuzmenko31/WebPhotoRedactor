@@ -20,6 +20,9 @@
         components: {
             PageLoader
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         async mounted() {
             handlePopState()
             await this.loadStripeSDK()

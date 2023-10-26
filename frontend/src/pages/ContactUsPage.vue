@@ -33,9 +33,20 @@
         <div class="support-alt-block">
             <img :src="supportImg" class="support-image" alt="support"/>
             <div class="support-sub-block">
-                <p class="fs--50 fw--900 no-margin">Email us</p>
-                <p class="fs--15 no-margin">For any inqueries, data breaches, concerns, security practices, or any other information, kindly contact us on:</p>
-                <a class="contact_email fs--15" target="_blank" rel="noreferrer" href="mailto:koooilrekt@gmail.com?subject=Contact%20Us">koooilrekt@gmail.com</a>
+                <div class="width--100 flex-block column white">
+                    <p class="fs--50 fw--900 no-margin">Email us</p>
+                    <p class="fs--15 no-margin">For any inqueries, data breaches, concerns, security practices, or any other information, kindly contact us on:</p>
+                    <a class="contact_email fs--15" target="_blank" rel="noreferrer" href="mailto:koooilrekt@gmail.com?subject=Contact%20Us">koooilrekt@gmail.com</a>
+                </div>
+                <div class="width--100 flex-block column white">
+                    <p class="fs--50 fw--900 no-margin">Reach us</p>
+                    <p class="fs--15 no-margin">Shopsense Retail Technologies Limited</p>
+                    <p class="fs--15 no-margin">1st Floor, Wework Vijay Diamond,</p>
+                    <p class="fs--15 no-margin">Cross Rd B, Ajit Nagar,</p>
+                    <p class="fs--15 no-margin">Kondivita, Andheri East,</p>
+                    <p class="fs--15 no-margin">Mumbai, Maharashtra - 400069</p>
+                    <p class="fs--15 no-margin">+3809629012424</p>
+                </div>
             </div>
         </div>
     </div>
@@ -54,6 +65,9 @@
             NavbarComp,
             FooterComp,
             InputUi
+        },
+        created() {
+            window.scrollTo(0, 0);
         },
         mounted() {
             handlePopState()
@@ -317,7 +331,7 @@
     flex-direction: column;
     color: #ffffff;
     width: 40%;
-    gap: 20px;
+    gap: 40px;
 }
 
 .support-image {

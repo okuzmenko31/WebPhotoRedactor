@@ -12,7 +12,10 @@
                     <p class="no-margin" @drop.prevent>Drag and drop file here</p>
                 </template>
                 <template v-if="isDragOver === false && anyFiles === true">
-                    <div class="align_center_text">{{ fileName }} Size: {{ fileSize }}</div>
+                    <div class="align_center_text">
+                        <p>Filename: {{ fileName }}</p>
+                        <p>Size: {{ fileSize }}</p>
+                    </div>
                 </template>
             </div>
 

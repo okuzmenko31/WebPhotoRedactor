@@ -163,8 +163,8 @@ const routes = [
         component: PrivacyPolicyPage
     },
     {
-        path: '/therms_of_use',
-        name: 'Therms of Use',
+        path: '/terms_of_use',
+        name: 'Terms of Use',
         component: ThermsOfUsePage
     },
     {

@@ -99,6 +99,9 @@ export default {
         InputUi,
         PageLoader
     },
+    created() {
+        window.scrollTo(0, 0);
+    },
     async mounted() {
         const subId = this.$route.query.sub_id;
         handlePopState();

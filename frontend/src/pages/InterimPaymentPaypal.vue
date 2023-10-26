@@ -30,6 +30,9 @@
                 router.push({ path: "/pricing" })
             }
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         data() {
             return {
                 paypalCreateOrderLink: `/api/v1/payments/paypal/create_order/${this.$route.query.sub_id}/`,

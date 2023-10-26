@@ -34,6 +34,9 @@
                 showPassword: false
             }
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         methods: {
             sendSignUpRequest() {
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/registration/`, {

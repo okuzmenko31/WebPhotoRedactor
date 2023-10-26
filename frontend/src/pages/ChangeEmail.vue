@@ -24,6 +24,9 @@
                 router.push({ path: "/" })
             }
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         methods: {
             changeEmailRequest() {
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/change_email_confirm/${this.tokenQuery}/${this.emailQuery}/`, {}, { headers: getHeaders() })

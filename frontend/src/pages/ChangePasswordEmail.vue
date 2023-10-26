@@ -22,6 +22,9 @@
                 router.push({ path: "/" })
             }
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         methods: {
             sendChangePasswordRequest() {
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/password_reset/`, { 'email': this.email })

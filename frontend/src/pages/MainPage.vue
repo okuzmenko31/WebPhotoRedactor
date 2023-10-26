@@ -6,7 +6,7 @@
         <p class="brand_text">About us</p>
         <p class="fs--50 fw--700 header_text align_center_text no-top few-padding">What is FlexFi Upscale?</p>
         <div class="whatis-about">
-          <h1 class="fs--25 fw--400 whatis-text-desc small_text">It's a website where you have all tools in your hand. From upscaling to removing bacgkrounds.</h1>
+          <h1 class="fs--25 fw--400 whatis-text-desc small_text">It's a website where you have all tools in your hand. From upscaling to removing backgrounds.</h1>
           <div class="whatis-block-block">
             <router-link v-if="!isAuthenticated" class="main_signup_btn" to="/signup">Start upscaling</router-link>
             <router-link v-else class="main_signup_btn" to="/pricing">Buy plan</router-link>
@@ -43,25 +43,25 @@
           <div class="why-us-block">
             <div class="why-us-table-features">
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Transforming Cities</p>
-                <p class="fs--15 fw--400 small_text width--100">FlexFi Upscale - your gateway to transforming urban landscapes! We remove building backgrounds from your pictures, allowing you to enhance and enlarge them effortlessly. Rediscover the beauty of your cityscapes with FlexFi Upscale.</p>
+                <p class="fs--33 fw--700 white width--100">Sleek and Minimalistic Design</p>
+                <p class="fs--15 fw--400 small_text width--100">Experience a visually pleasing and user-friendly interface, characterized by its elegant and minimalist design.</p>
               </div>
               <div class="line-vertical-1"></div>
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Elevate Your Urban Vision</p>
-                <p class="fs--15 fw--400 small_text width--100">With FlexFi Upscale, witness the magic of urban renewal. Our expertise lies in removing building backgrounds and resizing your images to perfection. Experience the city like never before with FlexFi Upscale.</p>
+                <p class="fs--33 fw--700 white width--100">Affordable Pricing</p>
+                <p class="fs--15 fw--400 small_text width--100">Benefit from competitive and budget-friendly pricing options, ensuring high-quality image processing without breaking the bank.</p>
               </div>
             </div>
             <div class="horizontal-line"></div>
             <div class="why-us-table-features">
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Cityscape Revolution</p>
-                <p class="fs--15 fw--400 small_text width--100">FlexFi Upscale brings a revolution to cityscapes! We specialize in removing building backgrounds and increasing image size, allowing your photos to tell a larger-than-life story. Explore the potential of your urban imagery with FlexFi Upscale.</p>
+                <p class="fs--33 fw--700 white width--100">Cutting-Edge Technology</p>
+                <p class="fs--15 fw--400 small_text width--100">We employ state-of-the-art image processing technologies, guaranteeing top-notch results for your visuals.</p>
               </div>
               <div class="line-vertical-2"></div>
               <div class="why-item">
-                <p class="fs--33 fw--700 white width--100">Beyond Boundaries</p>
-                <p class="fs--15 fw--400 small_text width--100">FlexFi Upscale transcends limits in urban photography. Our innovative approach removes building backgrounds and magnifies your images, opening new horizons for your creativity. Step into a world of endless possibilities with FlexFi Upscale.</p>
+                <p class="fs--33 fw--700 white width--100">Responsive Support</p>
+                <p class="fs--15 fw--400 small_text width--100">Experience prompt and efficient customer support. Leave your inquiries with us, and our team will swiftly address your needs, ensuring a seamless experience.</p>
               </div>
             </div>
           </div>
@@ -113,6 +113,7 @@
         async created() {
           const result = await fetchToken();
           this.isAuthenticated = result;
+          window.scrollTo(0, 0);
         },
         mounted() {
           handlePopState()

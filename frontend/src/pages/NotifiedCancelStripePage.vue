@@ -19,6 +19,9 @@
         components: {
             PageLoader
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         mounted() {
             handlePopState()
             if (this.$route.query.cancel_id !== undefined) {

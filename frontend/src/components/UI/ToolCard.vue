@@ -9,7 +9,7 @@
                 {{ description }}
             </p>
         </div>
-        <router-link :to="link" class="readmore__btn fw--25 fw--700 white">Read more</router-link>
+        <a :href="link" class="readmore__btn fw--25 fw--700 white">Read more</a>
     </div>
 </template>
 

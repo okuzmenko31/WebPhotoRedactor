@@ -23,6 +23,9 @@
         components: {
             InputUi
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         mounted() {
             this.tokenQuery = this.$route.query.token;
             this.emailQuery = this.$route.query.email;

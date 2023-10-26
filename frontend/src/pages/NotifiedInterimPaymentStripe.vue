@@ -19,6 +19,9 @@
         components: {
             PageLoader
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         async mounted() {
             await this.loadStripeSDK()
             this.ext_id = this.$route.query.ext_id;

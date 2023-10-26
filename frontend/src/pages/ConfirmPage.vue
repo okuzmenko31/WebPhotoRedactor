@@ -24,6 +24,9 @@
                 router.push({ path: "/" })
             }
         },
+        created() {
+            window.scrollTo(0, 0);
+        },
         methods: {
             confirmEmailRequest() {
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/confirm_email/${this.tokenQuery}/${this.emailQuery}/`, {})
