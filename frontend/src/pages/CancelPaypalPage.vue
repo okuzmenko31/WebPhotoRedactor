@@ -33,7 +33,11 @@
                     this.success = true
                     const modal = document.getElementById('success_modal')
                     this.message = res.data.success
-                    modal.style.backgroundColor = '#66ff63'
+                    if (window.location.href.includes('/payment/paypal/cancel')) {
+                        modal.style.backgroundColor = 'rgb(255, 000, 121)';
+                    } else {
+                        modal.style.backgroundColor = '#66ff63'
+                    }
                     setTimeout(() => {
                         router.push({ path: "/" })
                     }, 2000)

@@ -115,7 +115,7 @@
                                     </div>
 
                                     <div class="flex-block column align_center_text align-items-center width--100">
-                                        <p>METHOD</p>
+                                        <p>PAYMENT METHOD</p>
                                         <p class="fs--20">{{ transaction.payment_service }}</p>
                                     </div>
 

@@ -37,7 +37,6 @@
                     } else {
                         modal.style.backgroundColor = '#66ff63'
                     }
-                    modal.style.backgroundColor = '#66ff63'
                     setTimeout(() => {
                         router.push({ path: "/" })
                     }, 2000)

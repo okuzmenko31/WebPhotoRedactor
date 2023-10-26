@@ -31,7 +31,7 @@
                 .then(res => {
                     this.success = true
                     const modal = document.getElementById('success_modal')
-                    this.message = "You have successfuly bought the plan."
+                    this.message = res.data.succes
                     modal.style.backgroundColor = '#66ff63'
                     setTimeout(() => {
                         window.location.href = res.data.success_url
