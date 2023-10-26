@@ -29,7 +29,7 @@
                 this.queryToken = this.$route.query.token
                 this.validURL = true
                 axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/paypal/cancel_order/${this.queryToken}/`)
-                .then(() => {
+                .then(res => {
                     this.success = true
                     const modal = document.getElementById('success_modal')
                     this.message = res.data.success
