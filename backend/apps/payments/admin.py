@@ -23,6 +23,9 @@ class OrderAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Main info', {'fields': (
             'user',
+            'email',
+            'full_name',
+            'with_user_creation',
             'plan',
             'status',
             'payment_service'

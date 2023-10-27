@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Plan, ForeignOrder, Order
 
 from .serializers import (PlanSerializer,
-                          CreateUserForSubscriptionMixin,
+                          CreateUserForOrderSerializer,
                           ForeignOrderSerializer, OrderSerializer)
 from .services import (PayPalOrdersMixin,
                        StripePaymentMixin,
@@ -19,39 +19,40 @@ from .services import (PayPalOrdersMixin,
 from apps.users.services import get_jwt_tokens_for_user
 
 
-class CreateUserToMakePaymentAPIView(UserCreateForPaymentMixin,
-                                     GenericAPIView):
-    serializer_class = CreateUserForSubscriptionMixin
-    mail_with_celery = False
-
-    def post(self, *args, **kwargs):
-        serializer = self.serializer_class(data=self.request.data)
-        serializer.is_valid(raise_exception=True)
-
-        email = serializer.data.get('email')
-        full_name = serializer.data.get('full_name')
-        if not self.check_email_unique(email):
-            return Response({
-                'error': 'User with provided email is already exists!'
-            }, status=status.HTTP_400_BAD_REQUEST)
-
-        user = self.create_user_for_email(email, full_name)
-
-        if user is None:
-            return Response({
-                'error': 'Something went wrong... Please, try again.'
-            }, status=status.HTTP_400_BAD_REQUEST)
-
-        return Response(
-            data=get_jwt_tokens_for_user(user),
-            status=status.HTTP_200_OK
-        )
+# class CreateUserToMakePaymentAPIView(UserCreateForPaymentMixin,
+#                                      GenericAPIView):
+#     serializer_class = CreateUserForSubscriptionMixin
+#     mail_with_celery = False
+#
+#     def post(self, *args, **kwargs):
+#         serializer = self.serializer_class(data=self.request.data)
+#         serializer.is_valid(raise_exception=True)
+#
+#         email = serializer.data.get('email')
+#         full_name = serializer.data.get('full_name')
+#         if not self.check_email_unique(email):
+#             return Response({
+#                 'error': 'User with provided email is already exists!'
+#             }, status=status.HTTP_400_BAD_REQUEST)
+#
+#         user = self.create_user_for_email(email, full_name)
+#
+#         if user is None:
+#             return Response({
+#                 'error': 'Something went wrong... Please, try again.'
+#             }, status=status.HTTP_400_BAD_REQUEST)
+#
+#         return Response(
+#             data=get_jwt_tokens_for_user(user),
+#             status=status.HTTP_200_OK
+#         )
 
 
 class CreatePayPalOrderAPIView(PayPalOrdersMixin,
+                               UserCreateForPaymentMixin,
                                QuerySetMixin,
-                               APIView):
-    permission_classes = [IsAuthenticated]
+                               GenericAPIView):
+    serializer_class = CreateUserForOrderSerializer
 
     def post(self, *args, **kwargs):
         plan_id = self.kwargs.get('plan_id')
@@ -66,7 +67,41 @@ class CreatePayPalOrderAPIView(PayPalOrdersMixin,
                 'error': 'This plan doesn\'t exists!'  # noqa
             }, status=status.HTTP_400_BAD_REQUEST)
 
-        user = self.request.user
+        order_creation_data = {
+            'plan': plan,
+            'status': 'ACTIVE',
+            'payment_service': 'PAYPAL',
+        }
+
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            order_creation_data['user'] = user
+        else:
+            email = self.request.data.get('email')
+            full_name = self.request.data.get('full_name')
+            required_fields = [email, full_name]
+
+            for field in required_fields:
+                if field == '':
+                    return Response({
+                        'error': 'Email and full name must be provided!'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            serializer = self.serializer_class(data=self.request.data)
+            serializer.is_valid(raise_exception=True)
+
+            if not self.check_email_unique(email):
+                return Response({
+                    'error': 'User with provided email is already exists!'
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            if not self.check_email_unique_in_order(email):
+                return Response({
+                    'error': 'This email was used in another order!'
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            order_creation_data['email'] = serializer.data.get('email')
+            order_creation_data['full_name'] = serializer.data.get('full_name')
+            order_creation_data['with_user_creation'] = True
 
         data, error = self.create_order(plan.price)
 
@@ -74,14 +109,9 @@ class CreatePayPalOrderAPIView(PayPalOrdersMixin,
             return Response({
                 'error': error
             }, status=status.HTTP_400_BAD_REQUEST)
+        order_creation_data['paypal_order_id'] = data.get('order_id')
 
-        self.create_order_in_db({
-            'plan': plan,
-            'user': user,
-            'status': 'ACTIVE',
-            'payment_service': 'PAYPAL',
-            'paypal_order_id': data.get('order_id')
-        })
+        self.create_order_in_db(order_creation_data)
 
         return Response(
             data=data,
@@ -90,8 +120,10 @@ class CreatePayPalOrderAPIView(PayPalOrdersMixin,
 
 
 class CompleteOrderByPayPalOrderID(PayPalOrdersMixin,
+                                   UserCreateForPaymentMixin,
                                    QuerySetMixin,
                                    APIView):
+    mail_with_celery = False
 
     def post(self, *args, **kwargs):
         order_id = self.kwargs.get('order_id')
@@ -119,6 +151,8 @@ class CompleteOrderByPayPalOrderID(PayPalOrdersMixin,
             return Response({
                 'error': error
             }, status=status.HTTP_400_BAD_REQUEST)
+        if order.with_user_creation:
+            self.create_user_for_order(order)
         self.complete_order(order)
 
         return Response(data, status.HTTP_200_OK)
@@ -162,9 +196,12 @@ class StripeConfigAPIView(APIView):
 
 
 class CreateStripeCheckoutSessionAPIView(StripePaymentMixin,
+                                         UserCreateForPaymentMixin,
                                          QuerySetMixin,
                                          APIView):
-    permission_classes = [IsAuthenticated]
+    serializer_class = CreateUserForOrderSerializer
+
+    # permission_classes = [IsAuthenticated]
 
     def post(self, *args, **kwargs):
         plan_id = self.kwargs.get('plan_id')
@@ -179,9 +216,45 @@ class CreateStripeCheckoutSessionAPIView(StripePaymentMixin,
                 'error': 'This plan doesn\'t exists!'  # noqa
             }, status=status.HTTP_400_BAD_REQUEST)
 
+        user_id = None
+        order_with_user_creation = False
+        order_user_creation_data = None
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            user_id = user.id
+        else:
+            email = self.request.data.get('email')
+            full_name = self.request.data.get('full_name')
+            required_fields = [email, full_name]
+
+            for field in required_fields:
+                if field == '':
+                    return Response({
+                        'error': 'Email and full name must be provided!'
+                    }, status=status.HTTP_400_BAD_REQUEST)
+            serializer = self.serializer_class(data=self.request.data)
+            serializer.is_valid(raise_exception=True)
+
+            if not self.check_email_unique(email):
+                return Response({
+                    'error': 'User with provided email is already exists!'
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            if not self.check_email_unique_in_order(email):
+                return Response({
+                    'error': 'This email was used in another order!'
+                }, status=status.HTTP_400_BAD_REQUEST)
+            order_with_user_creation = True
+            order_user_creation_data = {
+                'email': email,
+                'full_name': full_name,
+                'with_user_creation': True
+            }
         checkout_session_id = self.create_checkout_session(
-            self.request.user.id,
-            plan
+            client_id=user_id,
+            plan=plan,
+            order_with_user_creation=order_with_user_creation,
+            order_user_creation_data=order_user_creation_data
         )
         if checkout_session_id is None:
             return Response({
@@ -219,6 +292,7 @@ class CreateStripeForeignCheckoutSessionAPIView(ForeignOrderMixin,
 class StripeWebhookAPIView(StripePaymentMixin,
                            QuerySetMixin,
                            APIView):
+    mail_with_celery = False
 
     def post(self, *args, **kwargs):
         payload = self.request.body
@@ -387,7 +461,7 @@ class CancelForeignOrderByPayPalOrderID(ForeignOrderMixin,
                 'error': 'Order ID must be provided!'
             }, status=status.HTTP_400_BAD_REQUEST)
 
-        order: Order = self.get_order_by_data({'paypal_order_id': order_id})
+        order: Order | ForeignOrder = self.get_order_by_data({'paypal_order_id': order_id})
 
         if order is None:
             return Response({

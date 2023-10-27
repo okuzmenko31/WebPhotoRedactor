@@ -1,4 +1,3 @@
-from typing import Any
 from django.db import models
 
 from apps.users.models import User
@@ -48,7 +47,16 @@ class Order(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE,
                              verbose_name='User',
-                             related_name='orders')
+                             related_name='orders',
+                             blank=True,
+                             null=True)
+    email = models.EmailField(verbose_name='Email for order user creation',
+                              blank=True,
+                              null=True)
+    full_name = models.CharField(max_length=250,
+                                 verbose_name='Full name',
+                                 blank=True,
+                                 null=True)
     plan = models.ForeignKey(Plan,
                              on_delete=models.CASCADE,
                              verbose_name='Plan',
@@ -77,6 +85,8 @@ class Order(models.Model):
                                          null=True)
     created_at = models.DateTimeField(auto_now_add=True,
                                       verbose_name='Created at')
+    with_user_creation = models.BooleanField(default=False,
+                                             verbose_name='Create user for order')
 
     class Meta:
         db_table = 'orders'
@@ -85,7 +95,7 @@ class Order(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f'Order: {self.id}. User: {self.user.username}. Plan: {self.plan.name}'
+        return f'Order: {self.id}. Plan: {self.plan.name}'
 
 
 class ForeignOrder(models.Model):
