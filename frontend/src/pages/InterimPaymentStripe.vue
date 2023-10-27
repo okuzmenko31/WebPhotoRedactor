@@ -2,7 +2,7 @@
     <div class="interim-container">
         <div v-show="error" id="success" class="white">
             <p class="align_center_text">{{ message }}</p>
-            <p style="color: yellow">You'll be automaticly redirected</p>
+            <p style="color: yellow" class="align_center_text">You'll be automaticly redirected</p>
         </div>
         <page-loader v-show="!error"/>
     </div>
@@ -13,7 +13,7 @@
     import axios from 'axios'
     import PageLoader from "@/components/UI/PageLoader.vue";
     import handlePopState from "@/utils/index.js";
-    import { getHeaders, fetchToken } from '@/Auth';
+    import { getHeaders, fetchToken, getLocalEmail, getLocalFullName } from '@/Auth';
     import router from '@/router/router';
 
     export default {
@@ -29,7 +29,7 @@
             if (await fetchToken() === true) {
                 this.createStripeOrder()
             } else {
-                router.push({ path: "/pricing", query: { sub_id: this.$route.query.sub_id } })
+                this.createStripeOrder(getLocalEmail(), getLocalFullName())
             }
             if (this.$route.query.sub_id === undefined)  {
                 router.push({ path: "/pricing" })
@@ -43,25 +43,62 @@
             }
         },
         methods: {
-            createStripeOrder() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLinl}`, {}, { headers: getHeaders() })
-                .then(res => {
-                    return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
+            createStripeOrder(email, name) {
+                if (name === undefined && email === undefined) {
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLinl}`, {}, { headers: getHeaders() })
+                    .then(res => {
+                        return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
+                    })
+                    .catch(err => {
+                        this.error = true
+                        this.message = 'Transaction failure. ' + (err.response.data.error ? err.response.data.error : err.response.data.detail)
+                        const success_window = document.getElementById('success');
+                        const loader = document.querySelector('.preload');
+                        success_window.style.backgroundColor = 'rgb(255, 000, 100)'
+                        success_window.classList.add('visible');
+                        loader.classList.add('hide');
+                        setTimeout(() => {
+                            success_window.classList.remove('visible');
+                            loader.classList.remove('hide');
+                            router.back(err.response.data.email)
+                        }, 3000);
+                    })
+                } else {
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLinl}`, {
+                        'email': email,
+                        'full_name': name
+                    })
+                    .then(res => {
+                        return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        this.error = true
+                        let errorMsg
+                        if (err.response.data.error) {
+                            errorMsg = err.response.data.error
+                        } else if (err.response.data.detail) {
+                            errorMsg = err.response.data.detail
+                        } else if (err.response.data.email) {
+                            errorMsg = err.response.data.email[0]
+                        }
+
+                        this.message = 'Transaction failure. ' + errorMsg
+                        const success_window = document.getElementById('success');
+                        const loader = document.querySelector('.preload');
+                        if (success_window) {
+                            success_window.style.backgroundColor = 'rgb(255, 000, 100)'
+                            success_window.classList.add('visible');
+                            loader.classList.add('hide');
+                            setTimeout(() => {
+                                success_window.classList.remove('visible');
+                                loader.classList.remove('hide');
+                                router.back(err.response.data.email)
+                                
+                            }, 3000);
+                    }
                 })
-                .catch(err => {
-                    this.error = true
-                    this.message = 'Transaction failure. ' + (err.response.data.error ? err.response.data.error : err.response.data.detail)
-                    const success_window = document.getElementById('success');
-                    const loader = document.querySelector('.preload');
-                    success_window.style.backgroundColor = 'rgb(255, 000, 100)'
-                    success_window.classList.add('visible');
-                    loader.classList.add('hide');
-                    setTimeout(() => {
-                        success_window.classList.remove('visible');
-                        loader.classList.remove('hide');
-                        router.push({ path: '/pricing' })
-                    }, 3000);
-                })
+                }
             },
             loadStripeSDK() {
                 return new Promise((resolve, reject) => {

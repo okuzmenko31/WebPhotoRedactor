@@ -2,7 +2,7 @@
     <div class="interim-container">
         <div v-show="error" id="success" class="white">
             <p class="align_center_text">{{ message }}</p>
-            <p style="color: yellow">You'll be automaticly redirected</p>
+            <p style="color: yellow" class="align_center_text">You'll be automaticly redirected</p>
         </div>
         <page-loader v-show="!error"/>
     </div>
@@ -67,7 +67,7 @@
                             setTimeout(() => {
                                 success_window.classList.remove('visible');
                                 loader.classList.remove('hide');
-                                router.push({ path: '/pricing' })
+                                router.back(err.response.data.email)
                             }, 3000);
                         }
                     })
@@ -80,31 +80,30 @@
                             window.location.href = res.data.payment_link
                         })
                         .catch(err => {
-                        console.log(err);
-                        this.error = true
-                        let errorMsg
-                        let path = router.push({ path: '/pricing' })
-                        if (err.response.data.error) {
-                            errorMsg = err.response.data.error
-                        } else if (err.response.data.detail) {
-                            errorMsg = err.response.data.detail
-                        } else if (err.response.data.email) {
-                            errorMsg = err.response.data.email[0]
-                            path = router.back()
-                        }
+                            console.log(err);
+                            this.error = true
+                            let errorMsg
+                            if (err.response.data.error) {
+                                errorMsg = err.response.data.error
+                            } else if (err.response.data.detail) {
+                                errorMsg = err.response.data.detail
+                            } else if (err.response.data.email) {
+                                errorMsg = err.response.data.email[0]
+                            }
 
-                        this.message = 'Transaction failure. ' + errorMsg
-                        const success_window = document.getElementById('success');
-                        const loader = document.querySelector('.preload');
-                        if (success_window) {
-                            success_window.style.backgroundColor = 'rgb(255, 000, 100)'
-                            success_window.classList.add('visible');
-                            loader.classList.add('hide');
-                            setTimeout(() => {
-                                success_window.classList.remove('visible');
-                                loader.classList.remove('hide');
-                                path
-                            }, 3000);
+                            this.message = 'Transaction failure. ' + errorMsg
+                            const success_window = document.getElementById('success');
+                            const loader = document.querySelector('.preload');
+                            if (success_window) {
+                                success_window.style.backgroundColor = 'rgb(255, 000, 100)'
+                                success_window.classList.add('visible');
+                                loader.classList.add('hide');
+                                setTimeout(() => {
+                                    success_window.classList.remove('visible');
+                                    loader.classList.remove('hide');
+                                    router.back(err.response.data.email)
+                                    
+                                }, 3000);
                         }
                     })
                 }

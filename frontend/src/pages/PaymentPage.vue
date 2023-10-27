@@ -2,7 +2,7 @@
     <div id="payment-container">
             <div v-show="svg_elem === true" id="success" class="white">
                 {{ message }}
-                <p style="color: yellow">You'll be automaticly redirected</p>
+                <p style="color: yellow" class="align_center_text">You'll be automaticly redirected</p>
             </div>
         <div v-if="isLoaded" id="payment-block">
             <div class="payment_methods_block">
@@ -85,7 +85,7 @@
 
 <script>
 import axios from 'axios';
-import { fetchToken, setLocalFullName, setLocalEmail } from '@/Auth';
+import { fetchToken, setLocalFullName, setLocalEmail, getLocalFullName, getLocalEmail } from '@/Auth';
 import router from '@/router/router';
 import handlePopState from "@/utils/index.js";
 import PaymentModel from "@/components/UI/PaymentModel";
@@ -120,6 +120,11 @@ export default {
             this.authOnLoad = true
         } else {
             this.authOnLoad = false
+            if (getLocalFullName() !== "" && getLocalEmail() !== "" ) {
+                this.values[0].name = getLocalFullName()
+                this.values[0].email = getLocalEmail()
+                this.authEd = true
+            }
         }
     },
     watch: {
@@ -169,6 +174,7 @@ export default {
             const input2 = document.getElementById('name_input_field')
             const msg2 = document.getElementById('name_message_msg')
             if (input.value.length < 1) {
+                this.authEd = false
                 input.style.border = '1px solid #FF0000'
                 msg.style.color = '#FF0000'
                 msg.style.opacity = "1"
@@ -183,6 +189,7 @@ export default {
             }
 
             if (input2.value.length < 1) {
+                this.authEd = false
                 input2.style.border = '1px solid #FF0000'
                 msg2.style.color = '#FF0000'
                 msg2.style.opacity = "1"
@@ -412,6 +419,7 @@ export default {
     align-items: center;
     width: 150px;
     height: 25px;
+    padding: 5px;
     cursor: pointer
 }
 
@@ -425,6 +433,7 @@ export default {
     align-items: center;
     width: 150px;
     height: 25px;
+    padding: 5px;
     cursor: pointer
 }
 

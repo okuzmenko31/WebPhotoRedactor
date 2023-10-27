@@ -316,6 +316,7 @@ export default {
     align-items: center;
     width: 150px;
     height: 25px;
+    padding: 5px;
     cursor: pointer
 }
 
@@ -329,6 +330,7 @@ export default {
     align-items: center;
     width: 150px;
     height: 25px;
+    padding: 5px;
     cursor: pointer
 }
 

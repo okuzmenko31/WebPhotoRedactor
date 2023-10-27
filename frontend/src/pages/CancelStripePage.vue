@@ -3,7 +3,7 @@
         <page-loader v-if="validURL === true && success === false" />
         <div v-show="validURL === true && success === true" id="success_modal" class="white">
             <p class="align_center_text no-margin">{{ message }}</p>
-            <p style="color: yellow" class="no-margin">You'll be automaticly redirected</p>
+            <p style="color: yellow" class="no-margin align_center_text">You'll be automaticly redirected</p>
         </div>
         <p v-show="validURL === false">Invalid URL</p>
     </div>

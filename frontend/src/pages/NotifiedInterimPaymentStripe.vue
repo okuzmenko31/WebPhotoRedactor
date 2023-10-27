@@ -2,7 +2,7 @@
     <div class="interim-container">
         <div v-show="error" id="success" class="white">
             <p class="align_center_text">{{ message }}</p>
-            <p style="color: yellow">You'll be automaticly redirected</p>
+            <p style="color: yellow" class="align_center_text">You'll be automaticly redirected</p>
         </div>
         <page-loader v-show="!error"/>
     </div>
