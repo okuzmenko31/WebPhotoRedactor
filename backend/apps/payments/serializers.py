@@ -5,11 +5,11 @@ from rest_framework import serializers
 from .models import Plan, ForeignOrder, Order
 
 
-class CreateUserForSubscriptionMixin(serializers.Serializer):
+class CreateUserForOrderSerializer(serializers.Serializer):
     full_name = serializers.CharField(max_length=150,
                                       required=False,
                                       label='Full name')
-    email = serializers.EmailField(required=True,
+    email = serializers.EmailField(required=False,
                                    label='Email for account creation')
 
 
@@ -19,6 +19,13 @@ class PlanSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description', 'price',
                   'bg_deletions_count', 'up_scales_count',
                   'jpg_artifacts_deletions_count', 'stripe_price_id']
+
+
+# class CreateUserForOrderSerializer(serializers.Serializer):
+#     email = serializers.EmailField(required=False)
+#     full_name = serializers.CharField(max_length=150,
+#                                       required=False,
+#                                       label='Full name')
 
 
 class ForeignOrderSerializer(serializers.ModelSerializer):

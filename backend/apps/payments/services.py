@@ -82,7 +82,7 @@ class OrderMixin(QuerySetMixin):
     def get_order_by_data(
             self,
             data
-    ):
+    ) -> Order | ForeignOrder:
         model = Order
         instance = self.get_instance_by_data(model, data)
         if instance is None:
@@ -311,148 +311,6 @@ class ForeignOrderNotify:
         # requests.post(order.notify_url, data=json.dumps(data))
 
 
-class StripePaymentMixin(OrderMixin,
-                         ForeignOrderNotify):
-
-    @staticmethod
-    def configure_stripe():
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-
-    @property
-    def webhook_url(self):
-        return settings.STRIPE_ENDPOINT_SECRET
-
-    def create_price(self, data, stripe_product_id):
-        self.configure_stripe()
-        price = stripe.Price.create(
-            unit_amount=data['price'],
-            currency="usd",
-            product=stripe_product_id,
-        )
-        return price
-
-    @staticmethod
-    def get_product_with_price_id(stripe_product_id, price_obj_id):
-        stripe.Product.modify(
-            stripe_product_id,
-            default_price=price_obj_id,
-        )
-        return stripe.Product.retrieve(stripe_product_id)
-
-    def create_product(self, data) -> str | None:
-        self.configure_stripe()
-        try:
-            product = stripe.Product.create(
-                name=data['name'],
-                description=data['description']
-            )
-            price_obj = self.create_price(data, product.id)
-            final_product = self.get_product_with_price_id(
-                product.id, price_obj.id)
-            return final_product.default_price
-        except (Exception,):
-            return None
-
-    def create_checkout_session(
-            self,
-            client_id,
-            plan: Plan = None,
-            foreign_order: ForeignOrder = None,
-    ):
-        self.configure_stripe()
-        if foreign_order is None:
-            success_url = settings.STRIPE_PAYMENT_SUCCESS_URL
-            cancel_url = settings.STRIPE_PAYMENT_CANCEL_URL
-        else:
-            success_url = settings.STRIPE_FOREIGN_SUCCESS
-            cancel_url = settings.STRIPE_FOREIGN_CANCEL
-
-        cancel_id = binascii.hexlify(os.urandom(12)).decode()
-        success_id = binascii.hexlify(os.urandom(12)).decode()
-        success_url = success_url + f'?success_id={success_id}'
-        cancel_url = cancel_url + f'?cancel_id={cancel_id}'
-
-        if foreign_order is not None:
-            stripe_price_id = self.create_product({
-                'name': f'Order #{foreign_order.ext_id}',
-                'description': foreign_order.description if foreign_order.description is not None else 'FlexFi Upscale',
-                'price': get_price_in_cents(foreign_order.amount)
-            })
-
-        else:
-            stripe_price_id = plan.stripe_price_id
-        checkout_session = stripe.checkout.Session.create(
-            client_reference_id=client_id,
-            success_url=success_url,
-            cancel_url=cancel_url,
-            payment_method_types=['card'],
-            mode='payment',
-            line_items=[
-                {
-                    'price': stripe_price_id,
-                    'quantity': 1,
-                }
-            ]
-        )
-        session_id = checkout_session.get('id')
-
-        if foreign_order is None:
-            self.create_order_in_db({
-                'plan': plan,
-                'user': get_user_by_id(client_id),
-                'status': 'ACTIVE',
-                'payment_service': 'STRIPE',
-                'stripe_session_id': session_id,
-                'stripe_cancel_id': cancel_id,
-                'stripe_success_id': success_id
-            })
-        else:
-            foreign_order.stripe_session_id = session_id
-            foreign_order.stripe_cancel_id = cancel_id
-            foreign_order.stripe_success_id = success_id
-            foreign_order.save()
-        return session_id
-
-    def complete_payment(self, payload, sig_header):
-        self.configure_stripe()
-        endpoint_secret = self.webhook_url
-
-        try:
-            event = stripe.Webhook.construct_event(
-                payload, sig_header, endpoint_secret
-            )
-        except (Exception,):
-            return None
-
-        if event['type'] == 'checkout.session.completed':
-            session = event['data']['object']
-
-            data = {
-                'stripe_session_id': session.get('id')
-            }
-            order: Order | ForeignOrder = self.get_order_by_data(data)
-
-            if isinstance(order, ForeignOrder):
-                self.notify(order, {
-                    'success': True
-                })
-            self.complete_order(order)
-
-        return None
-
-    def cancel_order(self, order, cancel_id):
-        if isinstance(order, Order):
-            order.status = 'CANCELED'
-            order.save()
-        else:
-            order.is_ended = True
-            order.save()
-            self.notify(order, {
-                'success': False,
-                'message': 'Order was canceled.'
-            })
-
-
 class UserCreateForPaymentMixin:
     mail_with_celery = True
 
@@ -512,6 +370,176 @@ class UserCreateForPaymentMixin:
             print(e)
             user = None
         return user
+
+    @classmethod
+    def check_email_unique_in_order(cls, email: str):
+        if Order.objects.filter(email=email).exists():
+            return False
+        return True
+
+    def create_user_for_order(
+            self,
+            order: Order
+    ):
+        user = self.create_user_for_email(order.email, order.full_name)
+        order.user = user
+        order.save()
+
+
+class StripePaymentMixin(UserCreateForPaymentMixin,
+                         OrderMixin,
+                         ForeignOrderNotify):
+
+    @staticmethod
+    def configure_stripe():
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    @property
+    def webhook_url(self):
+        return settings.STRIPE_ENDPOINT_SECRET
+
+    def create_price(self, data, stripe_product_id):
+        self.configure_stripe()
+        price = stripe.Price.create(
+            unit_amount=data['price'],
+            currency="usd",
+            product=stripe_product_id,
+        )
+        return price
+
+    @staticmethod
+    def get_product_with_price_id(stripe_product_id, price_obj_id):
+        stripe.Product.modify(
+            stripe_product_id,
+            default_price=price_obj_id,
+        )
+        return stripe.Product.retrieve(stripe_product_id)
+
+    def create_product(self, data) -> str | None:
+        self.configure_stripe()
+        try:
+            product = stripe.Product.create(
+                name=data['name'],
+                description=data['description']
+            )
+            price_obj = self.create_price(data, product.id)
+            final_product = self.get_product_with_price_id(
+                product.id, price_obj.id)
+            return final_product.default_price
+        except (Exception,):
+            return None
+
+    def create_checkout_session(
+            self,
+            client_id=None,
+            plan: Plan = None,
+            foreign_order: ForeignOrder = None,
+            order_with_user_creation=False,
+            order_user_creation_data=None
+    ):
+        self.configure_stripe()
+        if foreign_order is None:
+            success_url = settings.STRIPE_PAYMENT_SUCCESS_URL
+            cancel_url = settings.STRIPE_PAYMENT_CANCEL_URL
+        else:
+            success_url = settings.STRIPE_FOREIGN_SUCCESS
+            cancel_url = settings.STRIPE_FOREIGN_CANCEL
+
+        cancel_id = binascii.hexlify(os.urandom(12)).decode()
+        success_id = binascii.hexlify(os.urandom(12)).decode()
+        success_url = success_url + f'?success_id={success_id}'
+        cancel_url = cancel_url + f'?cancel_id={cancel_id}'
+
+        if foreign_order is not None:
+            stripe_price_id = self.create_product({
+                'name': f'Order #{foreign_order.ext_id}',
+                'description': foreign_order.description if foreign_order.description is not None else 'FlexFi Upscale',
+                'price': get_price_in_cents(foreign_order.amount)
+            })
+
+        else:
+            stripe_price_id = plan.stripe_price_id
+        checkout_session = stripe.checkout.Session.create(
+            client_reference_id=client_id,
+            success_url=success_url,
+            cancel_url=cancel_url,
+            payment_method_types=['card'],
+            mode='payment',
+            line_items=[
+                {
+                    'price': stripe_price_id,
+                    'quantity': 1,
+                }
+            ]
+        )
+        session_id = checkout_session.get('id')
+
+        if foreign_order is None:
+            creation_data = {
+                'plan': plan,
+                'status': 'ACTIVE',
+                'payment_service': 'STRIPE',
+                'stripe_session_id': session_id,
+                'stripe_cancel_id': cancel_id,
+                'stripe_success_id': success_id
+            }
+
+            if order_with_user_creation:
+                creation_data['email'] = order_user_creation_data['email']
+                creation_data['full_name'] = order_user_creation_data['full_name']
+                creation_data['with_user_creation'] = order_user_creation_data['with_user_creation']
+            else:
+                creation_data['user'] = get_user_by_id(client_id)
+
+            self.create_order_in_db(creation_data)
+        else:
+            foreign_order.stripe_session_id = session_id
+            foreign_order.stripe_cancel_id = cancel_id
+            foreign_order.stripe_success_id = success_id
+            foreign_order.save()
+        return session_id
+
+    def complete_payment(self, payload, sig_header):
+        self.configure_stripe()
+        endpoint_secret = self.webhook_url
+
+        try:
+            event = stripe.Webhook.construct_event(
+                payload, sig_header, endpoint_secret
+            )
+        except (Exception,):
+            return None
+
+        if event['type'] == 'checkout.session.completed':
+            session = event['data']['object']
+
+            data = {
+                'stripe_session_id': session.get('id')
+            }
+            order: Order | ForeignOrder = self.get_order_by_data(data)
+
+            if isinstance(order, ForeignOrder):
+                self.notify(order, {
+                    'success': True
+                })
+            else:
+                if order.with_user_creation:
+                    self.create_user_for_order(order)
+            self.complete_order(order)
+
+        return None
+
+    def cancel_order(self, order, cancel_id):
+        if isinstance(order, Order):
+            order.status = 'CANCELED'
+            order.save()
+        else:
+            order.is_ended = True
+            order.save()
+            self.notify(order, {
+                'success': False,
+                'message': 'Order was canceled.'
+            })
 
 
 class ForeignOrderMixin(PayPalOrdersMixin,
