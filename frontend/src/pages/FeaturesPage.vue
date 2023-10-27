@@ -169,7 +169,7 @@
                                 >
                                     <swiper-slide>
                                         <div class="article_choose__btn active">
-                                                <p class="fs--25 fw--900 white no-margin">Strenght</p>
+                                                <p class="fs--25 fw--900 white no-margin">Strength</p>
                                                 <p class="small_text no-margin">Remove jpeg artifacts function improves image quality by reducing compression artifacts in JPEGs. It offers three levels of strength (normal, high, maximal) for tailored artifact removal.</p>
                                         </div>
                                         <div class="about-feature-image-block2">
@@ -180,7 +180,7 @@
                             </div>
                             <div class="about-feature-info white">
                                 <div @click="setNewImgJpeg($event, 1)" class="article_choose__btn RJPEGA" :class="jpegBlock === 1 ? 'active' : '' ">
-                                    <p class="fs--25 fw--900 white no-margin">Strenght</p>
+                                    <p class="fs--25 fw--900 white no-margin">Strength</p>
                                     <p class="small_text no-margin">Remove jpeg artifacts function improves image quality by reducing compression artifacts in JPEGs. It offers three levels of strength (normal, high, maximal) for tailored artifact removal.</p>
                                 </div>
                             </div>
