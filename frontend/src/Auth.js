@@ -81,3 +81,21 @@ export const getLocalRefreshToken = () => {
 export const getHeaders = () => {
     return { 'Authorization': `Bearer ${getLocalToken()}` }
 };
+
+//set order email and full name
+
+export const setLocalEmail = (email) => {
+    return localStorage.setItem('OrderEmail', email)
+};
+
+export const setLocalFullName = (name) => {
+    return localStorage.setItem('OrderName', name)
+};
+
+export const getLocalEmail = () => {
+    return localStorage.getItem('OrderEmail')
+};
+
+export const getLocalFullName = () => {
+    return localStorage.getItem('OrderName')
+};

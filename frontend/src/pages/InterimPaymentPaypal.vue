@@ -12,7 +12,7 @@
     import axios from 'axios'
     import PageLoader from "@/components/UI/PageLoader.vue";
     import handlePopState from "@/utils/index.js";
-    import { getHeaders, fetchToken } from '@/Auth';
+    import { getHeaders, fetchToken, getLocalEmail, getLocalFullName } from '@/Auth';
     import router from '@/router/router';
 
     export default {
@@ -24,7 +24,7 @@
             if (await fetchToken() === true) {
                 this.createPaypalOrder()
             } else {
-                router.push({ path: "/pricing", query: { sub_id: this.$route.query.sub_id } })
+                this.createPaypalOrder(getLocalEmail(), getLocalFullName())
             }
             if (this.$route.query.sub_id === undefined)  {
                 router.push({ path: "/pricing" })
@@ -41,25 +41,73 @@
             }
         },
         methods: {
-            createPaypalOrder() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, {}, { headers: getHeaders() })
-                .then(res => {
-                    window.location.href = res.data.payment_link
-                })
-                .catch(err => {
-                    this.error = true
-                    this.message = 'Transaction failure. ' + (err.response.data.error ? err.response.data.error : err.response.data.detail)
-                    const success_window = document.getElementById('success');
-                    const loader = document.querySelector('.preload');
-                    success_window.style.backgroundColor = 'rgb(255, 000, 100)'
-                    success_window.classList.add('visible');
-                    loader.classList.add('hide');
-                    setTimeout(() => {
-                        success_window.classList.remove('visible');
-                        loader.classList.remove('hide');
-                        router.push({ path: '/pricing' })
-                    }, 3000);
-                })
+            createPaypalOrder(email, name) {
+                if (name === undefined && email === undefined) {
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, {}, { headers: getHeaders() })
+                    .then(res => {
+                        window.location.href = res.data.payment_link
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        this.error = true
+                        let errorMsg
+                        if (err.response.data.error) {
+                            errorMsg = err.response.data.error
+                        } else if (err.response.data.detail) {
+                            errorMsg = err.response.data.detail
+                        }
+
+                        this.message = 'Transaction failure. ' + errorMsg
+                        const success_window = document.getElementById('success');
+                        const loader = document.querySelector('.preload');
+                        if (success_window) {
+                            success_window.style.backgroundColor = 'rgb(255, 000, 100)'
+                            success_window.classList.add('visible');
+                            loader.classList.add('hide');
+                            setTimeout(() => {
+                                success_window.classList.remove('visible');
+                                loader.classList.remove('hide');
+                                router.push({ path: '/pricing' })
+                            }, 3000);
+                        }
+                    })
+                } else {
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, {
+                        'email': email,
+                        'full_name': name
+                    })
+                        .then(res => {
+                            window.location.href = res.data.payment_link
+                        })
+                        .catch(err => {
+                        console.log(err);
+                        this.error = true
+                        let errorMsg
+                        let path = router.push({ path: '/pricing' })
+                        if (err.response.data.error) {
+                            errorMsg = err.response.data.error
+                        } else if (err.response.data.detail) {
+                            errorMsg = err.response.data.detail
+                        } else if (err.response.data.email) {
+                            errorMsg = err.response.data.email[0]
+                            path = router.back()
+                        }
+
+                        this.message = 'Transaction failure. ' + errorMsg
+                        const success_window = document.getElementById('success');
+                        const loader = document.querySelector('.preload');
+                        if (success_window) {
+                            success_window.style.backgroundColor = 'rgb(255, 000, 100)'
+                            success_window.classList.add('visible');
+                            loader.classList.add('hide');
+                            setTimeout(() => {
+                                success_window.classList.remove('visible');
+                                loader.classList.remove('hide');
+                                path
+                            }, 3000);
+                        }
+                    })
+                }
             }
         }
     }

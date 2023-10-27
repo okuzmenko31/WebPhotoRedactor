@@ -6,7 +6,7 @@
             </div>
         <div v-if="isLoaded" id="payment-block">
             <div class="payment_methods_block">
-                <template v-if="authEd === false">
+                <template v-if="authOnLoad === false">
                     <div class="not-authed-user">
                         <p class="header_text fs--33 fw--700">Create an account</p>
                         <div class="payment_info_block email_block_handler">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <p class="header_text fs--33 fw--700">Payment methods</p>
-                    <PaymentModel :auth="authEd" name="PayPal" v-model:email="messages[0].email" v-model:name="messages[0].name" description="PayPal is a convenient and secure way to make online payments. By using your PayPal account, you can make payments with minimal risk to your finances. Thanks to its high level of security and straightforward authorization process, PayPal is one of the most reliable methods of online payment." method='paypal'/>
+                    <PaymentModel :auth="authEd" name="PayPal" :func="paypalRedirect" v-model:email="messages[0].email" v-model:name="messages[0].name" description="PayPal is a convenient and secure way to make online payments. By using your PayPal account, you can make payments with minimal risk to your finances. Thanks to its high level of security and straightforward authorization process, PayPal is one of the most reliable methods of online payment." method='paypal'/>
                     <PaymentModel :auth="authEd" name="Credit card" v-model:email="messages[0].email" v-model:name="messages[0].name" description="Paying with your own card allows for seamless transactions directly from your preferred credit or debit card. This method ensures a straightforward and hassle-free payment process, providing you with the flexibility and convenience you need." :func="stripeRedirect" url="https://google.com/dsadasdasdasdSdasda" method='stripe'/>
                 </template>
                 <template v-else>
@@ -85,7 +85,7 @@
 
 <script>
 import axios from 'axios';
-import { fetchToken, setLocalToken, setLocalRefreshToken } from '@/Auth';
+import { fetchToken, setLocalFullName, setLocalEmail } from '@/Auth';
 import router from '@/router/router';
 import handlePopState from "@/utils/index.js";
 import PaymentModel from "@/components/UI/PaymentModel";
@@ -117,13 +117,13 @@ export default {
         this.loadPaypal()
         this.loadStripe();
         if (await fetchToken()) {
-            this.authEd = true
+            this.authOnLoad = true
         } else {
-            this.authEd = false
+            this.authOnLoad = false
         }
     },
     watch: {
-        authEd() {
+        authOnLoad() {
             this.loadPaypal()
         }
     },
@@ -139,6 +139,7 @@ export default {
             stripeRedirectLink: "",
             isLoaded: false,
             authEd: false,
+            authOnLoad: false,
             values: [
                 { name: "", email: "" }
             ],
@@ -196,31 +197,16 @@ export default {
             }
 
             if (input2.value.length > 1 && input.value.length > 1) {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/create_user_for_subscription/`, {
-                    "full_name": this.values[0].name,
-                    'email': this.values[0].email
-                })
-                .then(res => {
-                    setLocalToken(res.data.access)
-                    setLocalRefreshToken(res.data.refresh)
-                    this.authEd = true
-                })
-                .catch(err => {
-                    const input = document.getElementById('email_input_field')
-                    const msg = document.getElementById('email_message_msg')
-                    const input2 = document.getElementById('name_input_field')
-                    const msg2 = document.getElementById('name_message_msg')
-                    if (err.response.data.email) {
-                        input.style.border = '1px solid #FF0000'
-                        msg.style.color = '#FF0000'
-                        msg.style.opacity = "1"
-                        this.messages[0].email = err.response.data.email[0]
-                        setTimeout(() => {
-                            msg.style.opacity = "0"
-                            input.style.border = '1px #2e2f35 solid'
-                        }, 2000)
-                    }
-                })
+                setLocalEmail(input.value)
+                setLocalFullName(input2.value)
+                this.authEd = true
+                this.messages[0].name = ""
+                msg.style.color = '#00FF00'
+                msg.style.opacity = "1"
+                this.messages[0].email = "Personal information was saved!"
+                setTimeout(() => {
+                    msg.style.opacity = "0"
+                }, 3000)
             }
         },
         handlePageLoad(value) {
