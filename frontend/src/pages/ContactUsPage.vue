@@ -45,7 +45,7 @@
                     <p class="fs--15 no-margin">Cross Rd B, Ajit Nagar,</p>
                     <p class="fs--15 no-margin">Kondivita, Andheri East,</p>
                     <p class="fs--15 no-margin">Mumbai, Maharashtra - 400069</p>
-                    <p class="fs--15 no-margin">+3809629012424</p>
+                    <p class="contact_email fs--15 no-margin">+3809629012424</p>
                 </div>
             </div>
         </div>

@@ -189,7 +189,7 @@
                 <div v-else-if="isActive('#removejpegartifacts') && !isLoading" class="profile_buttons image_buttons">
                     <div class="flex-block column gp--15 align_center_text">
                         <div class="button_image_block" style="z-index: 2;">
-                            <p>Strenght:</p>
+                            <p>Strength:</p>
                             <div id="factor-dropdown">
                                 <div @click="openFactorChoose" id="factor-arrow"><svg height="15px" viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" ></path></svg>
                                 </div>
