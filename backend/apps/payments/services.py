@@ -373,7 +373,7 @@ class UserCreateForPaymentMixin:
 
     @classmethod
     def check_email_unique_in_order(cls, email: str):
-        if Order.objects.filter(email=email).exists():
+        if Order.objects.filter(email=email).exclude(status='CANCELED').exists():
             return False
         return True
 
