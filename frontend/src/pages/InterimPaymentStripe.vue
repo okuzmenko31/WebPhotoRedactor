@@ -72,7 +72,6 @@
                         return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
                     })
                     .catch(err => {
-                        console.log(err);
                         this.error = true
                         let errorMsg
                         if (err.response.data.error) {
@@ -86,18 +85,18 @@
                         this.message = 'Transaction failure. ' + errorMsg
                         const success_window = document.getElementById('success');
                         const loader = document.querySelector('.preload');
-                        if (success_window) {
-                            success_window.style.backgroundColor = 'rgb(255, 000, 100)'
-                            success_window.classList.add('visible');
-                            loader.classList.add('hide');
-                            setTimeout(() => {
-                                success_window.classList.remove('visible');
-                                loader.classList.remove('hide');
-                                router.back(err.response.data.email)
-                                
-                            }, 3000);
-                    }
-                })
+                            if (success_window) {
+                                success_window.style.backgroundColor = 'rgb(255, 000, 100)'
+                                success_window.classList.add('visible');
+                                loader.classList.add('hide');
+                                setTimeout(() => {
+                                    success_window.classList.remove('visible');
+                                    loader.classList.remove('hide');
+                                    router.back()
+
+                                }, 3000);
+                        }
+                    })
                 }
             },
             loadStripeSDK() {

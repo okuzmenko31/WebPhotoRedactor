@@ -8,7 +8,7 @@
             <div class="payment_methods_block">
                 <template v-if="authOnLoad === false">
                     <div class="not-authed-user">
-                        <p class="header_text fs--33 fw--700">Create an account</p>
+                        <p class="header_text fs--33 fw--700">Personal information</p>
                         <div class="payment_info_block email_block_handler">
                             <div class="not-authed-user-inputs">
                                 <input-ui max="50" inputId="name_input_field" v-model="values[0].name" pr="Full name"/>
@@ -16,7 +16,6 @@
                                 <p id="email_message_msg" class="align_center_text no-margin">{{ messages[0].email }}</p>
                                 <p id="name_message_msg" class="align_center_text no-margin">{{ messages[0].name }}</p>
                             </div>
-                            <button @click="handleEmailSendRequest" id="save_email__btn">Save email</button>
                         </div>
                     </div>
                     <p class="header_text fs--33 fw--700">Payment methods</p>
@@ -85,7 +84,7 @@
 
 <script>
 import axios from 'axios';
-import { fetchToken, setLocalFullName, setLocalEmail, getLocalFullName, getLocalEmail } from '@/Auth';
+import { fetchToken, setLocalEmail, setLocalFullName } from '@/Auth';
 import router from '@/router/router';
 import handlePopState from "@/utils/index.js";
 import PaymentModel from "@/components/UI/PaymentModel";
@@ -120,11 +119,6 @@ export default {
             this.authOnLoad = true
         } else {
             this.authOnLoad = false
-            if (getLocalFullName() !== "" && getLocalEmail() !== "" ) {
-                this.values[0].name = getLocalFullName()
-                this.values[0].email = getLocalEmail()
-                this.authEd = true
-            }
         }
     },
     watch: {
@@ -143,7 +137,7 @@ export default {
             paypalRedirectLink: "",
             stripeRedirectLink: "",
             isLoaded: false,
-            authEd: false,
+            authEd: true,
             authOnLoad: false,
             values: [
                 { name: "", email: "" }
@@ -156,65 +150,92 @@ export default {
     methods: {
         stripeRedirect() {
             if (this.$route.query.sub_id !== undefined) {
-                router.push({ path: this.stripeRedirectLink, query: { "sub_id": this.$route.query.sub_id } })
+                if (this.authOnLoad === false) {
+                    this.handleEmailSendRequest(true)
+                } else {
+                    router.push({ path: this.stripeRedirectLink, query: { "sub_id": this.$route.query.sub_id } })
+                }
             } else {
                 this.isLoaded = false
             }
         },
         paypalRedirect() {
             if (this.$route.query.sub_id !== undefined) {
-                router.push({ path: this.paypalRedirectLink, query: { "sub_id": this.$route.query.sub_id } })
+                if (this.authOnLoad === false) {
+                    this.handleEmailSendRequest()
+                } else {
+                    router.push({ path: this.paypalRedirectLink, query: { "sub_id": this.$route.query.sub_id } })
+                }
             } else {
                 this.isLoaded = false
             }
         },
-        handleEmailSendRequest() {
-            const input = document.getElementById('email_input_field')
-            const msg = document.getElementById('email_message_msg')
-            const input2 = document.getElementById('name_input_field')
-            const msg2 = document.getElementById('name_message_msg')
-            if (input.value.length < 1) {
-                this.authEd = false
-                input.style.border = '1px solid #FF0000'
-                msg.style.color = '#FF0000'
-                msg.style.opacity = "1"
-                this.messages[0].email = "This field is required"
-                setTimeout(() => {
+        handleEmailSendRequest(stripe=false) {
+                const input = document.getElementById('email_input_field')
+                const msg = document.getElementById('email_message_msg')
+                const input2 = document.getElementById('name_input_field')
+                const msg2 = document.getElementById('name_message_msg')
+                if (input.value.length < 1) {
+                    input.style.border = '1px solid #FF0000'
+                    msg.style.color = '#FF0000'
+                    msg.style.opacity = "1"
+                    this.messages[0].email = "This field is required"
+                    setTimeout(() => {
+                        msg.style.opacity = "0"
+                        input.style.border = '1px #2e2f35 solid'
+                    }, 2000)
+                } else {
                     msg.style.opacity = "0"
                     input.style.border = '1px #2e2f35 solid'
-                }, 2000)
-            } else {
-                msg.style.opacity = "0"
-                input.style.border = '1px #2e2f35 solid'
-            }
+                }
 
-            if (input2.value.length < 1) {
-                this.authEd = false
-                input2.style.border = '1px solid #FF0000'
-                msg2.style.color = '#FF0000'
-                msg2.style.opacity = "1"
-                this.messages[0].name = "This field is required"
-                setTimeout(() => {
+                if (input2.value.length < 1) {
+                    input2.style.border = '1px solid #FF0000'
+                    msg2.style.color = '#FF0000'
+                    msg2.style.opacity = "1"
+                    this.messages[0].name = "This field is required"
+                    setTimeout(() => {
+                        msg2.style.opacity = "0"
+                        input2.style.border = '1px #2e2f35 solid'
+                    }, 2000)
+                } else {
                     msg2.style.opacity = "0"
                     input2.style.border = '1px #2e2f35 solid'
-                }, 2000)
-            } else {
-                msg2.style.opacity = "0"
-                input2.style.border = '1px #2e2f35 solid'
-            }
+                }
 
-            if (input2.value.length > 1 && input.value.length > 1) {
-                setLocalEmail(input.value)
-                setLocalFullName(input2.value)
-                this.authEd = true
-                this.messages[0].name = ""
-                msg.style.color = '#00FF00'
-                msg.style.opacity = "1"
-                this.messages[0].email = "Personal information was saved!"
-                setTimeout(() => {
-                    msg.style.opacity = "0"
-                }, 3000)
-            }
+                if (input2.value.length > 1 && input.value.length > 1) {
+                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/validate_email_and_name/`, {
+                        'email': this.values[0].email,
+                        'full_name': this.values[0].name
+                    })
+                    .then(() => {
+                        setLocalEmail(this.values[0].email)
+                        setLocalFullName(this.values[0].name)
+                        if (stripe) {
+                            router.push({ path: this.stripeRedirectLink, query: { "sub_id": this.$route.query.sub_id } })
+                        } else {
+                            router.push({ path: this.paypalRedirectLink, query: { "sub_id": this.$route.query.sub_id } })
+                        }
+                    })
+                    .catch(err => {
+                        let errorMsg
+                        if (err.response.data.error) {
+                            errorMsg = err.response.data.error
+                        } else if (err.response.data.detail) {
+                            errorMsg = err.response.data.detail
+                        } else if (err.response.data.email) {
+                            errorMsg = err.response.data.email[0]
+                        }
+                        this.messages[0].email = errorMsg
+                        input.style.border = '1px solid #FF0000'
+                        msg.style.color = '#FF0000'
+                        msg.style.opacity = "1"
+                        setTimeout(() => {
+                            msg.style.opacity = "0"
+                            input.style.border = '1px #2e2f35 solid'
+                        }, 2000)
+                    })
+                }
         },
         handlePageLoad(value) {
             this.isLoaded = value

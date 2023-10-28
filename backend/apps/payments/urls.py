@@ -17,12 +17,14 @@ from .views import (StripeWebhookAPIView,
                     CancelForeignOrderByPayPalOrderID,
                     StripeCancelForeignOrderAPIView,
                     StripeSuccessAPIView,
-                    StripeForeignSuccessAPIView)
+                    StripeForeignSuccessAPIView,
+                    ValidateEmailAndFullNameAPIView)
 
 urlpatterns = [
     path('plans/', PlansAPIVIew.as_view()),
     path('plans/<int:pk>/', PlanDetailAPIView.as_view()),
     path('user_orders/', UserOrders.as_view()),
+    path('validate_email_and_name/', ValidateEmailAndFullNameAPIView.as_view()),
     # path('create_user_for_subscription/',
     #      CreateUserToMakePaymentAPIView.as_view()),
     path('stripe/config/', StripeConfigAPIView.as_view()),

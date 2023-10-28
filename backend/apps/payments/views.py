@@ -47,6 +47,33 @@ from apps.users.services import get_jwt_tokens_for_user
 #             status=status.HTTP_200_OK
 #         )
 
+class ValidateEmailAndFullNameAPIView(UserCreateForPaymentMixin,
+                                      GenericAPIView):
+    serializer_class = CreateUserForOrderSerializer
+
+    def post(self, *args, **kwargs):
+        email = self.request.data.get('email')
+        full_name = self.request.data.get('full_name')
+        required_fields = [email, full_name]
+        for field in required_fields:
+            if field == '':
+                return Response({
+                    'error': 'Email and full name must be provided!'
+                }, status=status.HTTP_400_BAD_REQUEST)
+        serializer = self.serializer_class(data=self.request.data)
+        serializer.is_valid(raise_exception=True)
+
+        if not self.check_email_unique(email):
+            return Response({
+                'error': 'User with provided email is already exists!'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        if not self.check_email_unique_in_order(email):
+            return Response({
+                'error': 'This email was used in another order!'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class CreatePayPalOrderAPIView(PayPalOrdersMixin,
                                UserCreateForPaymentMixin,

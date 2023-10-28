@@ -48,7 +48,6 @@
                         window.location.href = res.data.payment_link
                     })
                     .catch(err => {
-                        console.log(err);
                         this.error = true
                         let errorMsg
                         if (err.response.data.error) {
@@ -80,7 +79,6 @@
                             window.location.href = res.data.payment_link
                         })
                         .catch(err => {
-                            console.log(err);
                             this.error = true
                             let errorMsg
                             if (err.response.data.error) {
@@ -101,8 +99,8 @@
                                 setTimeout(() => {
                                     success_window.classList.remove('visible');
                                     loader.classList.remove('hide');
-                                    router.back(err.response.data.email)
-                                    
+                                    router.back()
+
                                 }, 3000);
                         }
                     })
