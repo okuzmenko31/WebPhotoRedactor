@@ -84,12 +84,12 @@
 
 <script>
 import axios from 'axios';
-import { fetchToken, setLocalEmail, setLocalFullName } from '@/Auth';
-import router from '@/router/router';
-import handlePopState from "@/utils/index.js";
-import PaymentModel from "@/components/UI/PaymentModel";
-import InputUi from "@/components/UI/InputUi.vue";
-import PageLoader from "@/components/UI/PageLoader.vue";
+import { fetchToken, setLocalEmail, setLocalFullName } from "../Auth.js";
+import router from "../router/router.js";
+import handlePopState from "../utils/index.js";
+import PaymentModel from "../components/UI/PaymentModel.vue";
+import InputUi from "../components/UI/InputUi.vue";
+import PageLoader from "../components/UI/PageLoader.vue";
 
 /* eslint-disable */
 export default {
@@ -104,7 +104,7 @@ export default {
     async mounted() {
         const subId = this.$route.query.sub_id;
         handlePopState();
-        axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/plans/${subId}/`)
+        axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/plans/${subId}/`)
         .then(res => {
             this.plan = res.data
             this.stripeId = this.plan.stripe_price_id
@@ -204,7 +204,7 @@ export default {
                 }
 
                 if (input2.value.length > 1 && input.value.length > 1) {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/validate_email_and_name/`, {
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/validate_email_and_name/`, {
                         'email': this.values[0].email,
                         'full_name': this.values[0].name
                     })

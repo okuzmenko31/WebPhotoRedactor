@@ -16,9 +16,9 @@
 <script>
     /* eslint-disable */
     import axios from 'axios';
-    import router from "@/router/router.js";
-    import InputUi from "@/components/UI/InputUi.vue";
-    import { setLocalToken, setLocalRefreshToken, fetchToken, getHeaders } from "@/Auth.js";
+    import router from "../router/router.js";
+    import InputUi from "../components/UI/InputUi.vue";
+    import { setLocalToken, setLocalRefreshToken, fetchToken, getHeaders } from "../Auth.js";
     export default {
         components: {
             InputUi
@@ -35,7 +35,7 @@
         },
         methods: {
             confirmChangingPassword() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/password_reset/${this.tokenQuery}/${this.emailQuery}/`, {
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/password_reset/${this.tokenQuery}/${this.emailQuery}/`, {
                     "password": this.pass,
                     "password1": this.pass1
                 })

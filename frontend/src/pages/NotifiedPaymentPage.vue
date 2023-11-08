@@ -28,12 +28,11 @@
 </template>
 
 <script>
-// import axios from 'axios';
-import router from '@/router/router';
-import handlePopState from "@/utils/index.js";
-import PaymentModel from "@/components/UI/PaymentModel";
-import InputUi from "@/components/UI/InputUi.vue";
-import PageLoader from "@/components/UI/PageLoader.vue";
+import router from "../router/router.js";
+import handlePopState from "../utils/index.js";
+import PaymentModel from "../components/UI/PaymentModel.vue";
+import InputUi from "../components/UI/InputUi.vue";
+import PageLoader from "../components/UI/PageLoader.vue";
 
 /* eslint-disable */
 export default {

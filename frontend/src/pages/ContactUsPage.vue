@@ -55,10 +55,11 @@
 
 <script>
     import axios from 'axios';
-    import NavbarComp from "@/components/NavbarComp.vue";
-    import FooterComp from "@/components/FooterComp.vue";
-    import InputUi from "@/components/UI/InputUi.vue";
-    import handlePopState from "@/utils/index.js";
+    import NavbarComp from "../components/NavbarComp.vue";
+    import FooterComp from "../components/FooterComp.vue";
+    import InputUi from "../components/UI/InputUi.vue";
+    import handlePopState from "../utils/index.js";
+    import supportImg from "../assets/Support.png";
 
     export default {
         components: {
@@ -71,7 +72,7 @@
         },
         mounted() {
             handlePopState()
-            axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/main/help_request_categories/`)
+            axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/main/help_request_categories/`)
             .then(res => {
                 this.categories = res.data
                 this.category = this.categories[0]
@@ -84,12 +85,12 @@
                 category: "",
                 categories: [],
                 message: "",
-                supportImg: require("@/assets/Support.png")
+                supportImg: supportImg
             }
         },
         methods: {
             sendMail() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/main/help_request/`, {
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/main/help_request/`, {
                     "request_type": this.category,
                     "email": this.email,
                     "text": this.text

@@ -14,8 +14,8 @@
 <script>
     /* eslint-disable */
     import axios from 'axios';
-    import router from "@/router/router.js";
-    import { setLocalToken, setLocalRefreshToken, fetchToken, getHeaders } from "@/Auth.js";
+    import router from "../router/router.js";
+    import { setLocalToken, setLocalRefreshToken, fetchToken, getHeaders } from "../Auth.js";
     export default {
         mounted() {
             this.tokenQuery = this.$route.query.token;
@@ -29,7 +29,7 @@
         },
         methods: {
             changeEmailRequest() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/change_email_confirm/${this.tokenQuery}/${this.emailQuery}/`, {}, { headers: getHeaders() })
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/change_email_confirm/${this.tokenQuery}/${this.emailQuery}/`, {}, { headers: getHeaders() })
                 .then(res => {
                     this.message = res.data.success + " You will be redirected in 2 seconds."
                     const messageBlock = document.getElementById('message_conf')

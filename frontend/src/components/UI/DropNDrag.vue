@@ -41,8 +41,8 @@
 
 <script>
     import axios from "axios";
-    import { getHeaders, fetchToken, checkTrackingToken } from "@/Auth.js";
-    import PageLoader from "@/components/UI/PageLoader.vue";
+    import { getHeaders, fetchToken, checkTrackingToken } from "../../Auth.js";
+    import PageLoader from "./PageLoader.vue";
 
     export default {
         components: {
@@ -164,7 +164,7 @@
             },
             async sendRequestImg(formData) {
                 if (await fetchToken() === true) {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.api_url}`, formData, { headers: getHeaders() })
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.api_url}`, formData, { headers: getHeaders() })
                     .then(response => {
                         this.isLoading = false;
                         this.loadedFile = true;
@@ -183,7 +183,7 @@
                         inputFile.files = fileList.files;
                     });
                 } else {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.api_url}`, formData)
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.api_url}`, formData)
                     .then(response => {
                         this.isLoading = false;
                         this.loadedFile = true;

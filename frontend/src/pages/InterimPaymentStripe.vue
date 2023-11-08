@@ -11,10 +11,10 @@
 <script>
     /* eslint-disable */
     import axios from 'axios'
-    import PageLoader from "@/components/UI/PageLoader.vue";
-    import handlePopState from "@/utils/index.js";
-    import { getHeaders, fetchToken, getLocalEmail, getLocalFullName } from '@/Auth';
-    import router from '@/router/router';
+    import PageLoader from "../components/UI/PageLoader.vue";
+    import handlePopState from "../utils/index.js";
+    import { getHeaders, fetchToken, getLocalEmail, getLocalFullName } from "../Auth.js";
+    import router from "../router/router.js";
 
     export default {
         components: {
@@ -45,7 +45,7 @@
         methods: {
             createStripeOrder(email, name) {
                 if (name === undefined && email === undefined) {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLinl}`, {}, { headers: getHeaders() })
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.stripeCreateOrderLinl}`, {}, { headers: getHeaders() })
                     .then(res => {
                         return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
                     })
@@ -64,7 +64,7 @@
                         }, 3000);
                     })
                 } else {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLinl}`, {
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.stripeCreateOrderLinl}`, {
                         'email': email,
                         'full_name': name
                     })
@@ -105,7 +105,7 @@
                     script.src = "https://js.stripe.com/v3/";
                     script.async = true;
                     script.onload = () => {
-                        axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/stripe/config/`)
+                        axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/stripe/config/`)
                         .then(res => {
                             this.stripe = Stripe(res.data.public_key);
                         })

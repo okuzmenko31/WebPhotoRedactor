@@ -17,10 +17,10 @@
 
 <script>
     import axios from 'axios';
-    import InputUi from "@/components/UI/InputUi.vue";
-    import handlePopState from "@/utils/index.js";
-    import router from '@/router/router';
-    import { setLocalToken, setLocalRefreshToken, fetchToken } from '@/Auth.js';
+    import InputUi from "../components/UI/InputUi.vue";
+    import handlePopState from "../utils/index.js";
+    import router from "../router/router.js";
+    import { setLocalToken, setLocalRefreshToken, fetchToken } from "../Auth.js";
     export default {
         components: {
             InputUi
@@ -37,7 +37,7 @@
         },
         methods: {
             sendLogInRequest() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/token/`, {
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/token/`, {
                 "email": this.email,
                 "password": this.password,
                 })

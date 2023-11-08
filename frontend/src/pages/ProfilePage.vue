@@ -157,10 +157,10 @@
 <script>
 /* eslint-disable */
     import axios from 'axios';
-    import { getHeaders, checkTrackingToken, setLocalToken, setLocalRefreshToken } from '@/Auth.js';
-    import handlePopState from "@/utils/index.js";
-    import router from "@/router/router.js";
-    import InputUi from "@/components/UI/InputUi.vue";
+    import { getHeaders, checkTrackingToken, setLocalToken, setLocalRefreshToken } from "../Auth.js";
+    import handlePopState from "../utils/index.js";
+    import router from "../router/router.js";
+    import InputUi from "../components/UI/InputUi.vue";
     export default {
         components: {
             InputUi
@@ -199,7 +199,7 @@
         },
         async mounted() {
             this.userIp = await checkTrackingToken()
-            axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/`, { headers: await getHeaders() })
+            axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/user/`, { headers: await getHeaders() })
             .then(res => {
                 document.title = `FlexFi Upscale - ${res.data.username}`
                 this.username = res.data.username
@@ -258,7 +258,7 @@
                 }
             },
             async changeEmail() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/change_email/`, { 'email': this.email }, { headers: await getHeaders() })
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/change_email/`, { 'email': this.email }, { headers: await getHeaders() })
                 .then(res => {
                     this.email_message = ""
                     this.email_message = res.data.success
@@ -284,7 +284,7 @@
                 })
             },
             async changeUsername() {
-                axios.patch(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/`, { 'username': this.validateUsername() }, { headers: await getHeaders() })
+                axios.patch(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/user/`, { 'username': this.validateUsername() }, { headers: await getHeaders() })
                 .then(res => {
                     this.user_message = `Username was successfuly change to ${res.data.username}`
                     this.Stusername = res.data.username
@@ -329,7 +329,7 @@
             },
             sendChangePasswordRequest() {
                 this.pass_message = ""
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/change_password/`, {
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/change_password/`, {
                     "old_password": this.old_pass,
                     "new_password": this.pass,
                     "new_password_confirm": this.pass1
@@ -384,7 +384,7 @@
             async getUserCredits() {
                 const ip = await this.userIp
                 if (this.isActive('#credits') && this.userIp !== "") {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { "ip_address_or_token": ip }, { headers: await getHeaders() })
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { "ip_address_or_token": ip }, { headers: await getHeaders() })
                     .then(res => {
                         this.free_upscale = res.data.free_credits.up_scales_count
                         this.free_bg = res.data.free_credits.bg_deletions_count
@@ -398,7 +398,7 @@
             },
             async getUserPlan() {
                 if (this.isActive('#transactions') && !this.transactions_loaded) {
-                    axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/user_orders/`, { headers: await getHeaders() })
+                    axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/user_orders/`, { headers: await getHeaders() })
                     .then(res => {
                         this.transactions = res.data
                         this.transactions_loaded = true

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import SliderComp from "@/components/SliderComp.vue";
+    import SliderComp from "../SliderComp.vue";
     export default {
         components: {
             SliderComp

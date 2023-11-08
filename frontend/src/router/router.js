@@ -1,34 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import MainPage from "@/pages/MainPage";
-import PricingPage from "@/pages/PricingPage";
-import FeaturesPage from "@/pages/FeaturesPage";
-import LoginPage from "@/pages/LoginPage";
-import SignupPage from "@/pages/SignupPage";
-import ProfilePage from "@/pages/ProfilePage";
-import PaymentPage from "@/pages/PaymentPage";
-import ConfirmPage from "@/pages/ConfirmPage";
-import ChangePassword from "@/pages/ChangePassword";
-import ChangePasswordEmail from "@/pages/ChangePasswordEmail";
-import ChangeEmail from "@/pages/ChangeEmail";
-import ImagePage from "@/pages/ImagePage";
-import paypalSuccess from "@/pages/SuccessPaypalPage";
-import stripeSuccess from "@/pages/SuccessStripePage";
-import paypalCancel from "@/pages/CancelPaypalPage";
-import stripeCancel from "@/pages/CancelStripePage";
-import IPP from "@/pages/InterimPaymentPaypal";
-import IPS from "@/pages/InterimPaymentStripe";
-import ThermsOfUsePage from "@/pages/ThermsOfUsePage";
-import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
-import ContactUs from "@/pages/ContactUsPage";
+import MainPage from "../pages/MainPage.vue";
+import PricingPage from "../pages/PricingPage.vue";
+import FeaturesPage from "../pages/FeaturesPage.vue";
+import LoginPage from "../pages/LoginPage.vue";
+import SignupPage from "../pages/SignupPage.vue";
+import ProfilePage from "../pages/ProfilePage.vue";
+import PaymentPage from "../pages/PaymentPage.vue";
+import ConfirmPage from "../pages/ConfirmPage.vue";
+import ChangePassword from "../pages/ChangePassword.vue";
+import ChangePasswordEmail from "../pages/ChangePasswordEmail.vue";
+import ChangeEmail from "../pages/ChangeEmail.vue";
+import ImagePage from "../pages/ImagePage.vue";
+import paypalSuccess from "../pages/SuccessPaypalPage.vue";
+import stripeSuccess from "../pages/SuccessStripePage.vue";
+import paypalCancel from "../pages/CancelPaypalPage.vue";
+import stripeCancel from "../pages/CancelStripePage.vue";
+import IPP from "../pages/InterimPaymentPaypal.vue";
+import IPS from "../pages/InterimPaymentStripe.vue";
+import ThermsOfUsePage from "../pages/ThermsOfUsePage.vue";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage.vue";
+import ContactUs from "../pages/ContactUsPage.vue";
 
-import NotifiedPaymentPage from "@/pages/NotifiedPaymentPage";
-import NIPP from "@/pages/NotifiedInterimPaymentPaypal";
-import NIPS from "@/pages/NotifiedInterimPaymentStripe";
-import notifiedPaypalSuccess from "@/pages/NotifiedSuccessPaypalPage";
-import notifiedStripeSuccess from "@/pages/NotifiedSuccessStripePage";
-import notifiedPaypalCancel from "@/pages/NotifiedCancelPaypalPage";
-import notifiedStripeCancel from "@/pages/NotifiedCancelStripePage";
+import NotifiedPaymentPage from "../pages/NotifiedPaymentPage.vue";
+import NIPP from "../pages/NotifiedInterimPaymentPaypal.vue";
+import NIPS from "../pages/NotifiedInterimPaymentStripe.vue";
+import notifiedPaypalSuccess from "../pages/NotifiedSuccessPaypalPage.vue";
+import notifiedStripeSuccess from "../pages/NotifiedSuccessStripePage.vue";
+import notifiedPaypalCancel from "../pages/NotifiedCancelPaypalPage.vue";
+import notifiedStripeCancel from "../pages/NotifiedCancelStripePage.vue";
 
 
 const routes = [
@@ -175,8 +175,8 @@ const routes = [
 ]
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes
+    routes,
+    history: createWebHistory(import.meta.env.BASE_URL)
 })
 
 export default router

@@ -11,9 +11,9 @@
 <script>
     /* eslint-disable */
     import axios from 'axios'
-    import PageLoader from "@/components/UI/PageLoader.vue";
-    import handlePopState from "@/utils/index.js";
-    import router from '@/router/router';
+    import PageLoader from "../components/UI/PageLoader.vue";
+    import handlePopState from "../utils/index.js";
+    import router from "../router/router.js";
 
     export default {
         components: {
@@ -65,7 +65,7 @@
                     script.src = "https://js.stripe.com/v3/";
                     script.async = true;
                     script.onload = () => {
-                        axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/stripe/config/`)
+                        axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/stripe/config/`)
                         .then(res => {
                             this.stripe = Stripe(res.data.public_key);
                         })
@@ -89,7 +89,7 @@
                 if (this.description !== undefined) {
                     data_post.description = this.description;
                 }
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.stripeCreateOrderLink}`, data_post)
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.stripeCreateOrderLink}`, data_post)
                 .then(res => {
                     return this.stripe.redirectToCheckout({sessionId: res.data.checkout_session_id})
                 })

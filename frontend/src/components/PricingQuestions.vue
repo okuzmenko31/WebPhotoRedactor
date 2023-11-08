@@ -15,7 +15,7 @@
 
 <script>
     import axios from "axios"
-    import QuestionModel from "@/components/UI/QuestionModel.vue";
+    import QuestionModel from "./UI/QuestionModel.vue";
     export default {
         components: {
             QuestionModel
@@ -26,7 +26,7 @@
             }
         },
         mounted() {
-            axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/main/pricing_faqs/`)
+            axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/main/pricing_faqs/`)
             .then(res => {
                 this.questions = res.data
             })

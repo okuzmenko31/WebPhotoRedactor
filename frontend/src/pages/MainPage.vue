@@ -82,13 +82,21 @@
 </template>
 
 <script>
-    import NavbarComp from "@/components/NavbarComp.vue";
-    import OftenQuestions from "@/components/OftenQuestion.vue";
-    import UseCasesBlock from "@/components/UseCasesBlock.vue";
-    import ToolCard from "@/components/UI/ToolCard.vue";
-    import FooterComp from "@/components/FooterComp.vue";
-    import handlePopState from "@/utils/index.js";
-    import { fetchToken } from '@/Auth.js';
+    import NavbarComp from "../components/NavbarComp.vue";
+    import OftenQuestions from "../components/OftenQuestion.vue";
+    import UseCasesBlock from "../components/UseCasesBlock.vue";
+    import ToolCard from "../components/UI/ToolCard.vue";
+    import FooterComp from "../components/FooterComp.vue";
+    import handlePopState from "../utils/index.js";
+    import { fetchToken } from "../Auth.js";
+
+    import Img from '../assets/car2.png'
+    import Img2 from '../assets/car.jpg'
+    import Bg from '../assets/woman.jpg'
+    import Bg2 from '../assets/woman_bg.png'
+    import JPEG from '../assets/jpeg_sun.jpg'
+    import JPEG2 from '../assets/jpeg_sun2.png'
+    import Logo from '../assets/Logo.jpg'
 
     export default {
         components: {
@@ -100,14 +108,14 @@
         },
         data() {
           return {
-            Img: require('@/assets/car2.png'),
-            Img2: require('@/assets/car.jpg'),
-            Bg: require('@/assets/woman.jpg'),
-            Bg2: require('@/assets/woman_bg.png'),
-            JPEG: require('@/assets/jpeg_sun.jpg'),
-            JPEG2: require('@/assets/jpeg_sun2.png'),
-            Logo: require('@/assets/Logo.jpg'),
-            isAuthenticated: false
+            isAuthenticated: false,
+            Img: Img,
+            Img2: Img2,
+            Bg: Bg,
+            Bg2: Bg2,
+            JPEG: JPEG,
+            JPEG2: JPEG2,
+            Logo: Logo
           }
         },
         async created() {

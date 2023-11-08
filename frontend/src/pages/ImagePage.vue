@@ -332,13 +332,14 @@
 
 <script>
     import axios from 'axios'
-    import DropNDrag from "@/components/UI/DropNDrag.vue";
-    import router from "@/router/router.js";
+    import DropNDrag from "../components/UI/DropNDrag.vue";
+    import router from "../router/router.js";
     import '@simonwep/pickr/dist/themes/nano.min.css';
     import Pickr from '@simonwep/pickr';
-    import InputUi from "@/components/UI/InputUi.vue";
-    import handlePopState from "@/utils/index.js";
-    import { fetchToken, checkTrackingToken, getHeaders } from '@/Auth.js';
+    import InputUi from "../components/UI/InputUi.vue";
+    import handlePopState from "../utils/index.js";
+    import { fetchToken, checkTrackingToken, getHeaders } from "../Auth.js";
+    import imageSrc from "../assets/credits.png"
 
     export default {
         components: {
@@ -406,7 +407,7 @@
                 paidCredits: 0,
                 fileSrc: "",
                 isAuthenticated: false,
-                imageSrc: require("@/assets/credits.png")
+                imageSrc: imageSrc
             }
         },
         watch: {
@@ -564,7 +565,7 @@
                 const ip = await checkTrackingToken()
                 const headers = await getHeaders()
                 if (await fetchToken() === false) {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip })
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip })
                     .then(res => {
                         if (this.isActive('#upscale')) {
                             this.CreditsName = "Upscale"
@@ -585,7 +586,7 @@
                         }
                     })
                 } else {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip }, { headers: headers })
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/user/credits/`, { 'ip_address_or_token': ip }, { headers: headers })
                     .then(res => {
                         if (this.isActive('#upscale')) {
                             this.CreditsName = "Upscale"

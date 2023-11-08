@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    import { fetchToken } from '@/Auth.js';
+    import { fetchToken } from '../Auth.js';
     export default {
         mounted() {
             const navBar = document.getElementById('navbar-nav');

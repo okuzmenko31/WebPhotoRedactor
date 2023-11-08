@@ -10,10 +10,10 @@
 
 <script>
     import axios from 'axios'
-    import PageLoader from "@/components/UI/PageLoader.vue";
-    import handlePopState from "@/utils/index.js";
-    import { getHeaders, fetchToken, getLocalEmail, getLocalFullName } from '@/Auth';
-    import router from '@/router/router';
+    import PageLoader from "../components/UI/PageLoader.vue";
+    import handlePopState from "../utils/index.js";
+    import { getHeaders, fetchToken, getLocalEmail, getLocalFullName } from "../Auth.js";
+    import router from "../router/router.js";
 
     export default {
         components: {
@@ -43,7 +43,7 @@
         methods: {
             createPaypalOrder(email, name) {
                 if (name === undefined && email === undefined) {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, {}, { headers: getHeaders() })
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, {}, { headers: getHeaders() })
                     .then(res => {
                         window.location.href = res.data.payment_link
                     })
@@ -71,7 +71,7 @@
                         }
                     })
                 } else {
-                    axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, {
+                    axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, {
                         'email': email,
                         'full_name': name
                     })

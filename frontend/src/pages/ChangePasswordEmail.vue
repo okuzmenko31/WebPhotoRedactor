@@ -10,9 +10,9 @@
 <script>
     /* eslint-disable */
     import axios from 'axios';
-    import router from "@/router/router.js";
-    import InputUi from "@/components/UI/InputUi.vue";
-    import { setLocalToken, setLocalRefreshToken, fetchToken, getHeaders } from "@/Auth.js";
+    import router from "../router/router.js";
+    import InputUi from "../components/UI/InputUi.vue";
+    import { setLocalToken, setLocalRefreshToken, fetchToken, getHeaders } from "../Auth.js";
     export default {
         components: {
             InputUi
@@ -27,7 +27,7 @@
         },
         methods: {
             sendChangePasswordRequest() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/password_reset/`, { 'email': this.email })
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/password_reset/`, { 'email': this.email })
                 .then(res => {
                     this.message = res.data.success
                     const passObj = document.getElementById('message_conf')

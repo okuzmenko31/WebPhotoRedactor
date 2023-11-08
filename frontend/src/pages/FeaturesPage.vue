@@ -203,11 +203,27 @@
     import 'swiper/css/navigation';
     import 'swiper/css/pagination';
 
-    import NavbarComp from "@/components/NavbarComp.vue";
-    import FooterComp from "@/components/FooterComp.vue";
-    import ArticleUi from "@/components/UI/ArticleUi.vue";
-    import handlePopState from "@/utils/index.js";
-    import SliderComp from "@/components/SliderComp.vue";
+    import NavbarComp from "../components/NavbarComp.vue";
+    import FooterComp from "../components/FooterComp.vue";
+    import ArticleUi from "../components/UI/ArticleUi.vue";
+    import handlePopState from "../utils/index.js";
+    import SliderComp from "../components/SliderComp.vue";
+
+    import UpImg1 from "../assets/car2.png"
+    import UpImg1_2 from "../assets/car.jpg"
+    import UpImg2 from "../assets/flower2.png"
+    import UpImg2_2 from "../assets/flower.png"
+    import UpImg3 from "../assets/crystal2.png"
+    import UpImg3_2 from "../assets/crystal.png"
+    import BgImg1 from "../assets/woman.jpg"
+    import BgImg1_2 from "../assets/woman_bg.png"
+    import BgImg2 from "../assets/dog.jpg"
+    import BgImg2_2 from "../assets/dog2.png"
+    import BgImg3 from "../assets/people.jpg"
+    import BgImg3_2 from "../assets/people2.png"
+    import JpegImg1 from "../assets/jpeg_sun.jpg"
+    import JpegImg1_2 from "../assets/jpeg_sun2.png"
+
     export default {
         components: {
             Swiper,
@@ -228,24 +244,25 @@
                 bgBlock: 1,
                 jpegBlock: 1,
 
-                UpImg1: require("@/assets/car2.png"),
-                UpImg1_2: require("@/assets/car.jpg"),
-                UpImg2: require("@/assets/flower2.png"),
-                UpImg2_2: require("@/assets/flower.png"),
-                UpImg3: require("@/assets/crystal2.png"),
-                UpImg3_2: require("@/assets/crystal.png"),
+                sliderClass: "slider-features",
 
-                BgImg1: require("@/assets/woman.jpg"),
-                BgImg1_2: require("@/assets/woman_bg.png"),
-                BgImg2: require("@/assets/dog.jpg"),
-                BgImg2_2: require("@/assets/dog2.png"),
-                BgImg3: require("@/assets/people.jpg"),
-                BgImg3_2: require("@/assets/people2.png"),
+                UpImg1: UpImg1,
+                UpImg1_2: UpImg1_2,
+                UpImg2: UpImg2,
+                UpImg2_2: UpImg2_2,
+                UpImg3: UpImg3,
+                UpImg3_2: UpImg3_2,
 
-                JpegImg1: require("@/assets/jpeg_sun.jpg"),
-                JpegImg1_2: require("@/assets/jpeg_sun2.png"),
+                BgImg1: BgImg1,
+                BgImg1_2: BgImg1_2,
+                BgImg2: BgImg2,
+                BgImg2_2: BgImg2_2,
+                BgImg3: BgImg3,
+                BgImg3_2: BgImg3_2,
 
-                sliderClass: "slider-features"
+                JpegImg1: JpegImg1,
+                JpegImg1_2: JpegImg1_2
+
             }
         },
         created() {
@@ -510,7 +527,7 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
     .about-feature-block {
-        width: 100%;
+        width: 90%;
     }
 
     .article_choose__btn {
@@ -526,7 +543,7 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
     .about-feature-block {
-        width: 100%;
+        width: 80%;
         flex-direction: column;
     }
 
@@ -565,7 +582,7 @@
 
 @media (min-width: 651px) and (max-width: 767px) {
     .about-feature-block {
-        width: 100%;
+        width: 80%;
         flex-direction: column;
     }
 
@@ -604,7 +621,7 @@
 
 @media (min-width: 481px) and (max-width: 650px) {
     .about-feature-block {
-        width: 100%;
+        width: 70%;
         flex-direction: column;
     }
 
@@ -656,7 +673,7 @@
     }
 
     .about-feature-block {
-        width: 100%;
+        width: 50%;
         flex-direction: column;
     }
 

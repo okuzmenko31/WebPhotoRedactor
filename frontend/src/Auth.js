@@ -2,7 +2,7 @@ import axios from "axios"
 
 export const fetchToken = async () => {
     try {
-        await axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/token/verify/`, { 'token': localStorage.getItem('AuthToken') });
+        await axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/token/verify/`, { 'token': localStorage.getItem('AuthToken') });
         return true;
     } catch {
         try {
@@ -15,7 +15,7 @@ export const fetchToken = async () => {
 };
 
 export const setNewToken = () =>{
-    return (axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/token/refresh/`, { 'refresh': localStorage.getItem('AuthRefreshToken')})
+    return (axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/token/refresh/`, { 'refresh': localStorage.getItem('AuthRefreshToken')})
     .then(res => setLocalToken(res.data.access))
     .catch())
 };
@@ -40,12 +40,12 @@ export const getTrackingToken = () => {
 
 export const checkTrackingToken = async () => {
     try {
-        const response = await axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/client_ip/`);
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/client_ip/`);
         return response.data.ip;
     } catch (error) {
         if (getTrackingToken() === null) {
             try {
-                const response = await axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/client_token_create/`, {});
+                const response = await axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/client_token_create/`, {});
                 setTrackingToken(response.data.token);
                 return getTrackingToken();
             } catch (error) {

@@ -12,9 +12,9 @@
 <script>
 /* eslint-disable */
     import axios from "axios"
-    import router from "@/router/router.js";
-    import PageLoader from "@/components/UI/PageLoader.vue";
-    import handlePopState from "@/utils/index.js";
+    import router from "../router/router.js";
+    import PageLoader from "../components/UI/PageLoader.vue";
+    import handlePopState from "../utils/index.js";
 
     export default {
         components: {
@@ -28,7 +28,7 @@
             if (this.$route.query.success_id !== undefined) {
                 this.queryToken = this.$route.query.success_id
                 this.validURL = true
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/paypal/foreign/complete_order/${this.queryToken}/`, {})
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/paypal/foreign/complete_order/${this.queryToken}/`, {})
                 .then(() => {
                     this.success = true
                     const modal = document.getElementById('success_modal')

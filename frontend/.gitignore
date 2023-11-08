@@ -29,6 +29,4 @@ Thumbs.db
 *.pyc
 
 # Environment
-.env.development
-.env.defaults
-.env.production
+.env

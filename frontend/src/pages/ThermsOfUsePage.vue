@@ -38,9 +38,9 @@
 </template>
 
 <script>
-    import NavbarComp from "@/components/NavbarComp.vue";
-    import handlePopState from "@/utils/index.js";
-    import FooterComp from "@/components/FooterComp.vue";
+    import NavbarComp from "../components/NavbarComp.vue";
+    import handlePopState from "../utils/index.js";
+    import FooterComp from "../components/FooterComp.vue";
     export default {
         components: {
             NavbarComp,

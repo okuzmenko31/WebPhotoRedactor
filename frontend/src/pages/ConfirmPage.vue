@@ -14,8 +14,8 @@
 <script>
     /* eslint-disable */
     import axios from 'axios';
-    import router from "@/router/router.js";
-    import { setLocalToken, setLocalRefreshToken, fetchToken } from "@/Auth.js";
+    import router from "../router/router.js";
+    import { setLocalToken, setLocalRefreshToken, fetchToken } from "../Auth.js";
     export default {
         mounted() {
             this.tokenQuery = this.$route.query.token;
@@ -29,7 +29,7 @@
         },
         methods: {
             confirmEmailRequest() {
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/auth/confirm_email/${this.tokenQuery}/${this.emailQuery}/`, {})
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/auth/confirm_email/${this.tokenQuery}/${this.emailQuery}/`, {})
                 .then(res => {
                     setLocalToken(res.data.access)
                     setLocalRefreshToken(res.data.refresh)

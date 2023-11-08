@@ -46,7 +46,7 @@
 </template>
 
 <script>
-    import router from '@/router/router';
+    import router from '../../router/router.js';
     export default {
         props: {
             name: String,

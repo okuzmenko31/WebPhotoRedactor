@@ -36,22 +36,23 @@
 
 <script>
 /* eslint-disable */
-  import PricingQuestions from "@/components/PricingQuestions.vue";
-  import Card from "@/components/UI/TarrifCard.vue";
-  import NavbarComp from "@/components/NavbarComp.vue";
-  import FooterComp from "@/components/FooterComp.vue";
-  import handlePopState from "@/utils/index.js";
+  import PricingQuestions from "../components/PricingQuestions.vue";
+  import Card from "../components/UI/TarrifCard.vue";
+  import NavbarComp from "../components/NavbarComp.vue";
+  import FooterComp from "../components/FooterComp.vue";
+  import handlePopState from "../utils/index.js";
   import axios from 'axios';
+  import checkmark from "../assets/checkmark.png"
   export default {
     components: {
       Card,
       NavbarComp,
       FooterComp,
-      PricingQuestions
+      PricingQuestions,
     },
     mounted() {
       handlePopState(),
-      axios.get(`${process.env.VUE_APP_BACKEND_DOMAIN}/api/v1/payments/plans`)
+      axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/plans`)
       .then(res => {
         this.plans = res.data
       })
@@ -62,9 +63,9 @@
     },
     data() {
       return {
+          checkmark: checkmark,
           plans: [],
           plansContain: [ 'Custom backgrounds', 'Images without watermark', 'Paid credits', 'Devided credits for each feature', 'Support priority' ],
-          checkmark: require("@/assets/checkmark.png")
       };
     }
   }

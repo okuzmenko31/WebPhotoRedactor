@@ -10,9 +10,9 @@
 
 <script>
     import axios from 'axios'
-    import PageLoader from "@/components/UI/PageLoader.vue";
-    import handlePopState from "@/utils/index.js";
-    import router from '@/router/router';
+    import PageLoader from "../components/UI/PageLoader.vue";
+    import handlePopState from "../utils/index.js";
+    import router from "../router/router.js";
 
     export default {
         components: {
@@ -71,7 +71,7 @@
                 if (this.description !== undefined) {
                     data.description = this.description;
                 }
-                axios.post(`${process.env.VUE_APP_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, data)
+                axios.post(`${import.meta.env.VITE_BACKEND_DOMAIN + this.paypalCreateOrderLink}`, data)
                 .then(res => {
                     window.location.href = res.data.payment_link
                 })
