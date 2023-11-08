@@ -1,3 +1,5 @@
+import img3Src from "../assets/2in.png"
+
 export default function handlePopState() {
     function deleteAllCircles() {
         const circles = document.querySelectorAll('.blur-circle')
@@ -12,42 +14,25 @@ export default function handlePopState() {
         const body = document.body;
     
         const spacing = 1100;
-        const position = '7%';
     
         const appHeight = app.clientHeight;
-        const numCircles = Math.max(1, Math.floor(appHeight / spacing));
+        const numCircles = Math.max(1, Math.floor(appHeight / spacing - 1));
     
         for (let i = 0; i < numCircles; i++) {
-            const div1 = document.createElement("div");
-            const div2 = document.createElement("div");
+            const img1 = document.createElement("img");
     
-            if (i % 2 === 0) {
-                div1.className = "blur-circle blue-circle";
-                div2.className = "blur-circle green-circle";
-            } else {
-                div1.className = "blur-circle green-circle";
-                div2.className = "blur-circle blue-circle";
-            }
+            img1.className = "blur-circle";
     
             if (i == 0) {
-                div1.style.top = `250px`;
-                div2.style.top = `250px`;
+                img1.style.top = `250px`;
             } else {
                 const marginTop = i * spacing;
-                div1.style.top = `${marginTop}px`;
-                div2.style.top = `${marginTop}px`;
+                img1.style.top = `${marginTop}px`;
             }
     
-            if (i % 2 !== 0) {
-                div1.style.left = position;
-                div2.style.right = position;
-            } else {
-                div1.style.left = position;
-                div2.style.right = position;
-            }
+            img1.src = img3Src;
     
-            body.appendChild(div1);
-            body.appendChild(div2);
+            body.appendChild(img1);
         }
     }
     createCircles();
