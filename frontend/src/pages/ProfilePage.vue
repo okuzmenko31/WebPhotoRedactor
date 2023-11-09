@@ -158,7 +158,7 @@
 /* eslint-disable */
     import axios from 'axios';
     import { getHeaders, checkTrackingToken, setLocalToken, setLocalRefreshToken } from "../Auth.js";
-    import handlePopState from "../utils/index.js";
+    import {deleteAllCircles} from "../utils/delete_circles.js";
     import router from "../router/router.js";
     import InputUi from "../components/UI/InputUi.vue";
     export default {
@@ -211,7 +211,7 @@
                 router.push({ path: "/" })
             })
             
-            handlePopState()
+            deleteAllCircles()
             this.getUserCredits()
             this.getUserPlan()
         },

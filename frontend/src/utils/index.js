@@ -1,5 +1,3 @@
-import img3Src from "../assets/2in.png"
-
 export default function handlePopState() {
     function deleteAllCircles() {
         const circles = document.querySelectorAll('.blur-circle')
@@ -14,25 +12,42 @@ export default function handlePopState() {
         const body = document.body;
     
         const spacing = 1100;
+        const position = '7%';
     
         const appHeight = app.clientHeight;
-        const numCircles = Math.max(1, Math.floor(appHeight / spacing - 1));
+        const numCircles = Math.max(1, Math.floor(appHeight / spacing));
     
         for (let i = 0; i < numCircles; i++) {
-            const img1 = document.createElement("img");
+            const div1 = document.createElement("div");
+            const div2 = document.createElement("div");
     
-            img1.className = "blur-circle";
-    
-            if (i == 0) {
-                img1.style.top = `250px`;
+            if (i % 2 === 0) {
+                div1.className = "blur-circle blue-circle";
+                div2.className = "blur-circle green-circle";
             } else {
-                const marginTop = i * spacing;
-                img1.style.top = `${marginTop}px`;
+                div1.className = "blur-circle green-circle";
+                div2.className = "blur-circle blue-circle";
             }
     
-            img1.src = img3Src;
+            if (i == 0) {
+                div1.style.top = `250px`;
+                div2.style.top = `250px`;
+            } else {
+                const marginTop = i * spacing;
+                div1.style.top = `${marginTop}px`;
+                div2.style.top = `${marginTop}px`;
+            }
     
-            body.appendChild(img1);
+            if (i % 2 !== 0) {
+                div1.style.left = position;
+                div2.style.right = position;
+            } else {
+                div1.style.left = position;
+                div2.style.right = position;
+            }
+    
+            body.appendChild(div1);
+            body.appendChild(div2);
         }
     }
     createCircles();

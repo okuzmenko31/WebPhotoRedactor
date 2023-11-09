@@ -86,7 +86,7 @@
 import axios from 'axios';
 import { fetchToken, setLocalEmail, setLocalFullName } from "../Auth.js";
 import router from "../router/router.js";
-import handlePopState from "../utils/index.js";
+import {deleteAllCircles} from "../utils/delete_circles.js";
 import PaymentModel from "../components/UI/PaymentModel.vue";
 import InputUi from "../components/UI/InputUi.vue";
 import PageLoader from "../components/UI/PageLoader.vue";
@@ -103,7 +103,7 @@ export default {
     },
     async mounted() {
         const subId = this.$route.query.sub_id;
-        handlePopState();
+        deleteAllCircles();
         axios.get(`${import.meta.env.VITE_BACKEND_DOMAIN}/api/v1/payments/plans/${subId}/`)
         .then(res => {
             this.plan = res.data

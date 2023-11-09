@@ -29,7 +29,7 @@
 
 <script>
 import router from "../router/router.js";
-import handlePopState from "../utils/index.js";
+import {deleteAllCircles} from "../utils/delete_circles.js";
 import PaymentModel from "../components/UI/PaymentModel.vue";
 import InputUi from "../components/UI/InputUi.vue";
 import PageLoader from "../components/UI/PageLoader.vue";
@@ -53,7 +53,7 @@ export default {
         this.success_url = this.$route.query.success_url;
         this.cancel_url = this.$route.query.cancel_url;
         this.notify_url = this.$route.query.notify_url;
-        handlePopState();
+        deleteAllCircles();
         this.loadPaypal()
         this.loadStripe();
 

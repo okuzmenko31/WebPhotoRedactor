@@ -337,7 +337,7 @@
     import '@simonwep/pickr/dist/themes/nano.min.css';
     import Pickr from '@simonwep/pickr';
     import InputUi from "../components/UI/InputUi.vue";
-    import handlePopState from "../utils/index.js";
+    import {deleteAllCircles} from "../utils/delete_circles.js";
     import { fetchToken, checkTrackingToken, getHeaders } from "../Auth.js";
     import imageSrc from "../assets/credits.png"
 
@@ -347,7 +347,7 @@
             InputUi
         },
         async mounted() {
-            handlePopState()
+            deleteAllCircles()
             if (document.getElementById('color-picker')) {
                 this.$nextTick(() => {
                     this.loadChooseBgColor();
